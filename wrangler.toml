@@ -1,0 +1,9 @@
+name = "url-forge"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-09-19"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "url-forge-telemetry"
+database_id = "3bf86421-fe96-4378-805d-81ec00d1367b"
+migrations_dir = "migrations"
