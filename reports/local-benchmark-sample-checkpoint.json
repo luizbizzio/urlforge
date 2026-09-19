@@ -1,0 +1,1208 @@
+{
+  "schemaVersion": 1,
+  "signature": "6c570d189612c55c28ca8692112c9189d70aca8a66cdfa4fefe9453d1f3f4feb",
+  "mode": "sample",
+  "createdAt": "2026-09-19T10:22:37.263Z",
+  "updatedAt": "2026-09-19T10:22:37.657Z",
+  "complete": true,
+  "datasets": {
+    "development": {
+      "count": 6,
+      "fingerprint": "b5854da07ad4e8d0cea68a9db43a750caafe49cb01c7f82878f2f4c2c5670841",
+      "reference": {
+        "payloads": [
+          6,
+          160,
+          61,
+          22,
+          53,
+          32
+        ],
+        "payload": {
+          "average": 55.666666666666664,
+          "median": 42.5,
+          "p90": 110.5,
+          "p95": 135.25,
+          "maximum": 160
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 6,
+          "payloadHistogram": {
+            "7": 1,
+            "14": 1,
+            "15": 1,
+            "42": 1,
+            "47": 1,
+            "147": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "147": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payloadHistogram": {
+                "47": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payloadHistogram": {
+                "15": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payloadHistogram": {
+                "42": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 3.2864000000000075,
+            "maximumMs": 1.5118999999999971
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.5694999999999908,
+            "maximumMs": 0.23790000000000333
+          },
+          "comparison": {
+            "wins": 5,
+            "losses": 1,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        },
+        "arithmeticCandidate": {
+          "count": 6,
+          "payloadHistogram": {
+            "7": 1,
+            "14": 1,
+            "15": 1,
+            "47": 1,
+            "50": 1,
+            "178": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "178": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payloadHistogram": {
+                "50": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payloadHistogram": {
+                "15": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payloadHistogram": {
+                "47": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 2.5311999999999983,
+            "maximumMs": 1.7122000000000028
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.5074999999999932,
+            "maximumMs": 0.3684999999999974
+          },
+          "comparison": {
+            "wins": 4,
+            "losses": 2,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 6,
+          "payloadHistogram": {
+            "7": 1,
+            "14": 1,
+            "15": 1,
+            "42": 1,
+            "47": 1,
+            "147": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "147": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payloadHistogram": {
+                "47": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payloadHistogram": {
+                "15": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payloadHistogram": {
+                "42": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 4.64759999999999,
+            "maximumMs": 2.769199999999998
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.5710999999999942,
+            "maximumMs": 0.238900000000001
+          },
+          "comparison": {
+            "wins": 5,
+            "losses": 1,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        }
+      }
+    },
+    "holdout": {
+      "count": 6,
+      "fingerprint": "19e57d0db77c24050fba7e7a3e37488cd875ae51192cfa43c6569825a1e57844",
+      "reference": {
+        "payloads": [
+          26,
+          253,
+          362,
+          711,
+          33,
+          48
+        ],
+        "payload": {
+          "average": 238.83333333333334,
+          "median": 150.5,
+          "p90": 536.5,
+          "p95": 623.75,
+          "maximum": 711
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 6,
+          "payloadHistogram": {
+            "38": 1,
+            "51": 1,
+            "64": 1,
+            "244": 1,
+            "318": 1,
+            "451": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "38": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "318": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "451": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payloadHistogram": {
+                "244": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "51": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "64": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 13.015499999999996,
+            "maximumMs": 9.6601
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.44779999999998665,
+            "maximumMs": 0.1313999999999993
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 5,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        },
+        "arithmeticCandidate": {
+          "count": 6,
+          "payloadHistogram": {
+            "40": 1,
+            "58": 1,
+            "67": 1,
+            "314": 1,
+            "443": 1,
+            "942": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "40": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "314": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "443": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payloadHistogram": {
+                "942": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "58": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "67": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 12.221799999999973,
+            "maximumMs": 4.847999999999999
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 1.9137000000000057,
+            "maximumMs": 0.7158000000000015
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 6,
+          "payloadHistogram": {
+            "38": 1,
+            "51": 1,
+            "64": 1,
+            "244": 1,
+            "312": 1,
+            "442": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "38": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "312": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "442": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payloadHistogram": {
+                "244": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "51": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "64": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 14.176000000000002,
+            "maximumMs": 8.796400000000006
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.7471000000000032,
+            "maximumMs": 0.33670000000000755
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 5,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        }
+      }
+    },
+    "stress": {
+      "count": 2,
+      "fingerprint": "7b816e536e33d656b1c67d4551492f9296d29addb1915127cda0544fb18bf819",
+      "reference": {
+        "payloads": [
+          null,
+          1615
+        ],
+        "payload": {
+          "average": 1615,
+          "median": 1615,
+          "p90": 1615,
+          "p95": 1615,
+          "maximum": 1615
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "actual ha.mr round-trip failure": 1
+        }
+      },
+      "malformed": {
+        "count": 4,
+        "rejected": 4,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 2,
+          "payloadHistogram": {
+            "166": 1,
+            "454": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "166": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "454": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 115.49300000000001,
+            "maximumMs": 115.2656
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.22859999999998593,
+            "maximumMs": 0.18039999999999168
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "roundTrips": 2,
+          "failures": []
+        },
+        "arithmeticCandidate": {
+          "count": 2,
+          "payloadHistogram": {
+            "174": 1,
+            "1348": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "174": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "1348": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 2.106099999999998,
+            "maximumMs": 1.7741000000000042
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.5585000000000093,
+            "maximumMs": 0.3943999999999903
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "roundTrips": 2,
+          "failures": []
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 2,
+          "payloadHistogram": {
+            "166": 1,
+            "454": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "166": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "454": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 113.60020000000003,
+            "maximumMs": 113.22930000000002
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.18190000000001305,
+            "maximumMs": 0.13850000000002183
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "roundTrips": 2,
+          "failures": []
+        }
+      }
+    },
+    "unseen": {
+      "count": 6,
+      "fingerprint": "38f05e44da691268f9e3a9ee83d7085fabb558240d82630ebf0fa78934475893",
+      "reference": {
+        "payloads": [
+          89,
+          131,
+          198,
+          108,
+          51,
+          53
+        ],
+        "payload": {
+          "average": 105,
+          "median": 98.5,
+          "p90": 164.5,
+          "p95": 181.25,
+          "maximum": 198
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 6,
+          "payloadHistogram": {
+            "52": 1,
+            "59": 1,
+            "107": 1,
+            "120": 1,
+            "164": 1,
+            "238": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "107": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "164": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "238": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payloadHistogram": {
+                "120": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "52": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payloadHistogram": {
+                "59": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 1.0534000000000674,
+            "maximumMs": 0.28050000000001774
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.17270000000002028,
+            "maximumMs": 0.047600000000045384
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        },
+        "arithmeticCandidate": {
+          "count": 6,
+          "payloadHistogram": {
+            "56": 1,
+            "64": 1,
+            "118": 1,
+            "131": 1,
+            "178": 1,
+            "251": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "118": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "178": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "251": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payloadHistogram": {
+                "131": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "56": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payloadHistogram": {
+                "64": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 1.318300000000022,
+            "maximumMs": 0.44889999999998054
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.4773000000000138,
+            "maximumMs": 0.15430000000003474
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 6,
+          "payloadHistogram": {
+            "52": 1,
+            "59": 1,
+            "107": 1,
+            "120": 1,
+            "164": 1,
+            "238": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "107": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "164": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "238": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payloadHistogram": {
+                "120": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "52": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payloadHistogram": {
+                "59": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "compression": {
+            "count": 6,
+            "totalMs": 1.9770000000000323,
+            "maximumMs": 0.6355000000000359
+          },
+          "decompression": {
+            "count": 6,
+            "totalMs": 0.20809999999994488,
+            "maximumMs": 0.05160000000000764
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "roundTrips": 6,
+          "failures": []
+        }
+      }
+    }
+  }
+}

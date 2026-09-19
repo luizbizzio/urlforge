@@ -1,0 +1,2041 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-19T10:22:37.657Z",
+  "status": "complete",
+  "deterministicSignature": "6c570d189612c55c28ca8692112c9189d70aca8a66cdfa4fefe9453d1f3f4feb",
+  "mode": "sample",
+  "prefixes": {
+    "urlForge": "http://uf.mr#",
+    "haMr": "http://ha.mr#",
+    "equalLength": true,
+    "characters": 13
+  },
+  "candidates": {
+    "currentSemanticHuffmanLz": {
+      "huffman": true,
+      "lz": true,
+      "arithmetic": false
+    },
+    "arithmeticCandidate": {
+      "huffman": false,
+      "lz": false,
+      "arithmetic": true
+    },
+    "globalPlannerWithArithmetic": {
+      "huffman": true,
+      "lz": true,
+      "arithmetic": true
+    },
+    "globalPlannerWithoutArithmetic": {
+      "equivalentTo": "currentSemanticHuffmanLz"
+    }
+  },
+  "payloadOverhead": {
+    "fixedFormatBits": 9,
+    "rawLiteralHeaderBits": 6,
+    "huffmanHeaderBits": 10,
+    "lzHeaderBits": 5,
+    "arithmeticHeaderBits": 8,
+    "note": "Planner costs include token headers, variable-length framing, model identifier, and encoded data."
+  },
+  "sourceSize": {
+    "codecBytes": 27917,
+    "localBenchmarkBytes": 14313
+  },
+  "datasets": {
+    "development": {
+      "count": 6,
+      "haMr": {
+        "payload": {
+          "average": 55.666666666666664,
+          "median": 42.5,
+          "p90": 110.5,
+          "p95": 135.25,
+          "maximum": 160
+        },
+        "completeLink": {
+          "average": 68.66666666666666,
+          "median": 55.5,
+          "p90": 123.5,
+          "p95": 148.25,
+          "maximum": 173
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 6,
+          "payload": {
+            "average": 45.333333333333336,
+            "median": 28.5,
+            "p90": 97,
+            "p95": 122,
+            "maximum": 147
+          },
+          "completeLink": {
+            "average": 58.333333333333336,
+            "median": 41.5,
+            "p90": 110,
+            "p95": 135,
+            "maximum": 160
+          },
+          "compression": {
+            "averageMs": 0.5477333333333346,
+            "maximumMs": 1.5118999999999971,
+            "totalMs": 3.2864000000000075
+          },
+          "decompression": {
+            "averageMs": 0.09491666666666514,
+            "maximumMs": 0.23790000000000333,
+            "totalMs": 0.5694999999999908
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 5,
+            "losses": 1,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payload": {
+                "average": 147,
+                "median": 147,
+                "p90": 147,
+                "p95": 147,
+                "maximum": 147
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payload": {
+                "average": 47,
+                "median": 47,
+                "p90": 47,
+                "p95": 47,
+                "maximum": 47
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payload": {
+                "average": 15,
+                "median": 15,
+                "p90": 15,
+                "p95": 15,
+                "maximum": 15
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payload": {
+                "average": 42,
+                "median": 42,
+                "p90": 42,
+                "p95": 42,
+                "maximum": 42
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payload": {
+                "average": 14,
+                "median": 14,
+                "p90": 14,
+                "p95": 14,
+                "maximum": 14
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "arithmeticCandidate": {
+          "count": 6,
+          "payload": {
+            "average": 51.833333333333336,
+            "median": 31,
+            "p90": 114,
+            "p95": 146,
+            "maximum": 178
+          },
+          "completeLink": {
+            "average": 64.83333333333334,
+            "median": 44,
+            "p90": 127,
+            "p95": 159,
+            "maximum": 191
+          },
+          "compression": {
+            "averageMs": 0.4218666666666664,
+            "maximumMs": 1.7122000000000028,
+            "totalMs": 2.5311999999999983
+          },
+          "decompression": {
+            "averageMs": 0.08458333333333219,
+            "maximumMs": 0.3684999999999974,
+            "totalMs": 0.5074999999999932
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 4,
+            "losses": 2,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payload": {
+                "average": 178,
+                "median": 178,
+                "p90": 178,
+                "p95": 178,
+                "maximum": 178
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payload": {
+                "average": 50,
+                "median": 50,
+                "p90": 50,
+                "p95": 50,
+                "maximum": 50
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payload": {
+                "average": 15,
+                "median": 15,
+                "p90": 15,
+                "p95": 15,
+                "maximum": 15
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payload": {
+                "average": 47,
+                "median": 47,
+                "p90": 47,
+                "p95": 47,
+                "maximum": 47
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payload": {
+                "average": 14,
+                "median": 14,
+                "p90": 14,
+                "p95": 14,
+                "maximum": 14
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "globalPlannerWithoutArithmetic": {
+          "count": 6,
+          "payload": {
+            "average": 45.333333333333336,
+            "median": 28.5,
+            "p90": 97,
+            "p95": 122,
+            "maximum": 147
+          },
+          "completeLink": {
+            "average": 58.333333333333336,
+            "median": 41.5,
+            "p90": 110,
+            "p95": 135,
+            "maximum": 160
+          },
+          "compression": {
+            "averageMs": 0.5477333333333346,
+            "maximumMs": 1.5118999999999971,
+            "totalMs": 3.2864000000000075
+          },
+          "decompression": {
+            "averageMs": 0.09491666666666514,
+            "maximumMs": 0.23790000000000333,
+            "totalMs": 0.5694999999999908
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 5,
+            "losses": 1,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payload": {
+                "average": 147,
+                "median": 147,
+                "p90": 147,
+                "p95": 147,
+                "maximum": 147
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payload": {
+                "average": 47,
+                "median": 47,
+                "p90": 47,
+                "p95": 47,
+                "maximum": 47
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payload": {
+                "average": 15,
+                "median": 15,
+                "p90": 15,
+                "p95": 15,
+                "maximum": 15
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payload": {
+                "average": 42,
+                "median": 42,
+                "p90": 42,
+                "p95": 42,
+                "maximum": 42
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payload": {
+                "average": 14,
+                "median": 14,
+                "p90": 14,
+                "p95": 14,
+                "maximum": 14
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "equivalentTo": "currentSemanticHuffmanLz",
+          "note": "Identical selectable representation; measured once to avoid duplicate comparison."
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 6,
+          "payload": {
+            "average": 45.333333333333336,
+            "median": 28.5,
+            "p90": 97,
+            "p95": 122,
+            "maximum": 147
+          },
+          "completeLink": {
+            "average": 58.333333333333336,
+            "median": 41.5,
+            "p90": 110,
+            "p95": 135,
+            "maximum": 160
+          },
+          "compression": {
+            "averageMs": 0.7745999999999983,
+            "maximumMs": 2.769199999999998,
+            "totalMs": 4.64759999999999
+          },
+          "decompression": {
+            "averageMs": 0.09518333333333236,
+            "maximumMs": 0.238900000000001,
+            "totalMs": 0.5710999999999942
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 5,
+            "losses": 1,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long paths": {
+              "count": 1,
+              "payload": {
+                "average": 147,
+                "median": 147,
+                "p90": 147,
+                "p95": 147,
+                "maximum": 147
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "GitHub": {
+              "count": 1,
+              "payload": {
+                "average": 47,
+                "median": 47,
+                "p90": 47,
+                "p95": 47,
+                "maximum": 47
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "YouTube": {
+              "count": 1,
+              "payload": {
+                "average": 15,
+                "median": 15,
+                "p90": 15,
+                "p95": 15,
+                "maximum": 15
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google": {
+              "count": 1,
+              "payload": {
+                "average": 42,
+                "median": 42,
+                "p90": 42,
+                "p95": 42,
+                "maximum": 42
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "Google Maps": {
+              "count": 1,
+              "payload": {
+                "average": 14,
+                "median": 14,
+                "p90": 14,
+                "p95": 14,
+                "maximum": 14
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "holdout": {
+      "count": 6,
+      "haMr": {
+        "payload": {
+          "average": 238.83333333333334,
+          "median": 150.5,
+          "p90": 536.5,
+          "p95": 623.75,
+          "maximum": 711
+        },
+        "completeLink": {
+          "average": 251.83333333333334,
+          "median": 163.5,
+          "p90": 549.5,
+          "p95": 636.75,
+          "maximum": 724
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 6,
+          "payload": {
+            "average": 194.33333333333334,
+            "median": 154,
+            "p90": 384.5,
+            "p95": 417.75,
+            "maximum": 451
+          },
+          "completeLink": {
+            "average": 207.33333333333334,
+            "median": 167,
+            "p90": 397.5,
+            "p95": 430.75,
+            "maximum": 464
+          },
+          "compression": {
+            "averageMs": 2.1692499999999995,
+            "maximumMs": 9.6601,
+            "totalMs": 13.015499999999996
+          },
+          "decompression": {
+            "averageMs": 0.07463333333333111,
+            "maximumMs": 0.1313999999999993,
+            "totalMs": 0.44779999999998665
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 5,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 38,
+                "median": 38,
+                "p90": 38,
+                "p95": 38,
+                "maximum": 38
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 318,
+                "median": 318,
+                "p90": 318,
+                "p95": 318,
+                "maximum": 318
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 451,
+                "median": 451,
+                "p90": 451,
+                "p95": 451,
+                "maximum": 451
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payload": {
+                "average": 244,
+                "median": 244,
+                "p90": 244,
+                "p95": 244,
+                "maximum": 244
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 64,
+                "median": 64,
+                "p90": 64,
+                "p95": 64,
+                "maximum": 64
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "arithmeticCandidate": {
+          "count": 6,
+          "payload": {
+            "average": 310.6666666666667,
+            "median": 190.5,
+            "p90": 692.5,
+            "p95": 817.25,
+            "maximum": 942
+          },
+          "completeLink": {
+            "average": 323.6666666666667,
+            "median": 203.5,
+            "p90": 705.5,
+            "p95": 830.25,
+            "maximum": 955
+          },
+          "compression": {
+            "averageMs": 2.0369666666666624,
+            "maximumMs": 4.847999999999999,
+            "totalMs": 12.221799999999973
+          },
+          "decompression": {
+            "averageMs": 0.31895000000000095,
+            "maximumMs": 0.7158000000000015,
+            "totalMs": 1.9137000000000057
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 40,
+                "median": 40,
+                "p90": 40,
+                "p95": 40,
+                "maximum": 40
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 314,
+                "median": 314,
+                "p90": 314,
+                "p95": 314,
+                "maximum": 314
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 443,
+                "median": 443,
+                "p90": 443,
+                "p95": 443,
+                "maximum": 443
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payload": {
+                "average": 942,
+                "median": 942,
+                "p90": 942,
+                "p95": 942,
+                "maximum": 942
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 58,
+                "median": 58,
+                "p90": 58,
+                "p95": 58,
+                "maximum": 58
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 67,
+                "median": 67,
+                "p90": 67,
+                "p95": 67,
+                "maximum": 67
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "globalPlannerWithoutArithmetic": {
+          "count": 6,
+          "payload": {
+            "average": 194.33333333333334,
+            "median": 154,
+            "p90": 384.5,
+            "p95": 417.75,
+            "maximum": 451
+          },
+          "completeLink": {
+            "average": 207.33333333333334,
+            "median": 167,
+            "p90": 397.5,
+            "p95": 430.75,
+            "maximum": 464
+          },
+          "compression": {
+            "averageMs": 2.1692499999999995,
+            "maximumMs": 9.6601,
+            "totalMs": 13.015499999999996
+          },
+          "decompression": {
+            "averageMs": 0.07463333333333111,
+            "maximumMs": 0.1313999999999993,
+            "totalMs": 0.44779999999998665
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 5,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 38,
+                "median": 38,
+                "p90": 38,
+                "p95": 38,
+                "maximum": 38
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 318,
+                "median": 318,
+                "p90": 318,
+                "p95": 318,
+                "maximum": 318
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 451,
+                "median": 451,
+                "p90": 451,
+                "p95": 451,
+                "maximum": 451
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payload": {
+                "average": 244,
+                "median": 244,
+                "p90": 244,
+                "p95": 244,
+                "maximum": 244
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 64,
+                "median": 64,
+                "p90": 64,
+                "p95": 64,
+                "maximum": 64
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "equivalentTo": "currentSemanticHuffmanLz",
+          "note": "Identical selectable representation; measured once to avoid duplicate comparison."
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 6,
+          "payload": {
+            "average": 191.83333333333334,
+            "median": 154,
+            "p90": 377,
+            "p95": 409.5,
+            "maximum": 442
+          },
+          "completeLink": {
+            "average": 204.83333333333334,
+            "median": 167,
+            "p90": 390,
+            "p95": 422.5,
+            "maximum": 455
+          },
+          "compression": {
+            "averageMs": 2.362666666666667,
+            "maximumMs": 8.796400000000006,
+            "totalMs": 14.176000000000002
+          },
+          "decompression": {
+            "averageMs": 0.1245166666666672,
+            "maximumMs": 0.33670000000000755,
+            "totalMs": 0.7471000000000032
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 5,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 38,
+                "median": 38,
+                "p90": 38,
+                "p95": 38,
+                "maximum": 38
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 312,
+                "median": 312,
+                "p90": 312,
+                "p95": 312,
+                "maximum": 312
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 442,
+                "median": 442,
+                "p90": 442,
+                "p95": 442,
+                "maximum": 442
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "long Unicode": {
+              "count": 1,
+              "payload": {
+                "average": 244,
+                "median": 244,
+                "p90": 244,
+                "p95": 244,
+                "maximum": 244
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 64,
+                "median": 64,
+                "p90": 64,
+                "p95": 64,
+                "maximum": 64
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "stress": {
+      "count": 2,
+      "haMr": {
+        "payload": {
+          "average": 1615,
+          "median": 1615,
+          "p90": 1615,
+          "p95": 1615,
+          "maximum": 1615
+        },
+        "completeLink": {
+          "average": 1628,
+          "median": 1628,
+          "p90": 1628,
+          "p95": 1628,
+          "maximum": 1628
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "actual ha.mr round-trip failure": 1
+        }
+      },
+      "malformed": {
+        "count": 4,
+        "rejected": 4,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 2,
+          "payload": {
+            "average": 310,
+            "median": 310,
+            "p90": 425.2,
+            "p95": 439.59999999999997,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 323,
+            "median": 323,
+            "p90": 438.2,
+            "p95": 452.59999999999997,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 57.746500000000005,
+            "maximumMs": 115.2656,
+            "totalMs": 115.49300000000001
+          },
+          "decompression": {
+            "averageMs": 0.11429999999999296,
+            "maximumMs": 0.18039999999999168,
+            "totalMs": 0.22859999999998593
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 166,
+                "median": 166,
+                "p90": 166,
+                "p95": 166,
+                "maximum": 166
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "arithmeticCandidate": {
+          "count": 2,
+          "payload": {
+            "average": 761,
+            "median": 761,
+            "p90": 1230.6000000000001,
+            "p95": 1289.3,
+            "maximum": 1348
+          },
+          "completeLink": {
+            "average": 774,
+            "median": 774,
+            "p90": 1243.6000000000001,
+            "p95": 1302.3,
+            "maximum": 1361
+          },
+          "compression": {
+            "averageMs": 1.053049999999999,
+            "maximumMs": 1.7741000000000042,
+            "totalMs": 2.106099999999998
+          },
+          "decompression": {
+            "averageMs": 0.27925000000000466,
+            "maximumMs": 0.3943999999999903,
+            "totalMs": 0.5585000000000093
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 174,
+                "median": 174,
+                "p90": 174,
+                "p95": 174,
+                "maximum": 174
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 1348,
+                "median": 1348,
+                "p90": 1348,
+                "p95": 1348,
+                "maximum": 1348
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "globalPlannerWithoutArithmetic": {
+          "count": 2,
+          "payload": {
+            "average": 310,
+            "median": 310,
+            "p90": 425.2,
+            "p95": 439.59999999999997,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 323,
+            "median": 323,
+            "p90": 438.2,
+            "p95": 452.59999999999997,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 57.746500000000005,
+            "maximumMs": 115.2656,
+            "totalMs": 115.49300000000001
+          },
+          "decompression": {
+            "averageMs": 0.11429999999999296,
+            "maximumMs": 0.18039999999999168,
+            "totalMs": 0.22859999999998593
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 166,
+                "median": 166,
+                "p90": 166,
+                "p95": 166,
+                "maximum": 166
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "equivalentTo": "currentSemanticHuffmanLz",
+          "note": "Identical selectable representation; measured once to avoid duplicate comparison."
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 2,
+          "payload": {
+            "average": 310,
+            "median": 310,
+            "p90": 425.2,
+            "p95": 439.59999999999997,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 323,
+            "median": 323,
+            "p90": 438.2,
+            "p95": 452.59999999999997,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 56.800100000000015,
+            "maximumMs": 113.22930000000002,
+            "totalMs": 113.60020000000003
+          },
+          "decompression": {
+            "averageMs": 0.09095000000000653,
+            "maximumMs": 0.13850000000002183,
+            "totalMs": 0.18190000000001305
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 166,
+                "median": 166,
+                "p90": 166,
+                "p95": 166,
+                "maximum": 166
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "unseen": {
+      "count": 6,
+      "haMr": {
+        "payload": {
+          "average": 105,
+          "median": 98.5,
+          "p90": 164.5,
+          "p95": 181.25,
+          "maximum": 198
+        },
+        "completeLink": {
+          "average": 118,
+          "median": 111.5,
+          "p90": 177.5,
+          "p95": 194.25,
+          "maximum": 211
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 6,
+          "payload": {
+            "average": 123.33333333333333,
+            "median": 113.5,
+            "p90": 201,
+            "p95": 219.5,
+            "maximum": 238
+          },
+          "completeLink": {
+            "average": 136.33333333333331,
+            "median": 126.5,
+            "p90": 214,
+            "p95": 232.5,
+            "maximum": 251
+          },
+          "compression": {
+            "averageMs": 0.1755666666666779,
+            "maximumMs": 0.28050000000001774,
+            "totalMs": 1.0534000000000674
+          },
+          "decompression": {
+            "averageMs": 0.028783333333336714,
+            "maximumMs": 0.047600000000045384,
+            "totalMs": 0.17270000000002028
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 107,
+                "median": 107,
+                "p90": 107,
+                "p95": 107,
+                "maximum": 107
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 238,
+                "median": 238,
+                "p90": 238,
+                "p95": 238,
+                "maximum": 238
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payload": {
+                "average": 120,
+                "median": 120,
+                "p90": 120,
+                "p95": 120,
+                "maximum": 120
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payload": {
+                "average": 52,
+                "median": 52,
+                "p90": 52,
+                "p95": 52,
+                "maximum": 52
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payload": {
+                "average": 59,
+                "median": 59,
+                "p90": 59,
+                "p95": 59,
+                "maximum": 59
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "arithmeticCandidate": {
+          "count": 6,
+          "payload": {
+            "average": 133,
+            "median": 124.5,
+            "p90": 214.5,
+            "p95": 232.75,
+            "maximum": 251
+          },
+          "completeLink": {
+            "average": 146,
+            "median": 137.5,
+            "p90": 227.5,
+            "p95": 245.75,
+            "maximum": 264
+          },
+          "compression": {
+            "averageMs": 0.21971666666667033,
+            "maximumMs": 0.44889999999998054,
+            "totalMs": 1.318300000000022
+          },
+          "decompression": {
+            "averageMs": 0.0795500000000023,
+            "maximumMs": 0.15430000000003474,
+            "totalMs": 0.4773000000000138
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 118,
+                "median": 118,
+                "p90": 118,
+                "p95": 118,
+                "maximum": 118
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 178,
+                "median": 178,
+                "p90": 178,
+                "p95": 178,
+                "maximum": 178
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 251,
+                "median": 251,
+                "p90": 251,
+                "p95": 251,
+                "maximum": 251
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payload": {
+                "average": 131,
+                "median": 131,
+                "p90": 131,
+                "p95": 131,
+                "maximum": 131
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payload": {
+                "average": 56,
+                "median": 56,
+                "p90": 56,
+                "p95": 56,
+                "maximum": 56
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payload": {
+                "average": 64,
+                "median": 64,
+                "p90": 64,
+                "p95": 64,
+                "maximum": 64
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        },
+        "globalPlannerWithoutArithmetic": {
+          "count": 6,
+          "payload": {
+            "average": 123.33333333333333,
+            "median": 113.5,
+            "p90": 201,
+            "p95": 219.5,
+            "maximum": 238
+          },
+          "completeLink": {
+            "average": 136.33333333333331,
+            "median": 126.5,
+            "p90": 214,
+            "p95": 232.5,
+            "maximum": 251
+          },
+          "compression": {
+            "averageMs": 0.1755666666666779,
+            "maximumMs": 0.28050000000001774,
+            "totalMs": 1.0534000000000674
+          },
+          "decompression": {
+            "averageMs": 0.028783333333336714,
+            "maximumMs": 0.047600000000045384,
+            "totalMs": 0.17270000000002028
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 107,
+                "median": 107,
+                "p90": 107,
+                "p95": 107,
+                "maximum": 107
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 238,
+                "median": 238,
+                "p90": 238,
+                "p95": 238,
+                "maximum": 238
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payload": {
+                "average": 120,
+                "median": 120,
+                "p90": 120,
+                "p95": 120,
+                "maximum": 120
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payload": {
+                "average": 52,
+                "median": 52,
+                "p90": 52,
+                "p95": 52,
+                "maximum": 52
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payload": {
+                "average": 59,
+                "median": 59,
+                "p90": 59,
+                "p95": 59,
+                "maximum": 59
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          },
+          "equivalentTo": "currentSemanticHuffmanLz",
+          "note": "Identical selectable representation; measured once to avoid duplicate comparison."
+        },
+        "globalPlannerWithArithmetic": {
+          "count": 6,
+          "payload": {
+            "average": 123.33333333333333,
+            "median": 113.5,
+            "p90": 201,
+            "p95": 219.5,
+            "maximum": 238
+          },
+          "completeLink": {
+            "average": 136.33333333333331,
+            "median": 126.5,
+            "p90": 214,
+            "p95": 232.5,
+            "maximum": 251
+          },
+          "compression": {
+            "averageMs": 0.3295000000000054,
+            "maximumMs": 0.6355000000000359,
+            "totalMs": 1.9770000000000323
+          },
+          "decompression": {
+            "averageMs": 0.03468333333332415,
+            "maximumMs": 0.05160000000000764,
+            "totalMs": 0.20809999999994488
+          },
+          "roundTrips": 6,
+          "roundTripSuccess": "6/6",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 6,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 107,
+                "median": 107,
+                "p90": 107,
+                "p95": 107,
+                "maximum": 107
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 238,
+                "median": 238,
+                "p90": 238,
+                "p95": 238,
+                "maximum": 238
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "ecommerce filters": {
+              "count": 1,
+              "payload": {
+                "average": 120,
+                "median": 120,
+                "p90": 120,
+                "p95": 120,
+                "maximum": 120
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "international domains": {
+              "count": 1,
+              "payload": {
+                "average": 52,
+                "median": 52,
+                "p90": 52,
+                "p95": 52,
+                "maximum": 52
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            },
+            "IP hosts": {
+              "count": 1,
+              "payload": {
+                "average": 59,
+                "median": 59,
+                "p90": 59,
+                "p95": 59,
+                "maximum": 59
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

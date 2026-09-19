@@ -1,0 +1,3361 @@
+{
+  "schemaVersion": 2,
+  "signature": "29ef556e8daf795e3441ee425a3eb18a7878b6b8a05cbf0b0cea4782f0bcde9f",
+  "mode": "sample",
+  "createdAt": "2026-09-19T11:20:14.168Z",
+  "updatedAt": "2026-09-19T11:20:16.177Z",
+  "complete": true,
+  "datasets": {
+    "development": {
+      "count": 3,
+      "fingerprint": "c55a69473a48617337811145888f0527a5bf5adbc50e0261b144ea4b261e84d7",
+      "reference": {
+        "payloads": [
+          6,
+          47,
+          35
+        ],
+        "payload": {
+          "average": 29.333333333333332,
+          "median": 35,
+          "p90": 44.6,
+          "p95": 45.8,
+          "maximum": 47
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 3,
+          "payloadHistogram": {
+            "7": 1,
+            "39": 1,
+            "54": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 28,
+                "globalRawStreamBits": 46,
+                "baselineBits": 28,
+                "selectedBits": 28,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "54": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 304,
+                "globalRawStreamBits": 306,
+                "baselineBits": 304,
+                "selectedBits": 304,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "39": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 217,
+                "globalRawStreamBits": 248,
+                "baselineBits": 217,
+                "selectedBits": 217,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 3,
+            "totalMs": 4.486999999999995,
+            "maximumMs": 2.2036999999999978
+          },
+          "decompression": {
+            "count": 3,
+            "totalMs": 0.5611999999999995,
+            "maximumMs": 0.3027000000000015
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "framing": {
+            "count": 3,
+            "localSegmentedBits": 549,
+            "globalRawStreamBits": 600,
+            "baselineBits": 549,
+            "selectedBits": 549,
+            "savedBits": 0,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "candidateSelections": 0,
+          "roundTrips": 3,
+          "failures": []
+        },
+        "genericHostnameV2": {
+          "count": 3,
+          "payloadHistogram": {
+            "7": 1,
+            "39": 1,
+            "54": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 28,
+                "globalRawStreamBits": 46,
+                "baselineBits": 28,
+                "selectedBits": 28,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "54": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 304,
+                "globalRawStreamBits": 306,
+                "baselineBits": 304,
+                "selectedBits": 304,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "39": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 217,
+                "globalRawStreamBits": 248,
+                "baselineBits": 217,
+                "selectedBits": 217,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 3,
+            "totalMs": 1.8659999999999997,
+            "maximumMs": 0.9843999999999937
+          },
+          "decompression": {
+            "count": 3,
+            "totalMs": 0.10089999999999577,
+            "maximumMs": 0.05250000000000199
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "framing": {
+            "count": 3,
+            "localSegmentedBits": 549,
+            "globalRawStreamBits": 600,
+            "baselineBits": 549,
+            "selectedBits": 549,
+            "savedBits": 0,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "candidateSelections": 0,
+          "roundTrips": 3,
+          "failures": []
+        },
+        "queryAsOneBlock": {
+          "count": 3,
+          "payloadHistogram": {
+            "7": 1,
+            "39": 1,
+            "54": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 28,
+                "globalRawStreamBits": 46,
+                "baselineBits": 28,
+                "selectedBits": 28,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "54": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 304,
+                "globalRawStreamBits": 306,
+                "baselineBits": 304,
+                "selectedBits": 304,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "39": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 217,
+                "globalRawStreamBits": 248,
+                "baselineBits": 217,
+                "selectedBits": 217,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 3,
+            "totalMs": 4.263499999999986,
+            "maximumMs": 2.314699999999995
+          },
+          "decompression": {
+            "count": 3,
+            "totalMs": 0.7415999999999983,
+            "maximumMs": 0.30120000000000147
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "framing": {
+            "count": 3,
+            "localSegmentedBits": 549,
+            "globalRawStreamBits": 600,
+            "baselineBits": 549,
+            "selectedBits": 549,
+            "savedBits": 0,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "candidateSelections": 0,
+          "roundTrips": 3,
+          "failures": []
+        },
+        "directBinaryValues": {
+          "count": 3,
+          "payloadHistogram": {
+            "7": 1,
+            "38": 1,
+            "54": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 28,
+                "globalRawStreamBits": 46,
+                "baselineBits": 28,
+                "selectedBits": 28,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "54": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 304,
+                "globalRawStreamBits": 306,
+                "baselineBits": 304,
+                "selectedBits": 304,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "38": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 217,
+                "globalRawStreamBits": 253,
+                "baselineBits": 217,
+                "selectedBits": 212,
+                "savedBits": 5,
+                "savedVsBaselineBits": 5,
+                "maximumSavedBits": 5,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 1
+            }
+          },
+          "compression": {
+            "count": 3,
+            "totalMs": 2.9325000000000045,
+            "maximumMs": 1.6734000000000009
+          },
+          "decompression": {
+            "count": 3,
+            "totalMs": 0.120900000000006,
+            "maximumMs": 0.0654000000000039
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "framing": {
+            "count": 3,
+            "localSegmentedBits": 549,
+            "globalRawStreamBits": 605,
+            "baselineBits": 549,
+            "selectedBits": 544,
+            "savedBits": 5,
+            "savedVsBaselineBits": 5,
+            "maximumSavedBits": 5,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "candidateSelections": 1,
+          "roundTrips": 3,
+          "failures": []
+        },
+        "shortUrlV2": {
+          "count": 3,
+          "payloadHistogram": {
+            "7": 1,
+            "39": 1,
+            "54": 1
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "7": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 28,
+                "globalRawStreamBits": 46,
+                "baselineBits": 28,
+                "selectedBits": 28,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "54": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 304,
+                "globalRawStreamBits": 306,
+                "baselineBits": 304,
+                "selectedBits": 304,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "39": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 217,
+                "globalRawStreamBits": 248,
+                "baselineBits": 217,
+                "selectedBits": 217,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 3,
+            "totalMs": 1.1485999999999947,
+            "maximumMs": 0.6453999999999951
+          },
+          "decompression": {
+            "count": 3,
+            "totalMs": 0.344699999999996,
+            "maximumMs": 0.30579999999999785
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "framing": {
+            "count": 3,
+            "localSegmentedBits": 549,
+            "globalRawStreamBits": 600,
+            "baselineBits": 549,
+            "selectedBits": 549,
+            "savedBits": 0,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "candidateSelections": 0,
+          "roundTrips": 3,
+          "failures": []
+        }
+      }
+    },
+    "holdout": {
+      "count": 9,
+      "fingerprint": "a6ff9541067e50f3c537781de2fc7009851c1093414819a5c8d169cb98d18ca9",
+      "reference": {
+        "payloads": [
+          26,
+          253,
+          362,
+          33,
+          48,
+          233,
+          7,
+          null,
+          85
+        ],
+        "payload": {
+          "average": 130.875,
+          "median": 66.5,
+          "p90": 285.7,
+          "p95": 323.8499999999999,
+          "maximum": 362
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "actual ha.mr round-trip failure": 1
+        }
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 9,
+          "payloadHistogram": {
+            "14": 1,
+            "35": 1,
+            "51": 1,
+            "55": 1,
+            "63": 1,
+            "100": 1,
+            "279": 1,
+            "311": 1,
+            "442": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "35": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 215,
+                "globalRawStreamBits": 196,
+                "baselineBits": 196,
+                "selectedBits": 196,
+                "savedBits": 19,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "311": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1861,
+                "globalRawStreamBits": 1849,
+                "baselineBits": 1849,
+                "selectedBits": 1849,
+                "savedBits": 12,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "442": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2636,
+                "globalRawStreamBits": 2636,
+                "baselineBits": 2636,
+                "selectedBits": 2636,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "51": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 288,
+                "globalRawStreamBits": 288,
+                "baselineBits": 288,
+                "selectedBits": 288,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "63": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 372,
+                "globalRawStreamBits": 362,
+                "baselineBits": 362,
+                "selectedBits": 362,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "279": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1670,
+                "globalRawStreamBits": 1660,
+                "baselineBits": 1660,
+                "selectedBits": 1660,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "short holdout": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 79,
+                "globalRawStreamBits": 71,
+                "baselineBits": 71,
+                "selectedBits": 71,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payloadHistogram": {
+                "55": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 323,
+                "globalRawStreamBits": 313,
+                "baselineBits": 313,
+                "selectedBits": 313,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "100": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 599,
+                "globalRawStreamBits": 589,
+                "baselineBits": 589,
+                "selectedBits": 589,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 9,
+            "totalMs": 20.413600000000024,
+            "maximumMs": 7.454599999999999
+          },
+          "decompression": {
+            "count": 9,
+            "totalMs": 2.0690000000000097,
+            "maximumMs": 0.7826000000000022
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 9,
+            "localSegmentedBits": 8043,
+            "globalRawStreamBits": 7964,
+            "baselineBits": 7964,
+            "selectedBits": 7964,
+            "savedBits": 79,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 7,
+            "selectedLocal": 2
+          },
+          "candidateSelections": 0,
+          "roundTrips": 9,
+          "failures": []
+        },
+        "genericHostnameV2": {
+          "count": 9,
+          "payloadHistogram": {
+            "14": 1,
+            "35": 1,
+            "51": 1,
+            "55": 1,
+            "63": 1,
+            "100": 1,
+            "279": 1,
+            "311": 1,
+            "442": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "35": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 215,
+                "globalRawStreamBits": 196,
+                "baselineBits": 196,
+                "selectedBits": 196,
+                "savedBits": 19,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "311": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1861,
+                "globalRawStreamBits": 1849,
+                "baselineBits": 1849,
+                "selectedBits": 1849,
+                "savedBits": 12,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "442": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2636,
+                "globalRawStreamBits": 2636,
+                "baselineBits": 2636,
+                "selectedBits": 2636,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "51": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 288,
+                "globalRawStreamBits": 288,
+                "baselineBits": 288,
+                "selectedBits": 288,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "63": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 372,
+                "globalRawStreamBits": 362,
+                "baselineBits": 362,
+                "selectedBits": 362,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "279": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1670,
+                "globalRawStreamBits": 1660,
+                "baselineBits": 1660,
+                "selectedBits": 1660,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "short holdout": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 79,
+                "globalRawStreamBits": 71,
+                "baselineBits": 71,
+                "selectedBits": 71,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payloadHistogram": {
+                "55": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 323,
+                "globalRawStreamBits": 313,
+                "baselineBits": 313,
+                "selectedBits": 313,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "100": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 599,
+                "globalRawStreamBits": 589,
+                "baselineBits": 589,
+                "selectedBits": 589,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 9,
+            "totalMs": 23.7217,
+            "maximumMs": 9.587199999999996
+          },
+          "decompression": {
+            "count": 9,
+            "totalMs": 1.2039999999999935,
+            "maximumMs": 0.4514000000000067
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 9,
+            "localSegmentedBits": 8043,
+            "globalRawStreamBits": 7964,
+            "baselineBits": 7964,
+            "selectedBits": 7964,
+            "savedBits": 79,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 7,
+            "selectedLocal": 2
+          },
+          "candidateSelections": 0,
+          "roundTrips": 9,
+          "failures": []
+        },
+        "queryAsOneBlock": {
+          "count": 9,
+          "payloadHistogram": {
+            "14": 1,
+            "35": 1,
+            "51": 1,
+            "55": 1,
+            "63": 1,
+            "100": 1,
+            "279": 1,
+            "311": 1,
+            "442": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "35": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 215,
+                "globalRawStreamBits": 196,
+                "baselineBits": 196,
+                "selectedBits": 196,
+                "savedBits": 19,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "311": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1861,
+                "globalRawStreamBits": 1849,
+                "baselineBits": 1849,
+                "selectedBits": 1849,
+                "savedBits": 12,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "442": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2636,
+                "globalRawStreamBits": 2636,
+                "baselineBits": 2636,
+                "selectedBits": 2636,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "51": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 288,
+                "globalRawStreamBits": 288,
+                "baselineBits": 288,
+                "selectedBits": 288,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "63": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 372,
+                "globalRawStreamBits": 362,
+                "baselineBits": 362,
+                "selectedBits": 362,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "279": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1670,
+                "globalRawStreamBits": 1660,
+                "baselineBits": 1660,
+                "selectedBits": 1660,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "short holdout": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 79,
+                "globalRawStreamBits": 71,
+                "baselineBits": 71,
+                "selectedBits": 71,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payloadHistogram": {
+                "55": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 323,
+                "globalRawStreamBits": 313,
+                "baselineBits": 313,
+                "selectedBits": 313,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "100": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 599,
+                "globalRawStreamBits": 589,
+                "baselineBits": 589,
+                "selectedBits": 589,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 9,
+            "totalMs": 19.491000000000028,
+            "maximumMs": 7.982500000000002
+          },
+          "decompression": {
+            "count": 9,
+            "totalMs": 1.0339999999999492,
+            "maximumMs": 0.38870000000000005
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 9,
+            "localSegmentedBits": 8043,
+            "globalRawStreamBits": 7964,
+            "baselineBits": 7964,
+            "selectedBits": 7964,
+            "savedBits": 79,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 7,
+            "selectedLocal": 2
+          },
+          "candidateSelections": 0,
+          "roundTrips": 9,
+          "failures": []
+        },
+        "directBinaryValues": {
+          "count": 9,
+          "payloadHistogram": {
+            "14": 1,
+            "35": 1,
+            "48": 1,
+            "55": 1,
+            "62": 1,
+            "100": 1,
+            "279": 1,
+            "306": 1,
+            "424": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "35": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 215,
+                "globalRawStreamBits": 196,
+                "baselineBits": 196,
+                "selectedBits": 196,
+                "savedBits": 19,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "306": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1861,
+                "globalRawStreamBits": 1820,
+                "baselineBits": 1849,
+                "selectedBits": 1820,
+                "savedBits": 41,
+                "savedVsBaselineBits": 29,
+                "maximumSavedBits": 29,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "424": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2636,
+                "globalRawStreamBits": 2528,
+                "baselineBits": 2636,
+                "selectedBits": 2528,
+                "savedBits": 108,
+                "savedVsBaselineBits": 108,
+                "maximumSavedBits": 108,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 1
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "48": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 288,
+                "globalRawStreamBits": 278,
+                "baselineBits": 288,
+                "selectedBits": 278,
+                "savedBits": 10,
+                "savedVsBaselineBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "62": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 372,
+                "globalRawStreamBits": 358,
+                "baselineBits": 362,
+                "selectedBits": 358,
+                "savedBits": 14,
+                "savedVsBaselineBits": 4,
+                "maximumSavedBits": 4,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "279": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1670,
+                "globalRawStreamBits": 1697,
+                "baselineBits": 1660,
+                "selectedBits": 1660,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "short holdout": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 79,
+                "globalRawStreamBits": 71,
+                "baselineBits": 71,
+                "selectedBits": 71,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payloadHistogram": {
+                "55": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 323,
+                "globalRawStreamBits": 313,
+                "baselineBits": 313,
+                "selectedBits": 313,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "100": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 599,
+                "globalRawStreamBits": 590,
+                "baselineBits": 589,
+                "selectedBits": 589,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 9,
+            "totalMs": 18.37349999999998,
+            "maximumMs": 7.084099999999978
+          },
+          "decompression": {
+            "count": 9,
+            "totalMs": 0.6412999999999727,
+            "maximumMs": 0.23689999999999145
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 9,
+            "localSegmentedBits": 8043,
+            "globalRawStreamBits": 7851,
+            "baselineBits": 7964,
+            "selectedBits": 7813,
+            "savedBits": 230,
+            "savedVsBaselineBits": 151,
+            "maximumSavedBits": 108,
+            "selectedGlobal": 8,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 4,
+          "roundTrips": 9,
+          "failures": []
+        },
+        "shortUrlV2": {
+          "count": 9,
+          "payloadHistogram": {
+            "14": 1,
+            "35": 1,
+            "51": 1,
+            "55": 1,
+            "63": 1,
+            "100": 1,
+            "279": 1,
+            "311": 1,
+            "442": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payloadHistogram": {
+                "35": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 215,
+                "globalRawStreamBits": 196,
+                "baselineBits": 196,
+                "selectedBits": 196,
+                "savedBits": 19,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random long paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "311": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1861,
+                "globalRawStreamBits": 1849,
+                "baselineBits": 1849,
+                "selectedBits": 1849,
+                "savedBits": 12,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "random query parameters": {
+              "count": 1,
+              "payloadHistogram": {
+                "442": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2636,
+                "globalRawStreamBits": 2636,
+                "baselineBits": 2636,
+                "selectedBits": 2636,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payloadHistogram": {
+                "51": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 288,
+                "globalRawStreamBits": 288,
+                "baselineBits": 288,
+                "selectedBits": 288,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payloadHistogram": {
+                "63": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 372,
+                "globalRawStreamBits": 362,
+                "baselineBits": 362,
+                "selectedBits": 362,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payloadHistogram": {
+                "279": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1670,
+                "globalRawStreamBits": 1660,
+                "baselineBits": 1660,
+                "selectedBits": 1660,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "short holdout": {
+              "count": 1,
+              "payloadHistogram": {
+                "14": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 79,
+                "globalRawStreamBits": 71,
+                "baselineBits": 71,
+                "selectedBits": 71,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payloadHistogram": {
+                "55": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 323,
+                "globalRawStreamBits": 313,
+                "baselineBits": 313,
+                "selectedBits": 313,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payloadHistogram": {
+                "100": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 599,
+                "globalRawStreamBits": 589,
+                "baselineBits": 589,
+                "selectedBits": 589,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 9,
+            "totalMs": 14.69130000000004,
+            "maximumMs": 5.539999999999992
+          },
+          "decompression": {
+            "count": 9,
+            "totalMs": 1.4757999999999925,
+            "maximumMs": 0.7758999999999787
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 9,
+            "localSegmentedBits": 8043,
+            "globalRawStreamBits": 7964,
+            "baselineBits": 7964,
+            "selectedBits": 7964,
+            "savedBits": 79,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 7,
+            "selectedLocal": 2
+          },
+          "candidateSelections": 0,
+          "roundTrips": 9,
+          "failures": []
+        }
+      }
+    },
+    "stress": {
+      "count": 2,
+      "fingerprint": "7b816e536e33d656b1c67d4551492f9296d29addb1915127cda0544fb18bf819",
+      "reference": {
+        "payloads": [
+          null,
+          1615
+        ],
+        "payload": {
+          "average": 1615,
+          "median": 1615,
+          "p90": 1615,
+          "p95": 1615,
+          "maximum": 1615
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "actual ha.mr round-trip failure": 1
+        }
+      },
+      "malformed": {
+        "count": 4,
+        "rejected": 4,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 2,
+          "payloadHistogram": {
+            "163": 1,
+            "454": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "163": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 982,
+                "globalRawStreamBits": 962,
+                "baselineBits": 962,
+                "selectedBits": 962,
+                "savedBits": 20,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "454": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2711,
+                "globalRawStreamBits": 2711,
+                "baselineBits": 2711,
+                "selectedBits": 2711,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 262.76980000000003,
+            "maximumMs": 261.82370000000003
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.25389999999995894,
+            "maximumMs": 0.19889999999998054
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 2,
+            "localSegmentedBits": 3693,
+            "globalRawStreamBits": 3673,
+            "baselineBits": 3673,
+            "selectedBits": 3673,
+            "savedBits": 20,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 0,
+          "roundTrips": 2,
+          "failures": []
+        },
+        "genericHostnameV2": {
+          "count": 2,
+          "payloadHistogram": {
+            "163": 1,
+            "454": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "163": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 982,
+                "globalRawStreamBits": 962,
+                "baselineBits": 962,
+                "selectedBits": 962,
+                "savedBits": 20,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "454": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2711,
+                "globalRawStreamBits": 2711,
+                "baselineBits": 2711,
+                "selectedBits": 2711,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 366.1912,
+            "maximumMs": 365.4025
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.24630000000001928,
+            "maximumMs": 0.19920000000001892
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 2,
+            "localSegmentedBits": 3693,
+            "globalRawStreamBits": 3673,
+            "baselineBits": 3673,
+            "selectedBits": 3673,
+            "savedBits": 20,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 0,
+          "roundTrips": 2,
+          "failures": []
+        },
+        "queryAsOneBlock": {
+          "count": 2,
+          "payloadHistogram": {
+            "163": 1,
+            "454": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "163": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 982,
+                "globalRawStreamBits": 962,
+                "baselineBits": 962,
+                "selectedBits": 962,
+                "savedBits": 20,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "454": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2711,
+                "globalRawStreamBits": 2711,
+                "baselineBits": 2711,
+                "selectedBits": 2711,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 368.67089999999985,
+            "maximumMs": 367.68899999999985
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.18610000000001037,
+            "maximumMs": 0.1412000000000262
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 2,
+            "localSegmentedBits": 3693,
+            "globalRawStreamBits": 3673,
+            "baselineBits": 3673,
+            "selectedBits": 3673,
+            "savedBits": 20,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 0,
+          "roundTrips": 2,
+          "failures": []
+        },
+        "directBinaryValues": {
+          "count": 2,
+          "payloadHistogram": {
+            "144": 1,
+            "438": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "144": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 982,
+                "globalRawStreamBits": 848,
+                "baselineBits": 962,
+                "selectedBits": 848,
+                "savedBits": 134,
+                "savedVsBaselineBits": 114,
+                "maximumSavedBits": 114,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "438": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2711,
+                "globalRawStreamBits": 2609,
+                "baselineBits": 2711,
+                "selectedBits": 2609,
+                "savedBits": 102,
+                "savedVsBaselineBits": 102,
+                "maximumSavedBits": 102,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 1
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 498.8074999999999,
+            "maximumMs": 497.7308999999998
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.19010000000002947,
+            "maximumMs": 0.14709999999990941
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 2,
+            "localSegmentedBits": 3693,
+            "globalRawStreamBits": 3457,
+            "baselineBits": 3673,
+            "selectedBits": 3457,
+            "savedBits": 236,
+            "savedVsBaselineBits": 216,
+            "maximumSavedBits": 114,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 2,
+          "roundTrips": 2,
+          "failures": []
+        },
+        "shortUrlV2": {
+          "count": 2,
+          "payloadHistogram": {
+            "163": 1,
+            "454": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payloadHistogram": {
+                "163": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 982,
+                "globalRawStreamBits": 962,
+                "baselineBits": 962,
+                "selectedBits": 962,
+                "savedBits": 20,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payloadHistogram": {
+                "454": 1
+              },
+              "comparison": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 2711,
+                "globalRawStreamBits": 2711,
+                "baselineBits": 2711,
+                "selectedBits": 2711,
+                "savedBits": 0,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 2,
+            "totalMs": 243.99720000000002,
+            "maximumMs": 243.25389999999993
+          },
+          "decompression": {
+            "count": 2,
+            "totalMs": 0.18479999999999563,
+            "maximumMs": 0.1391999999998461
+          },
+          "comparison": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 2,
+            "localSegmentedBits": 3693,
+            "globalRawStreamBits": 3673,
+            "baselineBits": 3673,
+            "selectedBits": 3673,
+            "savedBits": 20,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 0,
+          "roundTrips": 2,
+          "failures": []
+        }
+      }
+    },
+    "unseen": {
+      "count": 5,
+      "fingerprint": "e7994105dac4940c0879d38b7d8880d03f90ef8bf15647d418cffac8bea10f2b",
+      "reference": {
+        "payloads": [
+          89,
+          131,
+          198,
+          null,
+          89
+        ],
+        "payload": {
+          "average": 126.75,
+          "median": 110,
+          "p90": 177.9,
+          "p95": 187.95,
+          "maximum": 198
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "unsupported URL feature": 1
+        }
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 5,
+          "payloadHistogram": {
+            "106": 1,
+            "115": 1,
+            "164": 1,
+            "236": 1,
+            "267": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "106": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 628,
+                "globalRawStreamBits": 618,
+                "baselineBits": 618,
+                "selectedBits": 618,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "164": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 975,
+                "globalRawStreamBits": 972,
+                "baselineBits": 972,
+                "selectedBits": 972,
+                "savedBits": 3,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "236": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1410,
+                "globalRawStreamBits": 1400,
+                "baselineBits": 1400,
+                "selectedBits": 1400,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "base64 values": {
+              "count": 1,
+              "payloadHistogram": {
+                "267": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1593,
+                "globalRawStreamBits": 1585,
+                "baselineBits": 1585,
+                "selectedBits": 1585,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "news articles": {
+              "count": 1,
+              "payloadHistogram": {
+                "115": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 697,
+                "globalRawStreamBits": 679,
+                "baselineBits": 679,
+                "selectedBits": 679,
+                "savedBits": 18,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 5,
+            "totalMs": 3.6358999999995376,
+            "maximumMs": 1.3947999999998046
+          },
+          "decompression": {
+            "count": 5,
+            "totalMs": 0.31300000000032924,
+            "maximumMs": 0.1516999999998916
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 5,
+            "localSegmentedBits": 5303,
+            "globalRawStreamBits": 5254,
+            "baselineBits": 5254,
+            "selectedBits": 5254,
+            "savedBits": 49,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 5,
+            "selectedLocal": 0
+          },
+          "candidateSelections": 0,
+          "roundTrips": 5,
+          "failures": []
+        },
+        "genericHostnameV2": {
+          "count": 5,
+          "payloadHistogram": {
+            "106": 1,
+            "115": 1,
+            "164": 1,
+            "236": 1,
+            "267": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "106": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 628,
+                "globalRawStreamBits": 618,
+                "baselineBits": 618,
+                "selectedBits": 618,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "164": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 975,
+                "globalRawStreamBits": 972,
+                "baselineBits": 972,
+                "selectedBits": 972,
+                "savedBits": 3,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "236": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1410,
+                "globalRawStreamBits": 1400,
+                "baselineBits": 1400,
+                "selectedBits": 1400,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "base64 values": {
+              "count": 1,
+              "payloadHistogram": {
+                "267": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1593,
+                "globalRawStreamBits": 1585,
+                "baselineBits": 1585,
+                "selectedBits": 1585,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "news articles": {
+              "count": 1,
+              "payloadHistogram": {
+                "115": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 697,
+                "globalRawStreamBits": 679,
+                "baselineBits": 679,
+                "selectedBits": 679,
+                "savedBits": 18,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 5,
+            "totalMs": 3.9368999999999232,
+            "maximumMs": 1.068899999999985
+          },
+          "decompression": {
+            "count": 5,
+            "totalMs": 0.2967999999998483,
+            "maximumMs": 0.13869999999997162
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 5,
+            "localSegmentedBits": 5303,
+            "globalRawStreamBits": 5254,
+            "baselineBits": 5254,
+            "selectedBits": 5254,
+            "savedBits": 49,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 5,
+            "selectedLocal": 0
+          },
+          "candidateSelections": 0,
+          "roundTrips": 5,
+          "failures": []
+        },
+        "queryAsOneBlock": {
+          "count": 5,
+          "payloadHistogram": {
+            "106": 1,
+            "115": 1,
+            "164": 1,
+            "236": 1,
+            "263": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "106": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 628,
+                "globalRawStreamBits": 618,
+                "baselineBits": 618,
+                "selectedBits": 618,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "164": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 975,
+                "globalRawStreamBits": 972,
+                "baselineBits": 972,
+                "selectedBits": 972,
+                "savedBits": 3,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "236": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1410,
+                "globalRawStreamBits": 1400,
+                "baselineBits": 1400,
+                "selectedBits": 1400,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "base64 values": {
+              "count": 1,
+              "payloadHistogram": {
+                "263": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1593,
+                "globalRawStreamBits": 1585,
+                "baselineBits": 1585,
+                "selectedBits": 1561,
+                "savedBits": 32,
+                "savedVsBaselineBits": 24,
+                "maximumSavedBits": 24,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              },
+              "candidateSelections": 1
+            },
+            "news articles": {
+              "count": 1,
+              "payloadHistogram": {
+                "115": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 697,
+                "globalRawStreamBits": 679,
+                "baselineBits": 679,
+                "selectedBits": 679,
+                "savedBits": 18,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 5,
+            "totalMs": 5.216699999999946,
+            "maximumMs": 2.190699999999879
+          },
+          "decompression": {
+            "count": 5,
+            "totalMs": 0.34599999999977626,
+            "maximumMs": 0.18869999999992615
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 5,
+            "localSegmentedBits": 5303,
+            "globalRawStreamBits": 5254,
+            "baselineBits": 5254,
+            "selectedBits": 5230,
+            "savedBits": 73,
+            "savedVsBaselineBits": 24,
+            "maximumSavedBits": 24,
+            "selectedGlobal": 4,
+            "selectedLocal": 1
+          },
+          "candidateSelections": 1,
+          "roundTrips": 5,
+          "failures": []
+        },
+        "directBinaryValues": {
+          "count": 5,
+          "payloadHistogram": {
+            "103": 1,
+            "115": 1,
+            "154": 1,
+            "222": 1,
+            "231": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "103": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 628,
+                "globalRawStreamBits": 601,
+                "baselineBits": 618,
+                "selectedBits": 601,
+                "savedBits": 27,
+                "savedVsBaselineBits": 17,
+                "maximumSavedBits": 17,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "154": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 975,
+                "globalRawStreamBits": 906,
+                "baselineBits": 972,
+                "selectedBits": 906,
+                "savedBits": 69,
+                "savedVsBaselineBits": 66,
+                "maximumSavedBits": 66,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "222": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1410,
+                "globalRawStreamBits": 1314,
+                "baselineBits": 1400,
+                "selectedBits": 1314,
+                "savedBits": 96,
+                "savedVsBaselineBits": 86,
+                "maximumSavedBits": 86,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "base64 values": {
+              "count": 1,
+              "payloadHistogram": {
+                "231": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1593,
+                "globalRawStreamBits": 1369,
+                "baselineBits": 1585,
+                "selectedBits": 1369,
+                "savedBits": 224,
+                "savedVsBaselineBits": 216,
+                "maximumSavedBits": 216,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 1
+            },
+            "news articles": {
+              "count": 1,
+              "payloadHistogram": {
+                "115": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 697,
+                "globalRawStreamBits": 679,
+                "baselineBits": 679,
+                "selectedBits": 679,
+                "savedBits": 18,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 5,
+            "totalMs": 5.052300000000059,
+            "maximumMs": 1.3799999999998818
+          },
+          "decompression": {
+            "count": 5,
+            "totalMs": 0.1861999999996442,
+            "maximumMs": 0.0442000000000462
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 5,
+            "localSegmentedBits": 5303,
+            "globalRawStreamBits": 4869,
+            "baselineBits": 5254,
+            "selectedBits": 4869,
+            "savedBits": 434,
+            "savedVsBaselineBits": 385,
+            "maximumSavedBits": 216,
+            "selectedGlobal": 5,
+            "selectedLocal": 0
+          },
+          "candidateSelections": 4,
+          "roundTrips": 5,
+          "failures": []
+        },
+        "shortUrlV2": {
+          "count": 5,
+          "payloadHistogram": {
+            "106": 1,
+            "115": 1,
+            "164": 1,
+            "236": 1,
+            "267": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payloadHistogram": {
+                "106": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 628,
+                "globalRawStreamBits": 618,
+                "baselineBits": 618,
+                "selectedBits": 618,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "REST APIs": {
+              "count": 1,
+              "payloadHistogram": {
+                "164": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 975,
+                "globalRawStreamBits": 972,
+                "baselineBits": 972,
+                "selectedBits": 972,
+                "savedBits": 3,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "signed URLs": {
+              "count": 1,
+              "payloadHistogram": {
+                "236": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1410,
+                "globalRawStreamBits": 1400,
+                "baselineBits": 1400,
+                "selectedBits": 1400,
+                "savedBits": 10,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "base64 values": {
+              "count": 1,
+              "payloadHistogram": {
+                "267": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 1593,
+                "globalRawStreamBits": 1585,
+                "baselineBits": 1585,
+                "selectedBits": 1585,
+                "savedBits": 8,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            },
+            "news articles": {
+              "count": 1,
+              "payloadHistogram": {
+                "115": 1
+              },
+              "comparison": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framing": {
+                "count": 1,
+                "localSegmentedBits": 697,
+                "globalRawStreamBits": 679,
+                "baselineBits": 679,
+                "selectedBits": 679,
+                "savedBits": 18,
+                "savedVsBaselineBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              },
+              "candidateSelections": 0
+            }
+          },
+          "compression": {
+            "count": 5,
+            "totalMs": 3.12519999999995,
+            "maximumMs": 1.1145999999998821
+          },
+          "decompression": {
+            "count": 5,
+            "totalMs": 0.30760000000009313,
+            "maximumMs": 0.13650000000006912
+          },
+          "comparison": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "framing": {
+            "count": 5,
+            "localSegmentedBits": 5303,
+            "globalRawStreamBits": 5254,
+            "baselineBits": 5254,
+            "selectedBits": 5254,
+            "savedBits": 49,
+            "savedVsBaselineBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 5,
+            "selectedLocal": 0
+          },
+          "candidateSelections": 0,
+          "roundTrips": 5,
+          "failures": []
+        }
+      }
+    }
+  }
+}

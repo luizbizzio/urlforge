@@ -1,0 +1,7 @@
+dataset,candidate,count,average_payload_best,median_payload_best,p90_payload_best,p95_payload_best,max_payload_best,average_link_specified_prefix,average_link_browser_canonical,average_bits,best_wins,best_losses,best_ties,fair_wins,fair_losses,fair_ties,round_trips,compression_average_ms,decompression_average_ms,alphabet_counts,representation_counts
+development,currentV6Planner,5,72.4,54,134.2,140.6,147,85.4,86.4,426.6,1,4,0,1,4,0,5/5,2.83308,0.28272000000000475,"{""base64url"":5}","{""localSegmented"":3,""globalRawStream"":2}"
+development,combinedRetained,5,71.8,54,133.4,140.2,147,84.8,85.8,424.4,1,4,0,1,4,0,5/5,6.881899999999999,0.10121999999999787,"{""base64url"":4,""safe65"":1}","{""localSegmented"":4,""globalRawStream"":1}"
+holdout,currentV6Planner,8,133.5,59,349,394.49999999999994,440,146.5,147.5,797,0,7,0,0,7,0,8/8,4.735912499999998,0.3762499999999971,"{""base64url"":6,""safe65"":2}","{""globalRawStream"":6,""localSegmented"":2}"
+holdout,combinedRetained,8,130.25,58.5,340.4,381.69999999999993,423,143.25,144.25,778.125,0,7,0,0,7,0,8/8,13.598787500000006,0.09009999999999962,"{""base64url"":6,""safe65"":2}","{""globalRawStream"":7,""localSegmented"":1}"
+unseen,currentV6Planner,5,177.2,164,254,260,266,190.2,191.2,1059.8,0,4,0,0,4,0,5/5,1.8007600000000081,0.13924000000000092,"{""safe65"":2,""base64url"":3}","{""globalRawStream"":5}"
+unseen,combinedRetained,5,164.4,153,226.4,228.2,230,177.4,178.4,982.8,0,4,0,0,4,0,5/5,8.15804,0.10494000000000483,"{""base64url"":2,""safe65"":3}","{""globalRawStream"":5}"

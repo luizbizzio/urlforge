@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <title>URL Forge</title>
+    <link rel="stylesheet" href="/src/web/styles.css">
+  </head>
+  <body>
+    <div class="site-shell privacy-shell">
+      <header class="site-header">
+        <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">F</span><span data-i18n="brand"></span></a>
+        <div class="language-control"><label for="language" data-i18n="languageLabel"></label><select id="language"><option value="pt-BR" data-i18n="languagePt"></option><option value="en" data-i18n="languageEn"></option></select></div>
+      </header>
+      <main class="privacy-card">
+        <p class="eyebrow" data-i18n="brand"></p>
+        <h1 data-i18n="privacyTitle"></h1>
+        <p class="lead" data-i18n="privacyIntro"></p>
+        <section><h2 data-i18n="privacyNoStorageTitle"></h2><p data-i18n="privacyNoStorageBody"></p></section>
+        <section><h2 data-i18n="privacyMetricsTitle"></h2><p data-i18n="privacyMetricsBody"></p></section>
+        <section><h2 data-i18n="privacyOptionalTitle"></h2><p data-i18n="privacyOptionalBody"></p></section>
+        <a class="button secondary" href="./" data-i18n="privacyBack"></a>
+      </main>
+    </div>
+    <script type="module" src="/src/web/privacy.js"></script>
+  </body>
+</html>

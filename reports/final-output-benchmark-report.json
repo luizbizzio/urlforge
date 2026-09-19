@@ -1,0 +1,4199 @@
+{
+  "schemaVersion": 2,
+  "status": "complete",
+  "generatedAt": "2026-09-19T15:08:08.321Z",
+  "invocationMode": "normal",
+  "datasetScope": [
+    "development",
+    "holdout",
+    "unseen"
+  ],
+  "deterministicSignature": "5ad37841cd94a0c449b038d9cfe9c1565e121fd1e167c74e8eb0c005ddc098c8",
+  "candidates": [
+    "currentV6Planner",
+    "combinedRetained"
+  ],
+  "excludedCandidates": [
+    "combinedWithContextArithmetic"
+  ],
+  "prefixes": {
+    "urlForge": "http://uf.mr#",
+    "haMr": "http://ha.mr#",
+    "specifiedCharacters": 13,
+    "browserCanonicalCharacters": 14,
+    "note": "WHATWG URL serialization inserts '/' before the fragment; both domains gain the same one character."
+  },
+  "alphabets": {
+    "base64url": {
+      "name": "base64url",
+      "radix": 64,
+      "excludesFragmentDelimiter": true,
+      "browserRoundTrip": true,
+      "browserAddsPercentEncoding": false,
+      "decodeURIComponentRoundTrip": true,
+      "copyPasteRoundTrip": true,
+      "simulatedPrefixCharacters": 13,
+      "browserCanonicalPrefixCharacters": 14,
+      "windowsTerminalUnquotedSafe": true,
+      "markdownAutolinkSafe": true,
+      "chatTransportSafe": true,
+      "qrByteModeSafe": true,
+      "qrAlphanumericModeSafe": false
+    },
+    "safe65": {
+      "name": "safe65",
+      "radix": 65,
+      "excludesFragmentDelimiter": true,
+      "browserRoundTrip": true,
+      "browserAddsPercentEncoding": false,
+      "decodeURIComponentRoundTrip": true,
+      "copyPasteRoundTrip": true,
+      "simulatedPrefixCharacters": 13,
+      "browserCanonicalPrefixCharacters": 14,
+      "windowsTerminalUnquotedSafe": true,
+      "markdownAutolinkSafe": true,
+      "chatTransportSafe": true,
+      "qrByteModeSafe": true,
+      "qrAlphanumericModeSafe": false
+    },
+    "haMrAsciiRejected": {
+      "reason": "Contains # and shell/Markdown punctuation; not counted as a safe visible-fragment alphabet."
+    }
+  },
+  "comparisonModes": {
+    "realBestValidAlphabet": "Each codec uses safe65, the largest enabled alphabet passing every required transport audit.",
+    "fairBase64Url": "Both codecs use exactly Base64URL."
+  },
+  "sourceSize": {
+    "codecBytes": 43471,
+    "outputEncodingBytes": 4429,
+    "benchmarkBytes": 18658
+  },
+  "datasets": {
+    "development": {
+      "count": 1400,
+      "completed": true,
+      "haMrInvalidReasons": {
+        "unsupported URL feature": 18
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 1400,
+          "payloadCharacters": {
+            "bestValidAlphabet": {
+              "average": 63.155,
+              "median": 46,
+              "p90": 117,
+              "p95": 194.0999999999999,
+              "maximum": 335
+            },
+            "fairBase64Url": {
+              "average": 63.24,
+              "median": 46,
+              "p90": 118,
+              "p95": 195.04999999999995,
+              "maximum": 336
+            }
+          },
+          "bitLength": {
+            "average": 373.205,
+            "median": 270,
+            "p90": 700,
+            "p95": 1167.1,
+            "maximum": 2011
+          },
+          "finalVisibleLink": {
+            "specified13CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 76.155,
+                "median": 59,
+                "p90": 130,
+                "p95": 207.0999999999999,
+                "maximum": 348
+              },
+              "fairBase64Url": {
+                "average": 76.24,
+                "median": 59,
+                "p90": 131,
+                "p95": 208.04999999999995,
+                "maximum": 349
+              }
+            },
+            "browserCanonical14CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 77.155,
+                "median": 60,
+                "p90": 131,
+                "p95": 208.0999999999999,
+                "maximum": 349
+              },
+              "fairBase64Url": {
+                "average": 77.24,
+                "median": 60,
+                "p90": 132,
+                "p95": 209.04999999999995,
+                "maximum": 350
+              }
+            }
+          },
+          "outputAlphabetCounts": {
+            "base64url": 1281,
+            "safe65": 119
+          },
+          "selectedRepresentationCounts": {
+            "localSegmented": 1266,
+            "globalRawStream": 134
+          },
+          "selectedFeatureCounts": {},
+          "selectedCombinedCandidateCounts": {},
+          "versusHamr": {
+            "realBestValidAlphabet": {
+              "wins": 950,
+              "losses": 406,
+              "ties": 35,
+              "excludedInvalidHamr": 9
+            },
+            "fairBase64Url": {
+              "wins": 950,
+              "losses": 405,
+              "ties": 36,
+              "excludedInvalidHamr": 9
+            }
+          },
+          "roundTripSuccess": "1400/1400",
+          "timing": {
+            "compressionAverageMs": 0.9170272857142845,
+            "decompressionAverageMs": 0.029928499999998866
+          },
+          "payloadOverhead": {
+            "averageBytePaddingBits": 3.6864285714285714,
+            "averageRadixCapacityMinusPayloadBits": 6.105524430641919
+          },
+          "categories": {
+            "short URLs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 9.63,
+                  "median": 10,
+                  "p90": 12,
+                  "p95": 12,
+                  "maximum": 12
+                },
+                "fairBase64Url": {
+                  "average": 9.63,
+                  "median": 10,
+                  "p90": 12,
+                  "p95": 12,
+                  "maximum": 12
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 72,
+                  "ties": 28,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 71,
+                  "ties": 29,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "long paths": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 235.47,
+                  "median": 232.5,
+                  "p90": 318,
+                  "p95": 329,
+                  "maximum": 335
+                },
+                "fairBase64Url": {
+                  "average": 236.23,
+                  "median": 233,
+                  "p90": 319,
+                  "p95": 330,
+                  "maximum": 336
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 76,
+                "base64url": 24
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 98,
+                "globalRawStream": 2
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "GitHub": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 42.86,
+                  "median": 43.5,
+                  "p90": 56,
+                  "p95": 58,
+                  "maximum": 59
+                },
+                "fairBase64Url": {
+                  "average": 42.86,
+                  "median": 43.5,
+                  "p90": 56,
+                  "p95": 58,
+                  "maximum": 59
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 33,
+                "localSegmented": 67
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 34,
+                  "losses": 66,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 34,
+                  "losses": 66,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "YouTube": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 24.5,
+                  "median": 24.5,
+                  "p90": 34,
+                  "p95": 34,
+                  "maximum": 34
+                },
+                "fairBase64Url": {
+                  "average": 24.5,
+                  "median": 24.5,
+                  "p90": 34,
+                  "p95": 34,
+                  "maximum": 34
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "Google": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 40.97,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                },
+                "fairBase64Url": {
+                  "average": 40.97,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "Google Maps": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 14,
+                  "median": 14,
+                  "p90": 14,
+                  "p95": 14,
+                  "maximum": 14
+                },
+                "fairBase64Url": {
+                  "average": 14,
+                  "median": 14,
+                  "p90": 14,
+                  "p95": 14,
+                  "maximum": 14
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "tracking parameters": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 76.17,
+                  "median": 76,
+                  "p90": 80,
+                  "p95": 81,
+                  "maximum": 83
+                },
+                "fairBase64Url": {
+                  "average": 76.22,
+                  "median": 76,
+                  "p90": 80,
+                  "p95": 82,
+                  "maximum": 83
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 95,
+                "safe65": 5
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "UUIDs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 66.91,
+                  "median": 67,
+                  "p90": 67,
+                  "p95": 67,
+                  "maximum": 67
+                },
+                "fairBase64Url": {
+                  "average": 66.91,
+                  "median": 67,
+                  "p90": 67,
+                  "p95": 67,
+                  "maximum": 67
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "numeric IDs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 54.89,
+                  "median": 55,
+                  "p90": 55,
+                  "p95": 55,
+                  "maximum": 55
+                },
+                "fairBase64Url": {
+                  "average": 54.89,
+                  "median": 55,
+                  "p90": 55,
+                  "p95": 55,
+                  "maximum": 55
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 99,
+                "globalRawStream": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 100,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 100,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "timestamps": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 38,
+                  "median": 38,
+                  "p90": 38,
+                  "p95": 38,
+                  "maximum": 38
+                },
+                "fairBase64Url": {
+                  "average": 38,
+                  "median": 38,
+                  "p90": 38,
+                  "p95": 38,
+                  "maximum": 38
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "hexadecimal hashes": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 74.02,
+                  "median": 74,
+                  "p90": 74,
+                  "p95": 74,
+                  "maximum": 76
+                },
+                "fairBase64Url": {
+                  "average": 74.02,
+                  "median": 74,
+                  "p90": 74,
+                  "p95": 74,
+                  "maximum": 76
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 99,
+                  "losses": 1,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 99,
+                  "losses": 1,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "random URLs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 116.86,
+                  "median": 117,
+                  "p90": 119,
+                  "p95": 120,
+                  "maximum": 121
+                },
+                "fairBase64Url": {
+                  "average": 117.24,
+                  "median": 118,
+                  "p90": 119,
+                  "p95": 120,
+                  "maximum": 122
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 62,
+                "safe65": 38
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 98,
+                "localSegmented": 2
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 91,
+                  "ties": 0,
+                  "excludedInvalidHamr": 9
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 91,
+                  "ties": 0,
+                  "excludedInvalidHamr": 9
+                }
+              }
+            },
+            "Unicode": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 47.64,
+                  "median": 46,
+                  "p90": 60,
+                  "p95": 60,
+                  "maximum": 70
+                },
+                "fairBase64Url": {
+                  "average": 47.64,
+                  "median": 46,
+                  "p90": 60,
+                  "p95": 60,
+                  "maximum": 70
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "fragments": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 42.25,
+                  "median": 44,
+                  "p90": 47,
+                  "p95": 47,
+                  "maximum": 48
+                },
+                "fairBase64Url": {
+                  "average": 42.25,
+                  "median": 44,
+                  "p90": 47,
+                  "p95": 47,
+                  "maximum": 48
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 17,
+                  "losses": 76,
+                  "ties": 7,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 17,
+                  "losses": 76,
+                  "ties": 7,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            }
+          }
+        },
+        "combinedRetained": {
+          "count": 1400,
+          "payloadCharacters": {
+            "bestValidAlphabet": {
+              "average": 62.2,
+              "median": 46,
+              "p90": 115,
+              "p95": 194.0999999999999,
+              "maximum": 335
+            },
+            "fairBase64Url": {
+              "average": 62.26857142857143,
+              "median": 46,
+              "p90": 115,
+              "p95": 195.04999999999995,
+              "maximum": 336
+            }
+          },
+          "bitLength": {
+            "average": 367.83142857142855,
+            "median": 268,
+            "p90": 687,
+            "p95": 1167.1,
+            "maximum": 2011
+          },
+          "finalVisibleLink": {
+            "specified13CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 75.2,
+                "median": 59,
+                "p90": 128,
+                "p95": 207.0999999999999,
+                "maximum": 348
+              },
+              "fairBase64Url": {
+                "average": 75.26857142857143,
+                "median": 59,
+                "p90": 128,
+                "p95": 208.04999999999995,
+                "maximum": 349
+              }
+            },
+            "browserCanonical14CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 76.2,
+                "median": 60,
+                "p90": 129,
+                "p95": 208.0999999999999,
+                "maximum": 349
+              },
+              "fairBase64Url": {
+                "average": 76.26857142857143,
+                "median": 60,
+                "p90": 129,
+                "p95": 209.04999999999995,
+                "maximum": 350
+              }
+            }
+          },
+          "outputAlphabetCounts": {
+            "base64url": 1304,
+            "safe65": 96
+          },
+          "selectedRepresentationCounts": {
+            "localSegmented": 1342,
+            "globalRawStream": 48,
+            "queryAsOneBlock": 10
+          },
+          "selectedFeatureCounts": {
+            "directBinaryValues": 597,
+            "queryAsOneBlock": 10
+          },
+          "selectedCombinedCandidateCounts": {
+            "v5SegmentedFallback": 1015,
+            "v6GlobalArithmetic": 46,
+            "v7DirectBinary": 339
+          },
+          "versusHamr": {
+            "realBestValidAlphabet": {
+              "wins": 956,
+              "losses": 404,
+              "ties": 31,
+              "excludedInvalidHamr": 9
+            },
+            "fairBase64Url": {
+              "wins": 956,
+              "losses": 403,
+              "ties": 32,
+              "excludedInvalidHamr": 9
+            }
+          },
+          "roundTripSuccess": "1400/1400",
+          "timing": {
+            "compressionAverageMs": 4.384716642857151,
+            "decompressionAverageMs": 0.029628999999997633
+          },
+          "payloadOverhead": {
+            "averageBytePaddingBits": 3.4314285714285715,
+            "averageRadixCapacityMinusPayloadBits": 5.7084183935201835
+          },
+          "categories": {
+            "short URLs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 9.63,
+                  "median": 10,
+                  "p90": 12,
+                  "p95": 12,
+                  "maximum": 12
+                },
+                "fairBase64Url": {
+                  "average": 9.63,
+                  "median": 10,
+                  "p90": 12,
+                  "p95": 12,
+                  "maximum": 12
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 72,
+                  "ties": 28,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 71,
+                  "ties": 29,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "long paths": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 235.46,
+                  "median": 232.5,
+                  "p90": 318,
+                  "p95": 329,
+                  "maximum": 335
+                },
+                "fairBase64Url": {
+                  "average": 236.23,
+                  "median": 233,
+                  "p90": 319,
+                  "p95": 330,
+                  "maximum": 336
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 77,
+                "base64url": 23
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 98,
+                "globalRawStream": 2
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "GitHub": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 42.86,
+                  "median": 43.5,
+                  "p90": 56,
+                  "p95": 58,
+                  "maximum": 59
+                },
+                "fairBase64Url": {
+                  "average": 42.86,
+                  "median": 43.5,
+                  "p90": 56,
+                  "p95": 58,
+                  "maximum": 59
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 33,
+                "localSegmented": 67
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 34,
+                  "losses": 66,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 34,
+                  "losses": 66,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "YouTube": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 24.5,
+                  "median": 24.5,
+                  "p90": 34,
+                  "p95": 34,
+                  "maximum": 34
+                },
+                "fairBase64Url": {
+                  "average": 24.5,
+                  "median": 24.5,
+                  "p90": 34,
+                  "p95": 34,
+                  "maximum": 34
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "Google": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 40.97,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                },
+                "fairBase64Url": {
+                  "average": 40.97,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "Google Maps": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 14,
+                  "median": 14,
+                  "p90": 14,
+                  "p95": 14,
+                  "maximum": 14
+                },
+                "fairBase64Url": {
+                  "average": 14,
+                  "median": 14,
+                  "p90": 14,
+                  "p95": 14,
+                  "maximum": 14
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "tracking parameters": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 71.94,
+                  "median": 71,
+                  "p90": 76,
+                  "p95": 78,
+                  "maximum": 79
+                },
+                "fairBase64Url": {
+                  "average": 71.95,
+                  "median": 71,
+                  "p90": 76,
+                  "p95": 78,
+                  "maximum": 79
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 99,
+                "safe65": 1
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "UUIDs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 66.91,
+                  "median": 67,
+                  "p90": 67,
+                  "p95": 67,
+                  "maximum": 67
+                },
+                "fairBase64Url": {
+                  "average": 66.91,
+                  "median": 67,
+                  "p90": 67,
+                  "p95": 67,
+                  "maximum": 67
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "numeric IDs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 54.89,
+                  "median": 55,
+                  "p90": 55,
+                  "p95": 55,
+                  "maximum": 55
+                },
+                "fairBase64Url": {
+                  "average": 54.89,
+                  "median": 55,
+                  "p90": 55,
+                  "p95": 55,
+                  "maximum": 55
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 99,
+                "globalRawStream": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 100,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 100,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "timestamps": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 38,
+                  "median": 38,
+                  "p90": 38,
+                  "p95": 38,
+                  "maximum": 38
+                },
+                "fairBase64Url": {
+                  "average": 38,
+                  "median": 38,
+                  "p90": 38,
+                  "p95": 38,
+                  "maximum": 38
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "hexadecimal hashes": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 67.05,
+                  "median": 67,
+                  "p90": 67,
+                  "p95": 67,
+                  "maximum": 72
+                },
+                "fairBase64Url": {
+                  "average": 67.05,
+                  "median": 67,
+                  "p90": 67,
+                  "p95": 67,
+                  "maximum": 72
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "random URLs": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 114.87,
+                  "median": 115,
+                  "p90": 116,
+                  "p95": 116,
+                  "maximum": 117
+                },
+                "fairBase64Url": {
+                  "average": 115.05,
+                  "median": 115,
+                  "p90": 116,
+                  "p95": 116,
+                  "maximum": 118
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 82,
+                "safe65": 18
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 78,
+                "queryAsOneBlock": 10,
+                "globalRawStream": 12
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 91,
+                  "ties": 0,
+                  "excludedInvalidHamr": 9
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 91,
+                  "ties": 0,
+                  "excludedInvalidHamr": 9
+                }
+              }
+            },
+            "Unicode": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 47.64,
+                  "median": 46,
+                  "p90": 60,
+                  "p95": 60,
+                  "maximum": 70
+                },
+                "fairBase64Url": {
+                  "average": 47.64,
+                  "median": 46,
+                  "p90": 60,
+                  "p95": 60,
+                  "maximum": 70
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 100,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "fragments": {
+              "count": 100,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 42.08,
+                  "median": 44,
+                  "p90": 47,
+                  "p95": 47,
+                  "maximum": 48
+                },
+                "fairBase64Url": {
+                  "average": 42.08,
+                  "median": 44,
+                  "p90": 47,
+                  "p95": 47,
+                  "maximum": 48
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 100
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 100
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 22,
+                  "losses": 75,
+                  "ties": 3,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 22,
+                  "losses": 75,
+                  "ties": 3,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "holdout": {
+      "count": 900,
+      "completed": true,
+      "haMrInvalidReasons": {
+        "unsupported URL feature": 112,
+        "actual ha.mr round-trip failure": 88
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 900,
+          "payloadCharacters": {
+            "bestValidAlphabet": {
+              "average": 121.70222222222222,
+              "median": 70,
+              "p90": 309,
+              "p95": 431.04999999999995,
+              "maximum": 448
+            },
+            "fairBase64Url": {
+              "average": 121.98333333333333,
+              "median": 70,
+              "p90": 310,
+              "p95": 432.0999999999999,
+              "maximum": 450
+            }
+          },
+          "bitLength": {
+            "average": 726.41,
+            "median": 412,
+            "p90": 1852.1,
+            "p95": 2588.3499999999995,
+            "maximum": 2691
+          },
+          "finalVisibleLink": {
+            "specified13CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 134.70222222222222,
+                "median": 83,
+                "p90": 322,
+                "p95": 444.04999999999995,
+                "maximum": 461
+              },
+              "fairBase64Url": {
+                "average": 134.98333333333332,
+                "median": 83,
+                "p90": 323,
+                "p95": 445.0999999999999,
+                "maximum": 463
+              }
+            },
+            "browserCanonical14CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 135.70222222222222,
+                "median": 84,
+                "p90": 323,
+                "p95": 445.04999999999995,
+                "maximum": 462
+              },
+              "fairBase64Url": {
+                "average": 135.98333333333332,
+                "median": 84,
+                "p90": 324,
+                "p95": 446.0999999999999,
+                "maximum": 464
+              }
+            }
+          },
+          "outputAlphabetCounts": {
+            "base64url": 674,
+            "safe65": 226
+          },
+          "selectedRepresentationCounts": {
+            "globalRawStream": 725,
+            "localSegmented": 175
+          },
+          "selectedFeatureCounts": {},
+          "selectedCombinedCandidateCounts": {},
+          "versusHamr": {
+            "realBestValidAlphabet": {
+              "wins": 175,
+              "losses": 616,
+              "ties": 9,
+              "excludedInvalidHamr": 100
+            },
+            "fairBase64Url": {
+              "wins": 178,
+              "losses": 613,
+              "ties": 9,
+              "excludedInvalidHamr": 100
+            }
+          },
+          "roundTripSuccess": "900/900",
+          "timing": {
+            "compressionAverageMs": 3.6646994444444823,
+            "decompressionAverageMs": 0.09023688888877385
+          },
+          "payloadOverhead": {
+            "averageBytePaddingBits": 3.661111111111111,
+            "averageRadixCapacityMinusPayloadBits": 5.392790127135293
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 36.54,
+                  "median": 36,
+                  "p90": 42,
+                  "p95": 42,
+                  "maximum": 43
+                },
+                "fairBase64Url": {
+                  "average": 36.54,
+                  "median": 36,
+                  "p90": 42,
+                  "p95": 42,
+                  "maximum": 43
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                }
+              }
+            },
+            "random long paths": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 311.28,
+                  "median": 311,
+                  "p90": 315,
+                  "p95": 317,
+                  "maximum": 319
+                },
+                "fairBase64Url": {
+                  "average": 312.28,
+                  "median": 312,
+                  "p90": 316,
+                  "p95": 318,
+                  "maximum": 320
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 48,
+                "localSegmented": 2
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 39,
+                  "ties": 0,
+                  "excludedInvalidHamr": 11
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 39,
+                  "ties": 0,
+                  "excludedInvalidHamr": 11
+                }
+              }
+            },
+            "random query parameters": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 436.7,
+                  "median": 436,
+                  "p90": 443,
+                  "p95": 444,
+                  "maximum": 448
+                },
+                "fairBase64Url": {
+                  "average": 438.24,
+                  "median": 438,
+                  "p90": 444,
+                  "p95": 446,
+                  "maximum": 450
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 45,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 45,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                }
+              }
+            },
+            "long Unicode": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 248.6,
+                  "median": 249,
+                  "p90": 260,
+                  "p95": 260,
+                  "maximum": 260
+                },
+                "fairBase64Url": {
+                  "average": 249.16,
+                  "median": 250,
+                  "p90": 260,
+                  "p95": 260,
+                  "maximum": 260
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 28,
+                "base64url": 22
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "unusual TLDs": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 48.98,
+                  "median": 50,
+                  "p90": 51.1,
+                  "p95": 52,
+                  "maximum": 52
+                },
+                "fairBase64Url": {
+                  "average": 48.98,
+                  "median": 50,
+                  "p90": 51.1,
+                  "p95": 52,
+                  "maximum": 52
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 33,
+                "globalRawStream": 17
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "nested subdomains": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 63.42,
+                  "median": 63,
+                  "p90": 64,
+                  "p95": 65.1,
+                  "maximum": 66
+                },
+                "fairBase64Url": {
+                  "average": 63.42,
+                  "median": 63,
+                  "p90": 64,
+                  "p95": 65.1,
+                  "maximum": 66
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "mixed casing": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 72.88,
+                  "median": 74,
+                  "p90": 74,
+                  "p95": 74,
+                  "maximum": 74
+                },
+                "fairBase64Url": {
+                  "average": 72.88,
+                  "median": 74,
+                  "p90": 74,
+                  "p95": 74,
+                  "maximum": 74
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "repeated paths": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 37.4,
+                  "median": 36,
+                  "p90": 36,
+                  "p95": 38,
+                  "maximum": 108
+                },
+                "fairBase64Url": {
+                  "average": 37.4,
+                  "median": 36,
+                  "p90": 36,
+                  "p95": 38,
+                  "maximum": 108
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "non-repeated paths": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 278.82,
+                  "median": 279,
+                  "p90": 282.1,
+                  "p95": 285,
+                  "maximum": 286
+                },
+                "fairBase64Url": {
+                  "average": 279.82,
+                  "median": 280,
+                  "p90": 283.1,
+                  "p95": 286,
+                  "maximum": 287
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "YouTube-like nonstandard": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 46.64,
+                  "median": 46,
+                  "p90": 52,
+                  "p95": 52,
+                  "maximum": 54
+                },
+                "fairBase64Url": {
+                  "average": 46.64,
+                  "median": 46,
+                  "p90": 52,
+                  "p95": 52,
+                  "maximum": 54
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 39,
+                "globalRawStream": 11
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "Maps-like nonstandard": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 48.24,
+                  "median": 51,
+                  "p90": 52,
+                  "p95": 52,
+                  "maximum": 52
+                },
+                "fairBase64Url": {
+                  "average": 48.24,
+                  "median": 51,
+                  "p90": 52,
+                  "p95": 52,
+                  "maximum": 52
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 33,
+                "globalRawStream": 17
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 1,
+                  "losses": 49,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 1,
+                  "losses": 49,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "short holdout": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 15.56,
+                  "median": 15,
+                  "p90": 19,
+                  "p95": 19,
+                  "maximum": 20
+                },
+                "fairBase64Url": {
+                  "average": 15.56,
+                  "median": 15,
+                  "p90": 19,
+                  "p95": 19,
+                  "maximum": 20
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "ports": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 42.06,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                },
+                "fairBase64Url": {
+                  "average": 42.06,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 32,
+                "localSegmented": 18
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                }
+              }
+            },
+            "duplicates and empty values": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 56.08,
+                  "median": 56,
+                  "p90": 58,
+                  "p95": 58,
+                  "maximum": 58
+                },
+                "fairBase64Url": {
+                  "average": 56.08,
+                  "median": 56,
+                  "p90": 58,
+                  "p95": 58,
+                  "maximum": 58
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 50
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 50
+                }
+              }
+            },
+            "percent encoded": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 87.48,
+                  "median": 88,
+                  "p90": 88,
+                  "p95": 89,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 87.68,
+                  "median": 88,
+                  "p90": 88,
+                  "p95": 90,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 40,
+                "safe65": 10
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 42,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                },
+                "fairBase64Url": {
+                  "wins": 42,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                }
+              }
+            },
+            "holdout fragments": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 101.78,
+                  "median": 101,
+                  "p90": 104,
+                  "p95": 104,
+                  "maximum": 105
+                },
+                "fairBase64Url": {
+                  "average": 102.22,
+                  "median": 102,
+                  "p90": 104,
+                  "p95": 104,
+                  "maximum": 106
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 28,
+                "safe65": 22
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "unexpected UUID positions": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 91.8,
+                  "median": 92,
+                  "p90": 92,
+                  "p95": 92,
+                  "maximum": 92
+                },
+                "fairBase64Url": {
+                  "average": 91.8,
+                  "median": 92,
+                  "p90": 92,
+                  "p95": 92,
+                  "maximum": 92
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 32,
+                  "losses": 9,
+                  "ties": 9,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 35,
+                  "losses": 6,
+                  "ties": 9,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "unexpected hash positions": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 166.38,
+                  "median": 167,
+                  "p90": 167,
+                  "p95": 167,
+                  "maximum": 168
+                },
+                "fairBase64Url": {
+                  "average": 166.7,
+                  "median": 167,
+                  "p90": 167,
+                  "p95": 167,
+                  "maximum": 168
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 34,
+                "safe65": 16
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            }
+          }
+        },
+        "combinedRetained": {
+          "count": 900,
+          "payloadCharacters": {
+            "bestValidAlphabet": {
+              "average": 115.41333333333333,
+              "median": 70,
+              "p90": 305,
+              "p95": 419,
+              "maximum": 428
+            },
+            "fairBase64Url": {
+              "average": 115.69333333333333,
+              "median": 70,
+              "p90": 306,
+              "p95": 420,
+              "maximum": 430
+            }
+          },
+          "bitLength": {
+            "average": 688.6933333333334,
+            "median": 412,
+            "p90": 1827,
+            "p95": 2515.05,
+            "maximum": 2570
+          },
+          "finalVisibleLink": {
+            "specified13CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 128.41333333333333,
+                "median": 83,
+                "p90": 318,
+                "p95": 432,
+                "maximum": 441
+              },
+              "fairBase64Url": {
+                "average": 128.69333333333333,
+                "median": 83,
+                "p90": 319,
+                "p95": 433,
+                "maximum": 443
+              }
+            },
+            "browserCanonical14CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 129.41333333333333,
+                "median": 84,
+                "p90": 319,
+                "p95": 433,
+                "maximum": 442
+              },
+              "fairBase64Url": {
+                "average": 129.69333333333333,
+                "median": 84,
+                "p90": 320,
+                "p95": 434,
+                "maximum": 444
+              }
+            }
+          },
+          "outputAlphabetCounts": {
+            "base64url": 661,
+            "safe65": 239
+          },
+          "selectedRepresentationCounts": {
+            "globalRawStream": 664,
+            "localSegmented": 157,
+            "queryAsOneBlock": 79
+          },
+          "selectedFeatureCounts": {
+            "directBinaryValues": 1550,
+            "queryAsOneBlock": 79
+          },
+          "selectedCombinedCandidateCounts": {
+            "v6GlobalArithmetic": 431,
+            "v7DirectBinary": 323,
+            "v6QueryOneBlock": 79,
+            "v5SegmentedFallback": 67
+          },
+          "versusHamr": {
+            "realBestValidAlphabet": {
+              "wins": 243,
+              "losses": 557,
+              "ties": 0,
+              "excludedInvalidHamr": 100
+            },
+            "fairBase64Url": {
+              "wins": 243,
+              "losses": 557,
+              "ties": 0,
+              "excludedInvalidHamr": 100
+            }
+          },
+          "roundTripSuccess": "900/900",
+          "timing": {
+            "compressionAverageMs": 18.918838333333397,
+            "decompressionAverageMs": 0.06098122222219697
+          },
+          "payloadOverhead": {
+            "averageBytePaddingBits": 3.528888888888889,
+            "averageRadixCapacityMinusPayloadBits": 5.342024972163026
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 36.54,
+                  "median": 36,
+                  "p90": 42,
+                  "p95": 42,
+                  "maximum": 43
+                },
+                "fairBase64Url": {
+                  "average": 36.54,
+                  "median": 36,
+                  "p90": 42,
+                  "p95": 42,
+                  "maximum": 43
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                }
+              }
+            },
+            "random long paths": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 305.5,
+                  "median": 305,
+                  "p90": 307,
+                  "p95": 307,
+                  "maximum": 309
+                },
+                "fairBase64Url": {
+                  "average": 306.5,
+                  "median": 306,
+                  "p90": 308,
+                  "p95": 308,
+                  "maximum": 310
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 49,
+                "localSegmented": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 39,
+                  "ties": 0,
+                  "excludedInvalidHamr": 11
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 39,
+                  "ties": 0,
+                  "excludedInvalidHamr": 11
+                }
+              }
+            },
+            "random query parameters": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 421.5,
+                  "median": 422,
+                  "p90": 424,
+                  "p95": 425.1,
+                  "maximum": 428
+                },
+                "fairBase64Url": {
+                  "average": 422.76,
+                  "median": 423,
+                  "p90": 426,
+                  "p95": 426.55,
+                  "maximum": 430
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 45,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 45,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                }
+              }
+            },
+            "long Unicode": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 179.42,
+                  "median": 180,
+                  "p90": 190,
+                  "p95": 190,
+                  "maximum": 190
+                },
+                "fairBase64Url": {
+                  "average": 180.24,
+                  "median": 180,
+                  "p90": 191,
+                  "p95": 191,
+                  "maximum": 191
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 41,
+                "base64url": 9
+              },
+              "selectedRepresentationCounts": {
+                "queryAsOneBlock": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "unusual TLDs": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 47.58,
+                  "median": 48,
+                  "p90": 51,
+                  "p95": 51,
+                  "maximum": 52
+                },
+                "fairBase64Url": {
+                  "average": 47.58,
+                  "median": 48,
+                  "p90": 51,
+                  "p95": 51,
+                  "maximum": 52
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 46,
+                "localSegmented": 4
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "nested subdomains": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 62.76,
+                  "median": 63,
+                  "p90": 63,
+                  "p95": 63.55,
+                  "maximum": 64
+                },
+                "fairBase64Url": {
+                  "average": 62.76,
+                  "median": 63,
+                  "p90": 63,
+                  "p95": 63.55,
+                  "maximum": 64
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "mixed casing": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 72.88,
+                  "median": 74,
+                  "p90": 74,
+                  "p95": 74,
+                  "maximum": 74
+                },
+                "fairBase64Url": {
+                  "average": 72.88,
+                  "median": 74,
+                  "p90": 74,
+                  "p95": 74,
+                  "maximum": 74
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "repeated paths": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 37.4,
+                  "median": 36,
+                  "p90": 36,
+                  "p95": 38,
+                  "maximum": 108
+                },
+                "fairBase64Url": {
+                  "average": 37.4,
+                  "median": 36,
+                  "p90": 36,
+                  "p95": 38,
+                  "maximum": 108
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "non-repeated paths": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 278.82,
+                  "median": 279,
+                  "p90": 282.1,
+                  "p95": 285,
+                  "maximum": 286
+                },
+                "fairBase64Url": {
+                  "average": 279.82,
+                  "median": 280,
+                  "p90": 283.1,
+                  "p95": 286,
+                  "maximum": 287
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "YouTube-like nonstandard": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 46.34,
+                  "median": 46,
+                  "p90": 51,
+                  "p95": 51,
+                  "maximum": 54
+                },
+                "fairBase64Url": {
+                  "average": 46.34,
+                  "median": 46,
+                  "p90": 51,
+                  "p95": 51,
+                  "maximum": 54
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 38,
+                "globalRawStream": 11,
+                "queryAsOneBlock": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "Maps-like nonstandard": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 47.64,
+                  "median": 50,
+                  "p90": 51,
+                  "p95": 51,
+                  "maximum": 51
+                },
+                "fairBase64Url": {
+                  "average": 47.64,
+                  "median": 50,
+                  "p90": 51,
+                  "p95": 51,
+                  "maximum": 51
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 24,
+                "queryAsOneBlock": 25,
+                "globalRawStream": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 1,
+                  "losses": 49,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 1,
+                  "losses": 49,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "short holdout": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 15.56,
+                  "median": 15,
+                  "p90": 19,
+                  "p95": 19,
+                  "maximum": 20
+                },
+                "fairBase64Url": {
+                  "average": 15.56,
+                  "median": 15,
+                  "p90": 19,
+                  "p95": 19,
+                  "maximum": 20
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 50,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "ports": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 42.06,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                },
+                "fairBase64Url": {
+                  "average": 42.06,
+                  "median": 42,
+                  "p90": 43,
+                  "p95": 43,
+                  "maximum": 43
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 32,
+                "localSegmented": 15,
+                "queryAsOneBlock": 3
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 43,
+                  "ties": 0,
+                  "excludedInvalidHamr": 7
+                }
+              }
+            },
+            "duplicates and empty values": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 56.08,
+                  "median": 56,
+                  "p90": 58,
+                  "p95": 58,
+                  "maximum": 58
+                },
+                "fairBase64Url": {
+                  "average": 56.08,
+                  "median": 56,
+                  "p90": 58,
+                  "p95": 58,
+                  "maximum": 58
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 50
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 50
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 50
+                }
+              }
+            },
+            "percent encoded": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 87.48,
+                  "median": 88,
+                  "p90": 88,
+                  "p95": 89,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 87.68,
+                  "median": 88,
+                  "p90": 88,
+                  "p95": 90,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 40,
+                "safe65": 10
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 42,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                },
+                "fairBase64Url": {
+                  "wins": 42,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                }
+              }
+            },
+            "holdout fragments": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 101.04,
+                  "median": 101,
+                  "p90": 103,
+                  "p95": 103,
+                  "maximum": 103
+                },
+                "fairBase64Url": {
+                  "average": 101.68,
+                  "median": 102,
+                  "p90": 103,
+                  "p95": 103,
+                  "maximum": 103
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 32,
+                "base64url": 18
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 25,
+                "globalRawStream": 25
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 46,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "unexpected UUID positions": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 87.84,
+                  "median": 88,
+                  "p90": 88,
+                  "p95": 88,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 87.86,
+                  "median": 88,
+                  "p90": 88,
+                  "p95": 88,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 49,
+                "safe65": 1
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "unexpected hash positions": {
+              "count": 50,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 151,
+                  "median": 151,
+                  "p90": 152,
+                  "p95": 152,
+                  "maximum": 152
+                },
+                "fairBase64Url": {
+                  "average": 151.1,
+                  "median": 151,
+                  "p90": 152,
+                  "p95": 152,
+                  "maximum": 152
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 45,
+                "safe65": 5
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 50
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 50,
+                  "losses": 0,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "unseen": {
+      "count": 480,
+      "completed": true,
+      "haMrInvalidReasons": {
+        "unsupported URL feature": 88
+      },
+      "candidates": {
+        "currentV6Planner": {
+          "count": 480,
+          "payloadCharacters": {
+            "bestValidAlphabet": {
+              "average": 123.38125,
+              "median": 103,
+              "p90": 236,
+              "p95": 266,
+              "maximum": 274
+            },
+            "fairBase64Url": {
+              "average": 123.73958333333333,
+              "median": 103,
+              "p90": 236,
+              "p95": 267,
+              "maximum": 275
+            }
+          },
+          "bitLength": {
+            "average": 736.9916666666667,
+            "median": 612,
+            "p90": 1414,
+            "p95": 1594.1,
+            "maximum": 1641
+          },
+          "finalVisibleLink": {
+            "specified13CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 136.38125,
+                "median": 116,
+                "p90": 249,
+                "p95": 279,
+                "maximum": 287
+              },
+              "fairBase64Url": {
+                "average": 136.73958333333334,
+                "median": 116,
+                "p90": 249,
+                "p95": 280,
+                "maximum": 288
+              }
+            },
+            "browserCanonical14CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 137.38125,
+                "median": 117,
+                "p90": 250,
+                "p95": 280,
+                "maximum": 288
+              },
+              "fairBase64Url": {
+                "average": 137.73958333333334,
+                "median": 117,
+                "p90": 250,
+                "p95": 281,
+                "maximum": 289
+              }
+            }
+          },
+          "outputAlphabetCounts": {
+            "safe65": 172,
+            "base64url": 308
+          },
+          "selectedRepresentationCounts": {
+            "globalRawStream": 438,
+            "localSegmented": 42
+          },
+          "selectedFeatureCounts": {},
+          "selectedCombinedCandidateCounts": {},
+          "versusHamr": {
+            "realBestValidAlphabet": {
+              "wins": 65,
+              "losses": 363,
+              "ties": 8,
+              "excludedInvalidHamr": 44
+            },
+            "fairBase64Url": {
+              "wins": 68,
+              "losses": 363,
+              "ties": 5,
+              "excludedInvalidHamr": 44
+            }
+          },
+          "roundTripSuccess": "480/480",
+          "timing": {
+            "compressionAverageMs": 1.2283560416666675,
+            "decompressionAverageMs": 0.08189645833333288
+          },
+          "payloadOverhead": {
+            "averageBytePaddingBits": 3.441666666666667,
+            "averageRadixCapacityMinusPayloadBits": 4.544563095257266
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 105.525,
+                  "median": 105,
+                  "p90": 108,
+                  "p95": 108,
+                  "maximum": 108
+                },
+                "fairBase64Url": {
+                  "average": 105.75,
+                  "median": 106,
+                  "p90": 108,
+                  "p95": 108,
+                  "maximum": 108
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 9,
+                "base64url": 31
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "REST APIs": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 161,
+                  "median": 161,
+                  "p90": 164,
+                  "p95": 164,
+                  "maximum": 164
+                },
+                "fairBase64Url": {
+                  "average": 161.25,
+                  "median": 162,
+                  "p90": 164,
+                  "p95": 164,
+                  "maximum": 164
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 30,
+                "safe65": 10
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 33,
+                "globalRawStream": 7
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 38,
+                  "ties": 0,
+                  "excludedInvalidHamr": 2
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 38,
+                  "ties": 0,
+                  "excludedInvalidHamr": 2
+                }
+              }
+            },
+            "signed URLs": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 234.4,
+                  "median": 234,
+                  "p90": 236,
+                  "p95": 237,
+                  "maximum": 238
+                },
+                "fairBase64Url": {
+                  "average": 234.95,
+                  "median": 235,
+                  "p90": 236,
+                  "p95": 238,
+                  "maximum": 239
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 18,
+                "safe65": 22
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 39,
+                "localSegmented": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "ecommerce filters": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 120.2,
+                  "median": 120,
+                  "p90": 123,
+                  "p95": 123,
+                  "maximum": 124
+                },
+                "fairBase64Url": {
+                  "average": 120.55,
+                  "median": 120,
+                  "p90": 123,
+                  "p95": 123,
+                  "maximum": 124
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 26,
+                "safe65": 14
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                }
+              }
+            },
+            "international domains": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 66.275,
+                  "median": 70,
+                  "p90": 84.1,
+                  "p95": 85.1,
+                  "maximum": 87
+                },
+                "fairBase64Url": {
+                  "average": 66.325,
+                  "median": 70,
+                  "p90": 84.2,
+                  "p95": 86.05,
+                  "maximum": 87
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 2,
+                "base64url": 38
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 34,
+                "localSegmented": 6
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 32,
+                  "losses": 0,
+                  "ties": 8,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 35,
+                  "losses": 0,
+                  "ties": 5,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "IP hosts": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 60.35,
+                  "median": 60,
+                  "p90": 63,
+                  "p95": 63,
+                  "maximum": 63
+                },
+                "fairBase64Url": {
+                  "average": 60.35,
+                  "median": 60,
+                  "p90": 63,
+                  "p95": 63,
+                  "maximum": 63
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 40
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 38,
+                "localSegmented": 2
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "matrix parameters": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 88.475,
+                  "median": 88.5,
+                  "p90": 89,
+                  "p95": 89,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 88.975,
+                  "median": 89,
+                  "p90": 90,
+                  "p95": 90,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 20,
+                "base64url": 20
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                }
+              }
+            },
+            "base64 values": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 266.125,
+                  "median": 266,
+                  "p90": 270,
+                  "p95": 271.1,
+                  "maximum": 274
+                },
+                "fairBase64Url": {
+                  "average": 267.075,
+                  "median": 267,
+                  "p90": 271,
+                  "p95": 272.1,
+                  "maximum": 275
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 38,
+                "base64url": 2
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "calendar URLs": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 87.525,
+                  "median": 88,
+                  "p90": 89,
+                  "p95": 89,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 87.8,
+                  "median": 88,
+                  "p90": 90,
+                  "p95": 90,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 29,
+                "safe65": 11
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 35,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 35,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                }
+              }
+            },
+            "repository alternatives": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 93.35,
+                  "median": 92.5,
+                  "p90": 100.1,
+                  "p95": 101.1,
+                  "maximum": 103
+                },
+                "fairBase64Url": {
+                  "average": 93.575,
+                  "median": 93,
+                  "p90": 100.2,
+                  "p95": 102.05,
+                  "maximum": 103
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 31,
+                "safe65": 9
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "news articles": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 114.85,
+                  "median": 115,
+                  "p90": 117,
+                  "p95": 117.1,
+                  "maximum": 119
+                },
+                "fairBase64Url": {
+                  "average": 115.25,
+                  "median": 115,
+                  "p90": 118,
+                  "p95": 118.05,
+                  "maximum": 119
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 16,
+                "base64url": 24
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "moderate repetition": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 82.5,
+                  "median": 81,
+                  "p90": 83,
+                  "p95": 84.84999999999995,
+                  "maximum": 103
+                },
+                "fairBase64Url": {
+                  "average": 83.025,
+                  "median": 82,
+                  "p90": 83,
+                  "p95": 84.89999999999995,
+                  "maximum": 103
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 19,
+                "safe65": 21
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 33,
+                  "losses": 2,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                },
+                "fairBase64Url": {
+                  "wins": 33,
+                  "losses": 2,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                }
+              }
+            }
+          }
+        },
+        "combinedRetained": {
+          "count": 480,
+          "payloadCharacters": {
+            "bestValidAlphabet": {
+              "average": 118.01458333333333,
+              "median": 100,
+              "p90": 221,
+              "p95": 230,
+              "maximum": 232
+            },
+            "fairBase64Url": {
+              "average": 118.42291666666667,
+              "median": 100,
+              "p90": 222,
+              "p95": 231,
+              "maximum": 232
+            }
+          },
+          "bitLength": {
+            "average": 704.9625,
+            "median": 598.5,
+            "p90": 1323,
+            "p95": 1381,
+            "maximum": 1386
+          },
+          "finalVisibleLink": {
+            "specified13CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 131.01458333333332,
+                "median": 113,
+                "p90": 234,
+                "p95": 243,
+                "maximum": 245
+              },
+              "fairBase64Url": {
+                "average": 131.42291666666668,
+                "median": 113,
+                "p90": 235,
+                "p95": 244,
+                "maximum": 245
+              }
+            },
+            "browserCanonical14CharacterPrefix": {
+              "bestValidAlphabet": {
+                "average": 132.01458333333332,
+                "median": 114,
+                "p90": 235,
+                "p95": 244,
+                "maximum": 246
+              },
+              "fairBase64Url": {
+                "average": 132.42291666666668,
+                "median": 114,
+                "p90": 236,
+                "p95": 245,
+                "maximum": 246
+              }
+            }
+          },
+          "outputAlphabetCounts": {
+            "base64url": 284,
+            "safe65": 196
+          },
+          "selectedRepresentationCounts": {
+            "globalRawStream": 411,
+            "localSegmented": 68,
+            "queryAsOneBlock": 1
+          },
+          "selectedFeatureCounts": {
+            "directBinaryValues": 598,
+            "queryAsOneBlock": 1
+          },
+          "selectedCombinedCandidateCounts": {
+            "v7DirectBinary": 222,
+            "v6GlobalArithmetic": 251,
+            "v5SegmentedFallback": 6,
+            "v6QueryOneBlock": 1
+          },
+          "versusHamr": {
+            "realBestValidAlphabet": {
+              "wins": 65,
+              "losses": 363,
+              "ties": 8,
+              "excludedInvalidHamr": 44
+            },
+            "fairBase64Url": {
+              "wins": 68,
+              "losses": 363,
+              "ties": 5,
+              "excludedInvalidHamr": 44
+            }
+          },
+          "roundTripSuccess": "480/480",
+          "timing": {
+            "compressionAverageMs": 5.679502916666668,
+            "decompressionAverageMs": 0.0612014583333296
+          },
+          "payloadOverhead": {
+            "averageBytePaddingBits": 3.3875,
+            "averageRadixCapacityMinusPayloadBits": 4.401689528209508
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 102.3,
+                  "median": 103,
+                  "p90": 104,
+                  "p95": 104,
+                  "maximum": 104
+                },
+                "fairBase64Url": {
+                  "average": 102.625,
+                  "median": 103,
+                  "p90": 104,
+                  "p95": 104,
+                  "maximum": 104
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 27,
+                "safe65": 13
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "REST APIs": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 153,
+                  "median": 153,
+                  "p90": 153,
+                  "p95": 153,
+                  "maximum": 156
+                },
+                "fairBase64Url": {
+                  "average": 153.9,
+                  "median": 154,
+                  "p90": 154,
+                  "p95": 154,
+                  "maximum": 156
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 36,
+                "base64url": 4
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 39,
+                "localSegmented": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 38,
+                  "ties": 0,
+                  "excludedInvalidHamr": 2
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 38,
+                  "ties": 0,
+                  "excludedInvalidHamr": 2
+                }
+              }
+            },
+            "signed URLs": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 220.35,
+                  "median": 220,
+                  "p90": 221,
+                  "p95": 221,
+                  "maximum": 222
+                },
+                "fairBase64Url": {
+                  "average": 220.675,
+                  "median": 220,
+                  "p90": 222,
+                  "p95": 222,
+                  "maximum": 223
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 13,
+                "base64url": 27
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "ecommerce filters": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 120.2,
+                  "median": 120,
+                  "p90": 123,
+                  "p95": 123,
+                  "maximum": 124
+                },
+                "fairBase64Url": {
+                  "average": 120.55,
+                  "median": 120,
+                  "p90": 123,
+                  "p95": 123,
+                  "maximum": 124
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 26,
+                "safe65": 14
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                }
+              }
+            },
+            "international domains": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 66.275,
+                  "median": 70,
+                  "p90": 84.1,
+                  "p95": 85.1,
+                  "maximum": 87
+                },
+                "fairBase64Url": {
+                  "average": 66.325,
+                  "median": 70,
+                  "p90": 84.2,
+                  "p95": 86.05,
+                  "maximum": 87
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 2,
+                "base64url": 38
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 34,
+                "localSegmented": 6
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 32,
+                  "losses": 0,
+                  "ties": 8,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 35,
+                  "losses": 0,
+                  "ties": 5,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "IP hosts": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 58.625,
+                  "median": 59,
+                  "p90": 59,
+                  "p95": 59,
+                  "maximum": 59
+                },
+                "fairBase64Url": {
+                  "average": 58.625,
+                  "median": 59,
+                  "p90": 59,
+                  "p95": 59,
+                  "maximum": 59
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 40
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 9,
+                "localSegmented": 31
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "matrix parameters": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 88.475,
+                  "median": 88.5,
+                  "p90": 89,
+                  "p95": 89,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 88.975,
+                  "median": 89,
+                  "p90": 90,
+                  "p95": 90,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 20,
+                "base64url": 20
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 32,
+                  "ties": 0,
+                  "excludedInvalidHamr": 8
+                }
+              }
+            },
+            "base64 values": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 230.2,
+                  "median": 230,
+                  "p90": 230.2,
+                  "p95": 232,
+                  "maximum": 232
+                },
+                "fairBase64Url": {
+                  "average": 231.1,
+                  "median": 231,
+                  "p90": 231.1,
+                  "p95": 232,
+                  "maximum": 232
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 36,
+                "base64url": 4
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "calendar URLs": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 87.525,
+                  "median": 88,
+                  "p90": 89,
+                  "p95": 89,
+                  "maximum": 89
+                },
+                "fairBase64Url": {
+                  "average": 87.8,
+                  "median": 88,
+                  "p90": 90,
+                  "p95": 90,
+                  "maximum": 90
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 29,
+                "safe65": 11
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 35,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 35,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                }
+              }
+            },
+            "repository alternatives": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 91.95,
+                  "median": 92,
+                  "p90": 99,
+                  "p95": 100,
+                  "maximum": 100
+                },
+                "fairBase64Url": {
+                  "average": 92.3,
+                  "median": 92,
+                  "p90": 99,
+                  "p95": 100,
+                  "maximum": 100
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 14,
+                "base64url": 26
+              },
+              "selectedRepresentationCounts": {
+                "localSegmented": 30,
+                "globalRawStream": 10
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 40,
+                  "ties": 0,
+                  "excludedInvalidHamr": 0
+                }
+              }
+            },
+            "news articles": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 114.85,
+                  "median": 115,
+                  "p90": 117,
+                  "p95": 117.1,
+                  "maximum": 119
+                },
+                "fairBase64Url": {
+                  "average": 115.25,
+                  "median": 115,
+                  "p90": 118,
+                  "p95": 118.05,
+                  "maximum": 119
+                }
+              },
+              "outputAlphabetCounts": {
+                "safe65": 16,
+                "base64url": 24
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 40
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                },
+                "fairBase64Url": {
+                  "wins": 0,
+                  "losses": 36,
+                  "ties": 0,
+                  "excludedInvalidHamr": 4
+                }
+              }
+            },
+            "moderate repetition": {
+              "count": 40,
+              "payloadCharacters": {
+                "bestValidAlphabet": {
+                  "average": 82.425,
+                  "median": 81,
+                  "p90": 83,
+                  "p95": 84.79999999999995,
+                  "maximum": 101
+                },
+                "fairBase64Url": {
+                  "average": 82.95,
+                  "median": 82,
+                  "p90": 83,
+                  "p95": 84.79999999999995,
+                  "maximum": 102
+                }
+              },
+              "outputAlphabetCounts": {
+                "base64url": 19,
+                "safe65": 21
+              },
+              "selectedRepresentationCounts": {
+                "globalRawStream": 39,
+                "queryAsOneBlock": 1
+              },
+              "versusHamr": {
+                "realBestValidAlphabet": {
+                  "wins": 33,
+                  "losses": 2,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                },
+                "fairBase64Url": {
+                  "wins": 33,
+                  "losses": 2,
+                  "ties": 0,
+                  "excludedInvalidHamr": 5
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

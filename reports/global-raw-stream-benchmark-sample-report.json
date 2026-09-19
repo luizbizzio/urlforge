@@ -1,0 +1,3244 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-19T10:45:46.040Z",
+  "status": "complete",
+  "deterministicSignature": "3652e2e72fa7de50ca99411d7644f19637c0203fe0e7fe5d9c1622a65b5aef47",
+  "benchmark": "globalRawStream ablation",
+  "mode": "sample",
+  "prefixes": {
+    "urlForge": "http://uf.mr#",
+    "haMr": "http://ha.mr#",
+    "equalLength": true,
+    "characters": 13
+  },
+  "candidates": {
+    "currentSemanticHuffmanLz": {
+      "huffman": true,
+      "lz": true,
+      "arithmetic": false,
+      "globalRawStream": false
+    },
+    "currentPlannerWithArithmetic": {
+      "huffman": true,
+      "lz": true,
+      "arithmetic": true,
+      "globalRawStream": false
+    },
+    "globalRawStreamWithoutArithmetic": {
+      "huffman": false,
+      "lz": false,
+      "arithmetic": false,
+      "globalRawStream": true
+    },
+    "globalRawStreamWithArithmetic": {
+      "huffman": true,
+      "lz": true,
+      "arithmetic": true,
+      "globalRawStream": true
+    },
+    "globalRawStreamWithLzHuffman": {
+      "huffman": true,
+      "lz": true,
+      "arithmetic": false,
+      "globalRawStream": true
+    }
+  },
+  "payloadOverhead": {
+    "fixedFormatBits": 9,
+    "rawLiteralHeaderBits": 6,
+    "huffmanHeaderBits": 10,
+    "lzHeaderBits": 5,
+    "arithmeticHeaderBits": 8,
+    "globalStreamBoundaryBits": 0,
+    "note": "Global stream boundaries are reconstructed from URL delimiters. Measured framing compares complete body bitstreams and includes token and block headers."
+  },
+  "sourceSize": {
+    "codecBytes": 29285,
+    "localBenchmarkBytes": 17966
+  },
+  "datasets": {
+    "development": {
+      "count": 3,
+      "haMr": {
+        "payload": {
+          "average": 29.333333333333332,
+          "median": 35,
+          "p90": 44.6,
+          "p95": 45.8,
+          "maximum": 47
+        },
+        "completeLink": {
+          "average": 42.33333333333333,
+          "median": 48,
+          "p90": 57.6,
+          "p95": 58.8,
+          "maximum": 60
+        },
+        "invalid": 0,
+        "failureReasons": {}
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 3,
+          "payload": {
+            "average": 33.333333333333336,
+            "median": 39,
+            "p90": 51,
+            "p95": 52.5,
+            "maximum": 54
+          },
+          "completeLink": {
+            "average": 46.333333333333336,
+            "median": 52,
+            "p90": 64,
+            "p95": 65.5,
+            "maximum": 67
+          },
+          "compression": {
+            "averageMs": 0.6178000000000002,
+            "maximumMs": 1.0528000000000048,
+            "totalMs": 1.8534000000000006
+          },
+          "decompression": {
+            "averageMs": 0.13846666666666843,
+            "maximumMs": 0.23810000000000286,
+            "totalMs": 0.4154000000000053
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 3,
+          "roundTripSuccess": "3/3",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payload": {
+                "average": 54,
+                "median": 54,
+                "p90": 54,
+                "p95": 54,
+                "maximum": 54
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "fragments": {
+              "count": 1,
+              "payload": {
+                "average": 39,
+                "median": 39,
+                "p90": 39,
+                "p95": 39,
+                "maximum": 39
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "currentPlannerWithArithmetic": {
+          "count": 3,
+          "payload": {
+            "average": 33.333333333333336,
+            "median": 39,
+            "p90": 51,
+            "p95": 52.5,
+            "maximum": 54
+          },
+          "completeLink": {
+            "average": 46.333333333333336,
+            "median": 52,
+            "p90": 64,
+            "p95": 65.5,
+            "maximum": 67
+          },
+          "compression": {
+            "averageMs": 0.46356666666666274,
+            "maximumMs": 0.8088999999999942,
+            "totalMs": 1.3906999999999883
+          },
+          "decompression": {
+            "averageMs": 0.03953333333333594,
+            "maximumMs": 0.06800000000000495,
+            "totalMs": 0.11860000000000781
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 3,
+          "roundTripSuccess": "3/3",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payload": {
+                "average": 54,
+                "median": 54,
+                "p90": 54,
+                "p95": 54,
+                "maximum": 54
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "fragments": {
+              "count": 1,
+              "payload": {
+                "average": 39,
+                "median": 39,
+                "p90": 39,
+                "p95": 39,
+                "maximum": 39
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "globalRawStreamWithoutArithmetic": {
+          "count": 3,
+          "payload": {
+            "average": 35.333333333333336,
+            "median": 43,
+            "p90": 53.4,
+            "p95": 54.7,
+            "maximum": 56
+          },
+          "completeLink": {
+            "average": 48.333333333333336,
+            "median": 56,
+            "p90": 66.4,
+            "p95": 67.7,
+            "maximum": 69
+          },
+          "compression": {
+            "averageMs": 0.5297000000000006,
+            "maximumMs": 0.954100000000004,
+            "totalMs": 1.589100000000002
+          },
+          "decompression": {
+            "averageMs": 0.1305999999999964,
+            "maximumMs": 0.24429999999999552,
+            "totalMs": 0.39179999999998927
+          },
+          "framingOverheadBits": {
+            "measured": 3,
+            "averageLocalSegmentedBits": 198,
+            "averageGlobalRawStreamBits": 218.66666666666666,
+            "averageSelectedBits": 198,
+            "averageSavedBits": 0,
+            "totalSavedBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "roundTrips": 3,
+          "roundTripSuccess": "3/3",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 28,
+                "averageGlobalRawStreamBits": 46,
+                "averageSelectedBits": 28,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payload": {
+                "average": 56,
+                "median": 56,
+                "p90": 56,
+                "p95": 56,
+                "maximum": 56
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 324,
+                "averageGlobalRawStreamBits": 326,
+                "averageSelectedBits": 324,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "fragments": {
+              "count": 1,
+              "payload": {
+                "average": 43,
+                "median": 43,
+                "p90": 43,
+                "p95": 43,
+                "maximum": 43
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 242,
+                "averageGlobalRawStreamBits": 284,
+                "averageSelectedBits": 242,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        },
+        "globalRawStreamWithArithmetic": {
+          "count": 3,
+          "payload": {
+            "average": 33.333333333333336,
+            "median": 39,
+            "p90": 51,
+            "p95": 52.5,
+            "maximum": 54
+          },
+          "completeLink": {
+            "average": 46.333333333333336,
+            "median": 52,
+            "p90": 64,
+            "p95": 65.5,
+            "maximum": 67
+          },
+          "compression": {
+            "averageMs": 0.725066666666668,
+            "maximumMs": 1.357600000000005,
+            "totalMs": 2.175200000000004
+          },
+          "decompression": {
+            "averageMs": 0.06479999999999582,
+            "maximumMs": 0.13709999999999667,
+            "totalMs": 0.19439999999998747
+          },
+          "framingOverheadBits": {
+            "measured": 3,
+            "averageLocalSegmentedBits": 183,
+            "averageGlobalRawStreamBits": 200,
+            "averageSelectedBits": 183,
+            "averageSavedBits": 0,
+            "totalSavedBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "roundTrips": 3,
+          "roundTripSuccess": "3/3",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 28,
+                "averageGlobalRawStreamBits": 46,
+                "averageSelectedBits": 28,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payload": {
+                "average": 54,
+                "median": 54,
+                "p90": 54,
+                "p95": 54,
+                "maximum": 54
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 304,
+                "averageGlobalRawStreamBits": 306,
+                "averageSelectedBits": 304,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "fragments": {
+              "count": 1,
+              "payload": {
+                "average": 39,
+                "median": 39,
+                "p90": 39,
+                "p95": 39,
+                "maximum": 39
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 217,
+                "averageGlobalRawStreamBits": 248,
+                "averageSelectedBits": 217,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        },
+        "globalRawStreamWithLzHuffman": {
+          "count": 3,
+          "payload": {
+            "average": 33.333333333333336,
+            "median": 39,
+            "p90": 51,
+            "p95": 52.5,
+            "maximum": 54
+          },
+          "completeLink": {
+            "average": 46.333333333333336,
+            "median": 52,
+            "p90": 64,
+            "p95": 65.5,
+            "maximum": 67
+          },
+          "compression": {
+            "averageMs": 0.36556666666666376,
+            "maximumMs": 0.7884999999999991,
+            "totalMs": 1.0966999999999913
+          },
+          "decompression": {
+            "averageMs": 0.01943333333333186,
+            "maximumMs": 0.026799999999994384,
+            "totalMs": 0.05829999999999558
+          },
+          "framingOverheadBits": {
+            "measured": 3,
+            "averageLocalSegmentedBits": 183,
+            "averageGlobalRawStreamBits": 200,
+            "averageSelectedBits": 183,
+            "averageSavedBits": 0,
+            "totalSavedBits": 0,
+            "maximumSavedBits": 0,
+            "selectedGlobal": 0,
+            "selectedLocal": 3
+          },
+          "roundTrips": 3,
+          "roundTripSuccess": "3/3",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 3,
+            "ties": 0,
+            "excludedInvalidHamr": 0
+          },
+          "categories": {
+            "short URLs": {
+              "count": 1,
+              "payload": {
+                "average": 7,
+                "median": 7,
+                "p90": 7,
+                "p95": 7,
+                "maximum": 7
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 28,
+                "averageGlobalRawStreamBits": 46,
+                "averageSelectedBits": 28,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "numeric IDs": {
+              "count": 1,
+              "payload": {
+                "average": 54,
+                "median": 54,
+                "p90": 54,
+                "p95": 54,
+                "maximum": 54
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 304,
+                "averageGlobalRawStreamBits": 306,
+                "averageSelectedBits": 304,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "fragments": {
+              "count": 1,
+              "payload": {
+                "average": 39,
+                "median": 39,
+                "p90": 39,
+                "p95": 39,
+                "maximum": 39
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 217,
+                "averageGlobalRawStreamBits": 248,
+                "averageSelectedBits": 217,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "holdout": {
+      "count": 9,
+      "haMr": {
+        "payload": {
+          "average": 130.875,
+          "median": 66.5,
+          "p90": 285.7,
+          "p95": 323.8499999999999,
+          "maximum": 362
+        },
+        "completeLink": {
+          "average": 143.875,
+          "median": 79.5,
+          "p90": 298.7,
+          "p95": 336.8499999999999,
+          "maximum": 375
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "actual ha.mr round-trip failure": 1
+        }
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 9,
+          "payload": {
+            "average": 153.44444444444446,
+            "median": 64,
+            "p90": 344.6,
+            "p95": 397.79999999999995,
+            "maximum": 451
+          },
+          "completeLink": {
+            "average": 166.44444444444446,
+            "median": 77,
+            "p90": 357.6,
+            "p95": 410.79999999999995,
+            "maximum": 464
+          },
+          "compression": {
+            "averageMs": 0.47293333333333326,
+            "maximumMs": 2.1561999999999983,
+            "totalMs": 4.256399999999999
+          },
+          "decompression": {
+            "averageMs": 0.1211888888888887,
+            "maximumMs": 0.6925999999999988,
+            "totalMs": 1.0906999999999982
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 9,
+          "roundTripSuccess": "9/9",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 38,
+                "median": 38,
+                "p90": 38,
+                "p95": 38,
+                "maximum": 38
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 318,
+                "median": 318,
+                "p90": 318,
+                "p95": 318,
+                "maximum": 318
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 451,
+                "median": 451,
+                "p90": 451,
+                "p95": 451,
+                "maximum": 451
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 64,
+                "median": 64,
+                "p90": 64,
+                "p95": 64,
+                "maximum": 64
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payload": {
+                "average": 286,
+                "median": 286,
+                "p90": 286,
+                "p95": 286,
+                "maximum": 286
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "short holdout": {
+              "count": 1,
+              "payload": {
+                "average": 15,
+                "median": 15,
+                "p90": 15,
+                "p95": 15,
+                "maximum": 15
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payload": {
+                "average": 56,
+                "median": 56,
+                "p90": 56,
+                "p95": 56,
+                "maximum": 56
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": null
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payload": {
+                "average": 102,
+                "median": 102,
+                "p90": 102,
+                "p95": 102,
+                "maximum": 102
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "currentPlannerWithArithmetic": {
+          "count": 9,
+          "payload": {
+            "average": 151.11111111111111,
+            "median": 64,
+            "p90": 338,
+            "p95": 389.99999999999994,
+            "maximum": 442
+          },
+          "completeLink": {
+            "average": 164.11111111111111,
+            "median": 77,
+            "p90": 351,
+            "p95": 402.99999999999994,
+            "maximum": 455
+          },
+          "compression": {
+            "averageMs": 1.3206777777777785,
+            "maximumMs": 4.893900000000002,
+            "totalMs": 11.886100000000006
+          },
+          "decompression": {
+            "averageMs": 0.16013333333333277,
+            "maximumMs": 0.5259999999999962,
+            "totalMs": 1.441199999999995
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 9,
+          "roundTripSuccess": "9/9",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 38,
+                "median": 38,
+                "p90": 38,
+                "p95": 38,
+                "maximum": 38
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 312,
+                "median": 312,
+                "p90": 312,
+                "p95": 312,
+                "maximum": 312
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 442,
+                "median": 442,
+                "p90": 442,
+                "p95": 442,
+                "maximum": 442
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 64,
+                "median": 64,
+                "p90": 64,
+                "p95": 64,
+                "maximum": 64
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payload": {
+                "average": 280,
+                "median": 280,
+                "p90": 280,
+                "p95": 280,
+                "maximum": 280
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "short holdout": {
+              "count": 1,
+              "payload": {
+                "average": 15,
+                "median": 15,
+                "p90": 15,
+                "p95": 15,
+                "maximum": 15
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payload": {
+                "average": 56,
+                "median": 56,
+                "p90": 56,
+                "p95": 56,
+                "maximum": 56
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": null
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payload": {
+                "average": 102,
+                "median": 102,
+                "p90": 102,
+                "p95": 102,
+                "maximum": 102
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "globalRawStreamWithoutArithmetic": {
+          "count": 9,
+          "payload": {
+            "average": 165.33333333333334,
+            "median": 76,
+            "p90": 365.6,
+            "p95": 418.79999999999995,
+            "maximum": 472
+          },
+          "completeLink": {
+            "average": 178.33333333333334,
+            "median": 89,
+            "p90": 378.6,
+            "p95": 431.79999999999995,
+            "maximum": 485
+          },
+          "compression": {
+            "averageMs": 0.2989000000000017,
+            "maximumMs": 1.236699999999999,
+            "totalMs": 2.6901000000000153
+          },
+          "decompression": {
+            "averageMs": 0.024311111111109715,
+            "maximumMs": 0.0870999999999924,
+            "totalMs": 0.21879999999998745
+          },
+          "framingOverheadBits": {
+            "measured": 9,
+            "averageLocalSegmentedBits": 979.7777777777778,
+            "averageGlobalRawStreamBits": 986.4444444444445,
+            "averageSelectedBits": 978.2222222222222,
+            "averageSavedBits": 1.5555555555555556,
+            "totalSavedBits": 14,
+            "maximumSavedBits": 6,
+            "selectedGlobal": 4,
+            "selectedLocal": 5
+          },
+          "roundTrips": 9,
+          "roundTripSuccess": "9/9",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 40,
+                "median": 40,
+                "p90": 40,
+                "p95": 40,
+                "maximum": 40
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 226,
+                "averageGlobalRawStreamBits": 230,
+                "averageSelectedBits": 226,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 339,
+                "median": 339,
+                "p90": 339,
+                "p95": 339,
+                "maximum": 339
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 2018,
+                "averageGlobalRawStreamBits": 2040,
+                "averageSelectedBits": 2018,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 472,
+                "median": 472,
+                "p90": 472,
+                "p95": 472,
+                "maximum": 472
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 2818,
+                "averageGlobalRawStreamBits": 2832,
+                "averageSelectedBits": 2818,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 58,
+                "median": 58,
+                "p90": 58,
+                "p95": 58,
+                "maximum": 58
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 332,
+                "averageGlobalRawStreamBits": 364,
+                "averageSelectedBits": 332,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 76,
+                "median": 76,
+                "p90": 76,
+                "p95": 76,
+                "maximum": 76
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 450,
+                "averageGlobalRawStreamBits": 444,
+                "averageSelectedBits": 444,
+                "averageSavedBits": 6,
+                "totalSavedBits": 6,
+                "maximumSavedBits": 6,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payload": {
+                "average": 304,
+                "median": 304,
+                "p90": 304,
+                "p95": 304,
+                "maximum": 304
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1808,
+                "averageGlobalRawStreamBits": 1810,
+                "averageSelectedBits": 1808,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "short holdout": {
+              "count": 1,
+              "payload": {
+                "average": 16,
+                "median": 16,
+                "p90": 16,
+                "p95": 16,
+                "maximum": 16
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 90,
+                "averageGlobalRawStreamBits": 86,
+                "averageSelectedBits": 86,
+                "averageSavedBits": 4,
+                "totalSavedBits": 4,
+                "maximumSavedBits": 4,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payload": {
+                "average": 75,
+                "median": 75,
+                "p90": 75,
+                "p95": 75,
+                "maximum": 75
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 437,
+                "averageGlobalRawStreamBits": 434,
+                "averageSelectedBits": 434,
+                "averageSavedBits": 3,
+                "totalSavedBits": 3,
+                "maximumSavedBits": 3,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payload": {
+                "average": 108,
+                "median": 108,
+                "p90": 108,
+                "p95": 108,
+                "maximum": 108
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 639,
+                "averageGlobalRawStreamBits": 638,
+                "averageSelectedBits": 638,
+                "averageSavedBits": 1,
+                "totalSavedBits": 1,
+                "maximumSavedBits": 1,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            }
+          }
+        },
+        "globalRawStreamWithArithmetic": {
+          "count": 9,
+          "payload": {
+            "average": 150,
+            "median": 63,
+            "p90": 337.20000000000005,
+            "p95": 389.59999999999997,
+            "maximum": 442
+          },
+          "completeLink": {
+            "average": 163,
+            "median": 76,
+            "p90": 350.20000000000005,
+            "p95": 402.59999999999997,
+            "maximum": 455
+          },
+          "compression": {
+            "averageMs": 1.3436444444444442,
+            "maximumMs": 5.205200000000005,
+            "totalMs": 12.092799999999997
+          },
+          "decompression": {
+            "averageMs": 0.10443333333333744,
+            "maximumMs": 0.34710000000001173,
+            "totalMs": 0.939900000000037
+          },
+          "framingOverheadBits": {
+            "measured": 9,
+            "averageLocalSegmentedBits": 893.6666666666666,
+            "averageGlobalRawStreamBits": 884.8888888888889,
+            "averageSelectedBits": 884.8888888888889,
+            "averageSavedBits": 8.777777777777779,
+            "totalSavedBits": 79,
+            "maximumSavedBits": 19,
+            "selectedGlobal": 7,
+            "selectedLocal": 2
+          },
+          "roundTrips": 9,
+          "roundTripSuccess": "9/9",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 35,
+                "median": 35,
+                "p90": 35,
+                "p95": 35,
+                "maximum": 35
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 215,
+                "averageGlobalRawStreamBits": 196,
+                "averageSelectedBits": 196,
+                "averageSavedBits": 19,
+                "totalSavedBits": 19,
+                "maximumSavedBits": 19,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 311,
+                "median": 311,
+                "p90": 311,
+                "p95": 311,
+                "maximum": 311
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1861,
+                "averageGlobalRawStreamBits": 1849,
+                "averageSelectedBits": 1849,
+                "averageSavedBits": 12,
+                "totalSavedBits": 12,
+                "maximumSavedBits": 12,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 442,
+                "median": 442,
+                "p90": 442,
+                "p95": 442,
+                "maximum": 442
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 2636,
+                "averageGlobalRawStreamBits": 2636,
+                "averageSelectedBits": 2636,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 288,
+                "averageGlobalRawStreamBits": 288,
+                "averageSelectedBits": 288,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 63,
+                "median": 63,
+                "p90": 63,
+                "p95": 63,
+                "maximum": 63
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 372,
+                "averageGlobalRawStreamBits": 362,
+                "averageSelectedBits": 362,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payload": {
+                "average": 279,
+                "median": 279,
+                "p90": 279,
+                "p95": 279,
+                "maximum": 279
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1670,
+                "averageGlobalRawStreamBits": 1660,
+                "averageSelectedBits": 1660,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "short holdout": {
+              "count": 1,
+              "payload": {
+                "average": 14,
+                "median": 14,
+                "p90": 14,
+                "p95": 14,
+                "maximum": 14
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 79,
+                "averageGlobalRawStreamBits": 71,
+                "averageSelectedBits": 71,
+                "averageSavedBits": 8,
+                "totalSavedBits": 8,
+                "maximumSavedBits": 8,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payload": {
+                "average": 55,
+                "median": 55,
+                "p90": 55,
+                "p95": 55,
+                "maximum": 55
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 323,
+                "averageGlobalRawStreamBits": 313,
+                "averageSelectedBits": 313,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payload": {
+                "average": 100,
+                "median": 100,
+                "p90": 100,
+                "p95": 100,
+                "maximum": 100
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 599,
+                "averageGlobalRawStreamBits": 589,
+                "averageSelectedBits": 589,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            }
+          }
+        },
+        "globalRawStreamWithLzHuffman": {
+          "count": 9,
+          "payload": {
+            "average": 152.33333333333334,
+            "median": 63,
+            "p90": 344.6,
+            "p95": 397.79999999999995,
+            "maximum": 451
+          },
+          "completeLink": {
+            "average": 165.33333333333334,
+            "median": 76,
+            "p90": 357.6,
+            "p95": 410.79999999999995,
+            "maximum": 464
+          },
+          "compression": {
+            "averageMs": 0.38477777777778027,
+            "maximumMs": 1.0573000000000121,
+            "totalMs": 3.4630000000000223
+          },
+          "decompression": {
+            "averageMs": 0.034355555555557596,
+            "maximumMs": 0.0870000000000033,
+            "totalMs": 0.30920000000001835
+          },
+          "framingOverheadBits": {
+            "measured": 9,
+            "averageLocalSegmentedBits": 906,
+            "averageGlobalRawStreamBits": 898.5555555555555,
+            "averageSelectedBits": 898.5555555555555,
+            "averageSavedBits": 7.444444444444445,
+            "totalSavedBits": 67,
+            "maximumSavedBits": 19,
+            "selectedGlobal": 7,
+            "selectedLocal": 2
+          },
+          "roundTrips": 9,
+          "roundTripSuccess": "9/9",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 8,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unknown domains": {
+              "count": 1,
+              "payload": {
+                "average": 35,
+                "median": 35,
+                "p90": 35,
+                "p95": 35,
+                "maximum": 35
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 215,
+                "averageGlobalRawStreamBits": 196,
+                "averageSelectedBits": 196,
+                "averageSavedBits": 19,
+                "totalSavedBits": 19,
+                "maximumSavedBits": 19,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "random long paths": {
+              "count": 1,
+              "payload": {
+                "average": 318,
+                "median": 318,
+                "p90": 318,
+                "p95": 318,
+                "maximum": 318
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1890,
+                "averageGlobalRawStreamBits": 1889,
+                "averageSelectedBits": 1889,
+                "averageSavedBits": 1,
+                "totalSavedBits": 1,
+                "maximumSavedBits": 1,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "random query parameters": {
+              "count": 1,
+              "payload": {
+                "average": 451,
+                "median": 451,
+                "p90": 451,
+                "p95": 451,
+                "maximum": 451
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 2690,
+                "averageGlobalRawStreamBits": 2690,
+                "averageSelectedBits": 2690,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "unusual TLDs": {
+              "count": 1,
+              "payload": {
+                "average": 51,
+                "median": 51,
+                "p90": 51,
+                "p95": 51,
+                "maximum": 51
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 288,
+                "averageGlobalRawStreamBits": 288,
+                "averageSelectedBits": 288,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "nested subdomains": {
+              "count": 1,
+              "payload": {
+                "average": 63,
+                "median": 63,
+                "p90": 63,
+                "p95": 63,
+                "maximum": 63
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 372,
+                "averageGlobalRawStreamBits": 362,
+                "averageSelectedBits": 362,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "non-repeated paths": {
+              "count": 1,
+              "payload": {
+                "average": 284,
+                "median": 284,
+                "p90": 284,
+                "p95": 284,
+                "maximum": 284
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1698,
+                "averageGlobalRawStreamBits": 1689,
+                "averageSelectedBits": 1689,
+                "averageSavedBits": 9,
+                "totalSavedBits": 9,
+                "maximumSavedBits": 9,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "short holdout": {
+              "count": 1,
+              "payload": {
+                "average": 14,
+                "median": 14,
+                "p90": 14,
+                "p95": 14,
+                "maximum": 14
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 79,
+                "averageGlobalRawStreamBits": 71,
+                "averageSelectedBits": 71,
+                "averageSavedBits": 8,
+                "totalSavedBits": 8,
+                "maximumSavedBits": 8,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "duplicates and empty values": {
+              "count": 1,
+              "payload": {
+                "average": 55,
+                "median": 55,
+                "p90": 55,
+                "p95": 55,
+                "maximum": 55
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 323,
+                "averageGlobalRawStreamBits": 313,
+                "averageSelectedBits": 313,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "holdout fragments": {
+              "count": 1,
+              "payload": {
+                "average": 100,
+                "median": 100,
+                "p90": 100,
+                "p95": 100,
+                "maximum": 100
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 599,
+                "averageGlobalRawStreamBits": 589,
+                "averageSelectedBits": 589,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "stress": {
+      "count": 2,
+      "haMr": {
+        "payload": {
+          "average": 1615,
+          "median": 1615,
+          "p90": 1615,
+          "p95": 1615,
+          "maximum": 1615
+        },
+        "completeLink": {
+          "average": 1628,
+          "median": 1628,
+          "p90": 1628,
+          "p95": 1628,
+          "maximum": 1628
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "actual ha.mr round-trip failure": 1
+        }
+      },
+      "malformed": {
+        "count": 4,
+        "rejected": 4,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 2,
+          "payload": {
+            "average": 310,
+            "median": 310,
+            "p90": 425.2,
+            "p95": 439.59999999999997,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 323,
+            "median": 323,
+            "p90": 438.2,
+            "p95": 452.59999999999997,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 62.053799999999995,
+            "maximumMs": 123.82509999999999,
+            "totalMs": 124.10759999999999
+          },
+          "decompression": {
+            "averageMs": 0.1364500000000035,
+            "maximumMs": 0.21989999999999554,
+            "totalMs": 0.272900000000007
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 166,
+                "median": 166,
+                "p90": 166,
+                "p95": 166,
+                "maximum": 166
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": null
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "currentPlannerWithArithmetic": {
+          "count": 2,
+          "payload": {
+            "average": 310,
+            "median": 310,
+            "p90": 425.2,
+            "p95": 439.59999999999997,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 323,
+            "median": 323,
+            "p90": 438.2,
+            "p95": 452.59999999999997,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 59.32825,
+            "maximumMs": 118.1531,
+            "totalMs": 118.6565
+          },
+          "decompression": {
+            "averageMs": 0.11644999999998618,
+            "maximumMs": 0.18299999999999272,
+            "totalMs": 0.23289999999997235
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 166,
+                "median": 166,
+                "p90": 166,
+                "p95": 166,
+                "maximum": 166
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": null
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "globalRawStreamWithoutArithmetic": {
+          "count": 2,
+          "payload": {
+            "average": 784,
+            "median": 784,
+            "p90": 1268.8,
+            "p95": 1329.3999999999999,
+            "maximum": 1390
+          },
+          "completeLink": {
+            "average": 797,
+            "median": 797,
+            "p90": 1281.8,
+            "p95": 1342.3999999999999,
+            "maximum": 1403
+          },
+          "compression": {
+            "averageMs": 1.0480499999999893,
+            "maximumMs": 1.5904999999999632,
+            "totalMs": 2.0960999999999785
+          },
+          "decompression": {
+            "averageMs": 0.268449999999973,
+            "maximumMs": 0.5089999999999577,
+            "totalMs": 0.536899999999946
+          },
+          "framingOverheadBits": {
+            "measured": 2,
+            "averageLocalSegmentedBits": 4693.5,
+            "averageGlobalRawStreamBits": 4694,
+            "averageSelectedBits": 4690.5,
+            "averageSavedBits": 3,
+            "totalSavedBits": 6,
+            "maximumSavedBits": 6,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 178,
+                "median": 178,
+                "p90": 178,
+                "p95": 178,
+                "maximum": 178
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1060,
+                "averageGlobalRawStreamBits": 1054,
+                "averageSelectedBits": 1054,
+                "averageSavedBits": 6,
+                "totalSavedBits": 6,
+                "maximumSavedBits": 6,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 1390,
+                "median": 1390,
+                "p90": 1390,
+                "p95": 1390,
+                "maximum": 1390
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 8327,
+                "averageGlobalRawStreamBits": 8334,
+                "averageSelectedBits": 8327,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        },
+        "globalRawStreamWithArithmetic": {
+          "count": 2,
+          "payload": {
+            "average": 308.5,
+            "median": 308.5,
+            "p90": 424.90000000000003,
+            "p95": 439.45,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 321.5,
+            "median": 321.5,
+            "p90": 437.90000000000003,
+            "p95": 452.45,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 126.4161,
+            "maximumMs": 252.113,
+            "totalMs": 252.8322
+          },
+          "decompression": {
+            "averageMs": 0.09245000000001369,
+            "maximumMs": 0.1408999999999878,
+            "totalMs": 0.18490000000002738
+          },
+          "framingOverheadBits": {
+            "measured": 2,
+            "averageLocalSegmentedBits": 1846.5,
+            "averageGlobalRawStreamBits": 1836.5,
+            "averageSelectedBits": 1836.5,
+            "averageSavedBits": 10,
+            "totalSavedBits": 20,
+            "maximumSavedBits": 20,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 163,
+                "median": 163,
+                "p90": 163,
+                "p95": 163,
+                "maximum": 163
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 982,
+                "averageGlobalRawStreamBits": 962,
+                "averageSelectedBits": 962,
+                "averageSavedBits": 20,
+                "totalSavedBits": 20,
+                "maximumSavedBits": 20,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 2711,
+                "averageGlobalRawStreamBits": 2711,
+                "averageSelectedBits": 2711,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        },
+        "globalRawStreamWithLzHuffman": {
+          "count": 2,
+          "payload": {
+            "average": 308.5,
+            "median": 308.5,
+            "p90": 424.90000000000003,
+            "p95": 439.45,
+            "maximum": 454
+          },
+          "completeLink": {
+            "average": 321.5,
+            "median": 321.5,
+            "p90": 437.90000000000003,
+            "p95": 452.45,
+            "maximum": 467
+          },
+          "compression": {
+            "averageMs": 122.96515000000005,
+            "maximumMs": 245.46320000000003,
+            "totalMs": 245.9303000000001
+          },
+          "decompression": {
+            "averageMs": 0.09350000000000591,
+            "maximumMs": 0.1410999999999376,
+            "totalMs": 0.18700000000001182
+          },
+          "framingOverheadBits": {
+            "measured": 2,
+            "averageLocalSegmentedBits": 1846.5,
+            "averageGlobalRawStreamBits": 1836.5,
+            "averageSelectedBits": 1836.5,
+            "averageSavedBits": 10,
+            "totalSavedBits": 20,
+            "maximumSavedBits": 20,
+            "selectedGlobal": 1,
+            "selectedLocal": 1
+          },
+          "roundTrips": 2,
+          "roundTripSuccess": "2/2",
+          "versusHamr": {
+            "wins": 1,
+            "losses": 0,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "unusual valid syntax": {
+              "count": 1,
+              "payload": {
+                "average": 163,
+                "median": 163,
+                "p90": 163,
+                "p95": 163,
+                "maximum": 163
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 982,
+                "averageGlobalRawStreamBits": 962,
+                "averageSelectedBits": 962,
+                "averageSavedBits": 20,
+                "totalSavedBits": 20,
+                "maximumSavedBits": 20,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "maximum semantic mixtures": {
+              "count": 1,
+              "payload": {
+                "average": 454,
+                "median": 454,
+                "p90": 454,
+                "p95": 454,
+                "maximum": 454
+              },
+              "versusHamr": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 2711,
+                "averageGlobalRawStreamBits": 2711,
+                "averageSelectedBits": 2711,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "unseen": {
+      "count": 5,
+      "haMr": {
+        "payload": {
+          "average": 126.75,
+          "median": 110,
+          "p90": 177.9,
+          "p95": 187.95,
+          "maximum": 198
+        },
+        "completeLink": {
+          "average": 139.75,
+          "median": 123,
+          "p90": 190.9,
+          "p95": 200.95,
+          "maximum": 211
+        },
+        "invalid": 1,
+        "failureReasons": {
+          "unsupported URL feature": 1
+        }
+      },
+      "malformed": {
+        "count": 0,
+        "rejected": 0,
+        "accepted": 0
+      },
+      "candidates": {
+        "currentSemanticHuffmanLz": {
+          "count": 5,
+          "payload": {
+            "average": 179.2,
+            "median": 164,
+            "p90": 256,
+            "p95": 262,
+            "maximum": 268
+          },
+          "completeLink": {
+            "average": 192.2,
+            "median": 177,
+            "p90": 269,
+            "p95": 275,
+            "maximum": 281
+          },
+          "compression": {
+            "averageMs": 0.22445999999995364,
+            "maximumMs": 0.3267999999999347,
+            "totalMs": 1.1222999999997683
+          },
+          "decompression": {
+            "averageMs": 0.04326000000000931,
+            "maximumMs": 0.051000000000044565,
+            "totalMs": 0.21630000000004657
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 5,
+          "roundTripSuccess": "5/5",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 107,
+                "median": 107,
+                "p90": 107,
+                "p95": 107,
+                "maximum": 107
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 238,
+                "median": 238,
+                "p90": 238,
+                "p95": 238,
+                "maximum": 238
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "base64 values": {
+              "count": 1,
+              "payload": {
+                "average": 268,
+                "median": 268,
+                "p90": 268,
+                "p95": 268,
+                "maximum": 268
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": null
+            },
+            "news articles": {
+              "count": 1,
+              "payload": {
+                "average": 119,
+                "median": 119,
+                "p90": 119,
+                "p95": 119,
+                "maximum": 119
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "currentPlannerWithArithmetic": {
+          "count": 5,
+          "payload": {
+            "average": 179.2,
+            "median": 164,
+            "p90": 256,
+            "p95": 262,
+            "maximum": 268
+          },
+          "completeLink": {
+            "average": 192.2,
+            "median": 177,
+            "p90": 269,
+            "p95": 275,
+            "maximum": 281
+          },
+          "compression": {
+            "averageMs": 0.3030399999999645,
+            "maximumMs": 0.5032999999999674,
+            "totalMs": 1.5151999999998225
+          },
+          "decompression": {
+            "averageMs": 0.07048000000002048,
+            "maximumMs": 0.17980000000000018,
+            "totalMs": 0.3524000000001024
+          },
+          "framingOverheadBits": null,
+          "roundTrips": 5,
+          "roundTripSuccess": "5/5",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 107,
+                "median": 107,
+                "p90": 107,
+                "p95": 107,
+                "maximum": 107
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 238,
+                "median": 238,
+                "p90": 238,
+                "p95": 238,
+                "maximum": 238
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            },
+            "base64 values": {
+              "count": 1,
+              "payload": {
+                "average": 268,
+                "median": 268,
+                "p90": 268,
+                "p95": 268,
+                "maximum": 268
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": null
+            },
+            "news articles": {
+              "count": 1,
+              "payload": {
+                "average": 119,
+                "median": 119,
+                "p90": 119,
+                "p95": 119,
+                "maximum": 119
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": null
+            }
+          }
+        },
+        "globalRawStreamWithoutArithmetic": {
+          "count": 5,
+          "payload": {
+            "average": 198.2,
+            "median": 186,
+            "p90": 276.2,
+            "p95": 283.6,
+            "maximum": 291
+          },
+          "completeLink": {
+            "average": 211.2,
+            "median": 199,
+            "p90": 289.2,
+            "p95": 296.6,
+            "maximum": 304
+          },
+          "compression": {
+            "averageMs": 0.21874000000000252,
+            "maximumMs": 0.2942000000000462,
+            "totalMs": 1.0937000000000126
+          },
+          "decompression": {
+            "averageMs": 0.028099999999994907,
+            "maximumMs": 0.033599999999978536,
+            "totalMs": 0.14049999999997453
+          },
+          "framingOverheadBits": {
+            "measured": 5,
+            "averageLocalSegmentedBits": 1176,
+            "averageGlobalRawStreamBits": 1186.6,
+            "averageSelectedBits": 1174.8,
+            "averageSavedBits": 1.2,
+            "totalSavedBits": 6,
+            "maximumSavedBits": 6,
+            "selectedGlobal": 1,
+            "selectedLocal": 4
+          },
+          "roundTrips": 5,
+          "roundTripSuccess": "5/5",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 120,
+                "median": 120,
+                "p90": 120,
+                "p95": 120,
+                "maximum": 120
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 704,
+                "averageGlobalRawStreamBits": 707,
+                "averageSelectedBits": 704,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 186,
+                "median": 186,
+                "p90": 186,
+                "p95": 186,
+                "maximum": 186
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1103,
+                "averageGlobalRawStreamBits": 1134,
+                "averageSelectedBits": 1103,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 254,
+                "median": 254,
+                "p90": 254,
+                "p95": 254,
+                "maximum": 254
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1509,
+                "averageGlobalRawStreamBits": 1534,
+                "averageSelectedBits": 1509,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            },
+            "base64 values": {
+              "count": 1,
+              "payload": {
+                "average": 291,
+                "median": 291,
+                "p90": 291,
+                "p95": 291,
+                "maximum": 291
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1735,
+                "averageGlobalRawStreamBits": 1729,
+                "averageSelectedBits": 1729,
+                "averageSavedBits": 6,
+                "totalSavedBits": 6,
+                "maximumSavedBits": 6,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "news articles": {
+              "count": 1,
+              "payload": {
+                "average": 140,
+                "median": 140,
+                "p90": 140,
+                "p95": 140,
+                "maximum": 140
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 829,
+                "averageGlobalRawStreamBits": 829,
+                "averageSelectedBits": 829,
+                "averageSavedBits": 0,
+                "totalSavedBits": 0,
+                "maximumSavedBits": 0,
+                "selectedGlobal": 0,
+                "selectedLocal": 1
+              }
+            }
+          }
+        },
+        "globalRawStreamWithArithmetic": {
+          "count": 5,
+          "payload": {
+            "average": 177.6,
+            "median": 164,
+            "p90": 254.6,
+            "p95": 260.8,
+            "maximum": 267
+          },
+          "completeLink": {
+            "average": 190.6,
+            "median": 177,
+            "p90": 267.6,
+            "p95": 273.8,
+            "maximum": 280
+          },
+          "compression": {
+            "averageMs": 0.6743400000000065,
+            "maximumMs": 0.9834000000000742,
+            "totalMs": 3.3717000000000326
+          },
+          "decompression": {
+            "averageMs": 0.050120000000015354,
+            "maximumMs": 0.13220000000001164,
+            "totalMs": 0.25060000000007676
+          },
+          "framingOverheadBits": {
+            "measured": 5,
+            "averageLocalSegmentedBits": 1060.6,
+            "averageGlobalRawStreamBits": 1050.8,
+            "averageSelectedBits": 1050.8,
+            "averageSavedBits": 9.8,
+            "totalSavedBits": 49,
+            "maximumSavedBits": 18,
+            "selectedGlobal": 5,
+            "selectedLocal": 0
+          },
+          "roundTrips": 5,
+          "roundTripSuccess": "5/5",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 106,
+                "median": 106,
+                "p90": 106,
+                "p95": 106,
+                "maximum": 106
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 628,
+                "averageGlobalRawStreamBits": 618,
+                "averageSelectedBits": 618,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 975,
+                "averageGlobalRawStreamBits": 972,
+                "averageSelectedBits": 972,
+                "averageSavedBits": 3,
+                "totalSavedBits": 3,
+                "maximumSavedBits": 3,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 236,
+                "median": 236,
+                "p90": 236,
+                "p95": 236,
+                "maximum": 236
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1410,
+                "averageGlobalRawStreamBits": 1400,
+                "averageSelectedBits": 1400,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "base64 values": {
+              "count": 1,
+              "payload": {
+                "average": 267,
+                "median": 267,
+                "p90": 267,
+                "p95": 267,
+                "maximum": 267
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1593,
+                "averageGlobalRawStreamBits": 1585,
+                "averageSelectedBits": 1585,
+                "averageSavedBits": 8,
+                "totalSavedBits": 8,
+                "maximumSavedBits": 8,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "news articles": {
+              "count": 1,
+              "payload": {
+                "average": 115,
+                "median": 115,
+                "p90": 115,
+                "p95": 115,
+                "maximum": 115
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 697,
+                "averageGlobalRawStreamBits": 679,
+                "averageSelectedBits": 679,
+                "averageSavedBits": 18,
+                "totalSavedBits": 18,
+                "maximumSavedBits": 18,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            }
+          }
+        },
+        "globalRawStreamWithLzHuffman": {
+          "count": 5,
+          "payload": {
+            "average": 177.6,
+            "median": 164,
+            "p90": 254.6,
+            "p95": 260.8,
+            "maximum": 267
+          },
+          "completeLink": {
+            "average": 190.6,
+            "median": 177,
+            "p90": 267.6,
+            "p95": 273.8,
+            "maximum": 280
+          },
+          "compression": {
+            "averageMs": 0.4155999999999949,
+            "maximumMs": 0.8454000000000406,
+            "totalMs": 2.0779999999999745
+          },
+          "decompression": {
+            "averageMs": 0.06392000000003009,
+            "maximumMs": 0.19110000000000582,
+            "totalMs": 0.31960000000015043
+          },
+          "framingOverheadBits": {
+            "measured": 5,
+            "averageLocalSegmentedBits": 1061.4,
+            "averageGlobalRawStreamBits": 1051.6,
+            "averageSelectedBits": 1051.6,
+            "averageSavedBits": 9.8,
+            "totalSavedBits": 49,
+            "maximumSavedBits": 18,
+            "selectedGlobal": 5,
+            "selectedLocal": 0
+          },
+          "roundTrips": 5,
+          "roundTripSuccess": "5/5",
+          "versusHamr": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 0,
+            "excludedInvalidHamr": 1
+          },
+          "categories": {
+            "CDN assets": {
+              "count": 1,
+              "payload": {
+                "average": 106,
+                "median": 106,
+                "p90": 106,
+                "p95": 106,
+                "maximum": 106
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 628,
+                "averageGlobalRawStreamBits": 618,
+                "averageSelectedBits": 618,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "REST APIs": {
+              "count": 1,
+              "payload": {
+                "average": 164,
+                "median": 164,
+                "p90": 164,
+                "p95": 164,
+                "maximum": 164
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 975,
+                "averageGlobalRawStreamBits": 972,
+                "averageSelectedBits": 972,
+                "averageSavedBits": 3,
+                "totalSavedBits": 3,
+                "maximumSavedBits": 3,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "signed URLs": {
+              "count": 1,
+              "payload": {
+                "average": 236,
+                "median": 236,
+                "p90": 236,
+                "p95": 236,
+                "maximum": 236
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1410,
+                "averageGlobalRawStreamBits": 1400,
+                "averageSelectedBits": 1400,
+                "averageSavedBits": 10,
+                "totalSavedBits": 10,
+                "maximumSavedBits": 10,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "base64 values": {
+              "count": 1,
+              "payload": {
+                "average": 267,
+                "median": 267,
+                "p90": 267,
+                "p95": 267,
+                "maximum": 267
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 0,
+                "ties": 0,
+                "excludedInvalidHamr": 1
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 1597,
+                "averageGlobalRawStreamBits": 1589,
+                "averageSelectedBits": 1589,
+                "averageSavedBits": 8,
+                "totalSavedBits": 8,
+                "maximumSavedBits": 8,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            },
+            "news articles": {
+              "count": 1,
+              "payload": {
+                "average": 115,
+                "median": 115,
+                "p90": 115,
+                "p95": 115,
+                "maximum": 115
+              },
+              "versusHamr": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0,
+                "excludedInvalidHamr": 0
+              },
+              "framingOverheadBits": {
+                "measured": 1,
+                "averageLocalSegmentedBits": 697,
+                "averageGlobalRawStreamBits": 679,
+                "averageSelectedBits": 679,
+                "averageSavedBits": 18,
+                "totalSavedBits": 18,
+                "maximumSavedBits": 18,
+                "selectedGlobal": 1,
+                "selectedLocal": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

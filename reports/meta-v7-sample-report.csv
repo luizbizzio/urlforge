@@ -1,0 +1,19 @@
+index,category,selected,forge_chars,current_v6_chars,hamr_chars,hamr_eligible,discard_reason,final_chars,final_wire_bits,round_trip
+1,short,ha.mr,7,7,3,true,URL normalization difference,3,24,true
+2,short,ha.mr,7,7,6,true,,6,48,true
+3,random,ha.mr,73,73,53,true,,53,424,true
+4,random,ha.mr,76,77,60,true,,60,480,true
+5,repetitive,combinedRetained,49,49,388,true,,49,392,true
+6,repetitive,combinedRetained,229,238,366,true,,229,1832,true
+7,unicode,combinedRetained,92,92,105,true,URL normalization difference,92,736,true
+8,unicode,ha.mr,77,77,69,true,URL normalization difference,69,552,true
+9,maps,combinedRetained,15,15,31,true,URL normalization difference,15,120,true
+10,maps,combinedRetained,15,15,34,true,URL normalization difference,15,120,true
+11,youtube,combinedRetained,16,16,22,true,,16,128,true
+12,youtube,combinedRetained,27,27,38,true,,27,216,true
+13,large query,combinedRetained,593,605,754,true,,593,4744,true
+14,large query,combinedRetained,77,186,,false,actual ha.mr round-trip failure,77,616,true
+15,hash,combinedRetained,53,59,58,true,,53,424,true
+16,hash,combinedRetained,61,68,68,true,,61,488,true
+17,base64,ha.mr,87,97,81,true,,81,648,true
+18,base64,ha.mr,113,130,109,true,,109,872,true

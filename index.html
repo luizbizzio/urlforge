@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="URL Forge">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <title>URL Forge</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23172a3a'/%3E%3Cpath d='M17 18h30v9H28v8h16v9H28v12H17z' fill='%235eead4'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/src/web/styles.css">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="URL Forge">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span data-i18n="brand"></span>
+        </a>
+        <div class="language-control">
+          <label for="language" data-i18n="languageLabel"></label>
+          <select id="language">
+            <option value="pt-BR" data-i18n="languagePt"></option>
+            <option value="en" data-i18n="languageEn"></option>
+          </select>
+        </div>
+      </header>
+
+      <main>
+        <section id="app-view" class="app-view">
+          <div class="hero">
+            <p class="eyebrow" data-i18n="heroEyebrow"></p>
+            <h1 data-i18n="heroTitle"></h1>
+            <p class="hero-copy" data-i18n="heroDescription"></p>
+          </div>
+
+          <section class="forge-card" aria-labelledby="input-label">
+            <form id="compress-form" novalidate>
+              <div class="field-heading">
+                <label id="input-label" for="url-input" data-i18n="inputLabel"></label>
+                <output id="byte-counter" for="url-input"></output>
+              </div>
+              <textarea id="url-input" rows="4" spellcheck="false" autocomplete="url" required data-i18n-placeholder="inputPlaceholder"></textarea>
+              <p class="field-hint" data-i18n="inputHint"></p>
+              <div class="button-row">
+                <button class="button primary" type="submit" data-i18n="compressButton"></button>
+                <button class="button secondary" id="clear-button" type="button" data-i18n="clearButton"></button>
+              </div>
+            </form>
+            <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+            <div class="base-note"><span data-i18n="activeBaseLabel"></span><code id="active-base"></code></div>
+          </section>
+
+          <section id="result" class="result-card" aria-labelledby="result-title" hidden>
+            <div class="result-heading">
+              <div>
+                <p class="eyebrow" data-i18n="resultTitle"></p>
+                <h2 id="result-title" data-i18n="shortUrlLabel"></h2>
+              </div>
+              <span id="family-pill" class="family-pill"></span>
+            </div>
+            <div class="short-url-row">
+              <input id="short-url" readonly aria-labelledby="result-title">
+              <button class="button primary" id="copy-button" type="button" data-i18n="copyButton"></button>
+            </div>
+            <div class="button-row compact">
+              <button class="button secondary" id="open-button" type="button" data-i18n="openButton"></button>
+              <button class="button secondary" id="qr-button" type="button" data-i18n="qrButton"></button>
+            </div>
+            <dl class="metrics">
+              <div><dt data-i18n="originalBytesLabel"></dt><dd id="original-bytes"></dd></div>
+              <div><dt data-i18n="payloadCharsLabel"></dt><dd id="payload-chars"></dd></div>
+              <div><dt data-i18n="finalCharsLabel"></dt><dd id="final-chars"></dd></div>
+              <div><dt data-i18n="savedCharsLabel"></dt><dd id="saved-chars"></dd></div>
+              <div><dt data-i18n="selectedFamilyLabel"></dt><dd id="selected-family"></dd></div>
+            </dl>
+            <p id="qr-limit-message" class="inline-message" hidden></p>
+          </section>
+
+          <section id="qr-panel" class="qr-card" aria-labelledby="qr-title" hidden>
+            <div>
+              <h2 id="qr-title" data-i18n="qrTitle"></h2>
+              <p data-i18n="qrDescription"></p>
+            </div>
+            <img id="qr-preview" alt="" data-i18n-alt="qrAlt">
+            <div class="qr-actions">
+              <label for="qr-size" data-i18n="qrSizeLabel"></label>
+              <select id="qr-size"><option value="512" data-i18n="qrSize512"></option><option value="1024" data-i18n="qrSize1024"></option></select>
+              <button class="button secondary" id="download-svg" type="button" data-i18n="qrDownloadSvg"></button>
+              <button class="button secondary" id="download-png" type="button" data-i18n="qrDownloadPng"></button>
+            </div>
+          </section>
+        </section>
+
+        <section id="redirect-view" class="redirect-card" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <h1 id="redirect-title" data-i18n="resolvingTitle"></h1>
+          <p id="redirect-description" data-i18n="resolvingDescription"></p>
+          <a id="redirect-back" class="button secondary" href="./" data-i18n="redirectBack" hidden></a>
+        </section>
+      </main>
+
+      <footer>
+        <a href="./privacy.html" data-i18n="footerPrivacy"></a>
+        <span aria-hidden="true">·</span>
+        <span data-i18n="footerSource"></span>
+      </footer>
+    </div>
+    <script type="module" src="/src/web/app.js"></script>
+  </body>
+</html>
