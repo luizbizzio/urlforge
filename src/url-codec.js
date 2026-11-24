@@ -3,7 +3,7 @@ import { normalizeUrlForComparison } from "./hamr-audit.js";
 import { compressMetaV7, decodeForgeBody, isExactPayload, META_DATA_ALPHABET, META_EXACT_PREFIX, META_LIMITS, MetaCodecError, parseMetaInput, tryDecompress as tryLegacy } from "./meta-codec.js";
 import { decodeSuffix, encodeSuffix } from "./suffix-codec.js";
 import { decodeIdentifierSuffix, encodeIdentifierSuffix } from "./identifier-suffix.js";
-import { decodeCompactFragment, encodeCompactFragment, encodeExpandedCompactFragment } from "./compact-fragment.js";
+import { decodeCompactFragment, encodeCompactFragment, encodeExpandedCompactFragment, encodeHeaderCompactFragment } from "./compact-fragment.js";
 import { isCompactFragment } from "./output-encoding.js";
 import { compress as compressHamr, decompress as decompressHamr } from "../vendor/ha.mr/docs/compress.js";
 
@@ -142,6 +142,17 @@ export function compressBestUrl(input, mode = "auto") {
       if (compact) selected = best = { name, family: candidate.family, representation: name, payload: compact };
     }
     if (best) candidates.push(best);
+  }
+  if (haMr) {
+    // An equally short trailer can replace a final underscore or tilde, which
+    // can be dropped when a plain short URL is autolinked.
+    const maxLength = selected.payload.length - (/[_~]$/.test(selected.payload) ? 0 : 1);
+    const header = encodeHeaderCompactFragment(haMr.payload, limit, Math.min(maxLength, limit));
+    if (header) {
+      const name = "headerCompactFragment";
+      selected = { name, family: haMr.family, representation: name, payload: header };
+      candidates.push(selected);
+    }
   }
   if (selected.payload.length > limit) throw publicError("ENCODED_PAYLOAD_TOO_LARGE", "Compressed payload exceeds the character limit.");
   return {

@@ -1,7 +1,7 @@
 import { COMPACT_FRAGMENT_MARKERS, EXPANDED_FRAGMENT_MARKERS, SAFE_FRAGMENT_ALPHABET, decodeRadixInteger, encodeRadixInteger, isCompactFragment, isExpandedCompactFragment } from "./output-encoding.js";
 
-// Each format ends in an alphanumeric digit and uses at least one new digit
-// before it. The alphabet order and the rank tags are part of the wire format.
+// The enumerative formats end in an alphanumeric digit and use at least one
+// new digit before it. Alphabet order and rank tags are part of the wire format.
 const LEGACY = SAFE_FRAGMENT_ALPHABET + ".";
 const ENDINGS = LEGACY.slice(0, 62);
 const LEGACY_RADIX = BigInt(LEGACY.length);
@@ -16,6 +16,18 @@ function makeFormat(previousAlphabet, markers) {
 
 const COMPACT = makeFormat(LEGACY, COMPACT_FRAGMENT_MARKERS);
 const EXPANDED = makeFormat(COMPACT.alphabet, EXPANDED_FRAGMENT_MARKERS);
+
+// Trailing markers distinguish these headers from the older alphanumeric
+// endings. The marker implies a v0, portless HTTPS URL with no index suffix
+// and the matching ha.mr TLD Huffman code. The www bit remains in the number.
+const HEADER_ENDINGS = "$+/=@&";
+const IMPLIED_HEADERS = ["1", "011", "0011", "0101111", "010011", "0101010"].map(tld => {
+  const wwwShift = BigInt(tld.length + 2);
+  const wwwBit = 1n << wwwShift;
+  const width = wwwShift + 3n;
+  const tldCode = BigInt(`0b${[...tld].reverse().join("")}`);
+  return { width, wwwShift, mask: ((1n << width) - 1n) ^ wwwBit, pattern: (wwwBit << 1n) | (tldCode << 2n) };
+});
 
 function shorterStrings(radix, length) {
   return (radix ** BigInt(length) - radix) / (radix - 1n);
@@ -99,7 +111,7 @@ function rankExpanded(payload) {
   return (rank << 3n) | (prefixLength === 2 ? 6n : 2n);
 }
 
-function isShareableExpanded(payload) {
+function isShareableCompact(payload) {
   // The confirmation prefix must not collide with a fragment directive. Entity
   // syntax can be decoded by Markdown or HTML link renderers.
   return !payload.startsWith(":") && !payload.startsWith("~:") && !payload.includes(":~:") && !/&[A-Za-z0-9]+;/.test(payload);
@@ -113,7 +125,7 @@ function encodeFragment(payload, hamrPayload, maxLength, maxOutputLength, format
   if (payload.length <= maxLength) {
     const rank = expanded ? rankExpanded(payload) : rankPayload(payload, LEGACY, LEGACY_RADIX) << 1n;
     result = writeCompact(rank, limit, format);
-    if (expanded && result && !isShareableExpanded(result)) result = null;
+    if (expanded && result && !isShareableCompact(result)) result = null;
     if (result) limit = result.length - 1;
   }
   if (hamrPayload && hamrPayload.length <= maxLength && limit >= 2) {
@@ -122,7 +134,7 @@ function encodeFragment(payload, hamrPayload, maxLength, maxOutputLength, format
     const rank = rankPayload([...hamrPayload].reverse().join(""), SAFE_FRAGMENT_ALPHABET, HAMR_RADIX);
     if (rank & 1n) {
       const encoded = writeCompact(rank, limit, format);
-      if (encoded && (!expanded || isShareableExpanded(encoded))) return encoded;
+      if (encoded && (!expanded || isShareableCompact(encoded))) return encoded;
     }
   }
   return result;
@@ -136,11 +148,37 @@ export function encodeExpandedCompactFragment(payload, hamrPayload, maxLength, m
   return encodeFragment(payload, hamrPayload, maxLength, maxOutputLength, EXPANDED);
 }
 
+export function encodeHeaderCompactFragment(hamrPayload, maxLength, maxOutputLength = maxLength) {
+  if (hamrPayload.length > maxLength || maxOutputLength < 2) return null;
+  const number = rankPayload([...hamrPayload].reverse().join(""), SAFE_FRAGMENT_ALPHABET, HAMR_RADIX) + 1n;
+  const index = IMPLIED_HEADERS.findIndex(header => (number & header.mask) === header.pattern);
+  if (index === -1) return null;
+  const { width, wwwShift } = IMPLIED_HEADERS[index];
+  const packed = ((number >> width) << 1n) | ((number >> wwwShift) & 1n);
+  const payload = encodeRadixInteger(packed, EXPANDED.alphabet) + HEADER_ENDINGS[index];
+  return payload.length <= maxOutputLength && isShareableCompact(payload) ? payload : null;
+}
+
+function decodeHeaderCompactFragment(payload, index, limit) {
+  if (payload.length < 2 || (payload.length > 2 && payload[0] === EXPANDED.alphabet[0]) || !isShareableCompact(payload)) {
+    throw new Error("Invalid compact header fragment");
+  }
+  const { width, wwwShift, pattern } = IMPLIED_HEADERS[index];
+  const packed = decodeRadixInteger(payload.slice(0, -1), EXPANDED.alphabet);
+  const number = ((packed >> 1n) << width) | ((packed & 1n) << wwwShift) | pattern;
+  const rank = number - 1n;
+  if (rank >= shorterStrings(HAMR_RADIX, limit + 1)) throw new Error("Compact fragment exceeds decoded limit");
+  return [...unrankPayload(rank, SAFE_FRAGMENT_ALPHABET, HAMR_RADIX)].reverse().join("");
+}
+
 export function decodeCompactFragment(payload, limit) {
-  if (!isCompactFragment(payload) || payload.length > limit || INVALID_DIGIT.test(payload) ||
-    !/^[A-Za-z0-9]$/.test(payload.at(-1))) throw new Error("Invalid compact fragment");
+  if (!isCompactFragment(payload) || payload.length > limit || INVALID_DIGIT.test(payload)) throw new Error("Invalid compact fragment");
+  const ending = payload.at(-1);
+  const headerIndex = HEADER_ENDINGS.indexOf(ending);
+  if (headerIndex >= 0) return decodeHeaderCompactFragment(payload, headerIndex, limit);
+  if (!ENDINGS.includes(ending)) throw new Error("Invalid compact fragment");
   const expanded = isExpandedCompactFragment(payload);
-  if (expanded && !isShareableExpanded(payload)) throw new Error("Invalid expanded fragment");
+  if (expanded && !isShareableCompact(payload)) throw new Error("Invalid expanded fragment");
   const rank = readCompact(payload, expanded ? EXPANDED : COMPACT);
   let plain;
   if (rank & 1n) plain = [...unrankPayload(rank, SAFE_FRAGMENT_ALPHABET, HAMR_RADIX)].reverse().join("");

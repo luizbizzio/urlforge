@@ -41,6 +41,8 @@ The compact fragment format uses 76 ASCII symbols and ends in a letter or number
 
 The expanded format uses 79 ASCII symbols by adding `&`, `'`, and `:`. It stores Forge prefix dots in the format tag and only uses the expanded output when it beats the earlier candidates. It skips spellings that could be interpreted as text fragments, confirmation markers, or HTML entities. See `vsBeforeExpanded` for the change in link length.
 
+The compact header format moves the common portless HTTPS header of the ha.mr bitstream into a trailing symbol. The six symbols imply `.com`, `.org`, `.net`, `.io`, `.gov`, and `.edu` respectively. The selector also accepts an equal-length result to replace a trailing underscore or tilde that can be stripped during sharing. See `vsBeforeHeader` for its impact on link length.
+
 Run the benchmark against the native ASCII ha.mr encoder, ha.mr with the shared safe alphabet, and the previous Forge selector.
 
 ```sh

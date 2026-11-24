@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { decodeCompactFragment, encodeCompactFragment, encodeExpandedCompactFragment } from "../src/compact-fragment.js";
+import { decodeCompactFragment, encodeCompactFragment, encodeExpandedCompactFragment, encodeHeaderCompactFragment } from "../src/compact-fragment.js";
 import { META_LIMITS } from "../src/meta-codec.js";
+import { SAFE_FRAGMENT_ALPHABET } from "../src/output-encoding.js";
 import { createCompressionResult } from "../src/web/url-service.js";
 import { resolvePayloadFragment } from "../src/web/redirect.js";
+import { compress as compressHaMr } from "../vendor/ha.mr/docs/compress.js";
 
 const base = "https://bench.example/#";
 
@@ -69,4 +71,36 @@ test("expanded decoding rejects ambiguous shared-link syntax and respects both s
   const expanded = encodeExpandedCompactFragment(source, undefined, 8192);
   assert.ok(expanded.length < source.length);
   assert.throws(() => decodeCompactFragment(expanded, expanded.length));
+});
+
+test("compact headers restore the pinned ha.mr HTTPS bits in both link modes", () => {
+  const limit = META_LIMITS.maxPayloadCharacters;
+  const alphabet = [...SAFE_FRAGMENT_ALPHABET];
+  const endings = { com: "$", org: "+", net: "/", io: "=", gov: "@", edu: "&" };
+  for (const [tld, ending] of Object.entries(endings)) {
+    for (const subdomain of ["www.", ""]) {
+      const destination = `https://${subdomain}example.${tld}/reference?x=1#section`;
+      const raw = compressHaMr(destination, alphabet);
+      const payload = encodeHeaderCompactFragment(raw, limit);
+      assert.ok(payload.endsWith(ending));
+      if (subdomain) assert.equal(payload, "kFReQGx1U$,2.?~jhBCEg" + ending);
+      assert.equal(decodeCompactFragment(payload, limit), raw);
+      assert.equal(encodeHeaderCompactFragment(raw, limit, payload.length - 1), null);
+      for (const [marker, askBeforeOpening] of [["", false], [":", true]]) {
+        assert.deepEqual(resolvePayloadFragment(new URL(base + marker + payload).hash), {
+          ok: true, destination, destinationScheme: "https", askBeforeOpening
+        });
+      }
+    }
+  }
+});
+
+test("compact headers leave nonmatching ha.mr flags to the existing formats", () => {
+  for (const url of ["http://example.com/reference", "https://example.com:8443/reference", "https://example.com/index.php", "https://example.xyz/reference"]) {
+    const raw = compressHaMr(url, [...SAFE_FRAGMENT_ALPHABET]);
+    assert.equal(encodeHeaderCompactFragment(raw, 8192), null);
+  }
+  for (const payload of ["$", "AAB+", ":test/", "~:B=", "B:~:C@", "B&amp;C&"]) {
+    assert.throws(() => decodeCompactFragment(payload, 8192));
+  }
 });
