@@ -76,9 +76,11 @@ Run `npm ci && npm run build`, then publish the entire `dist/` directory. This w
 - Cloudflare Pages: build command `npm run build`, output directory `dist`.
 - Netlify: build command `npm run build`, publish directory `dist`.
 - Vercel: framework preset `Vite`, build command `npm run build`, output directory `dist`.
-- GitHub Pages: publish `dist/` and set `PUBLIC_SHORT_URL_BASE` to the deployed project URL ending in `/#` when using a repository subpath.
+- GitHub Pages: publish `dist/`. For a repository subpath, build with `npm run build -- --base=/your-repo/` and set `PUBLIC_SHORT_URL_BASE` to the deployed project URL ending in `/#`.
 
 The host must serve `index.html` at the configured short-link base. No redirect API is required because payloads are stored in the URL fragment. Links beginning with `#` followed by the payload redirect automatically. Enable **Ask before opening** to generate a link with `#:` before the payload. URLForge then shows the destination and waits for the visitor to continue.
+
+To compress from the address bar, open `https://uf.do/https://example.com/page`. The page reads the destination from the shortcut and compresses it locally. The pasted URL's path and query are visible to the hosting provider. Use the home page form for sensitive URLs. Self-hosted shortcuts require an HTML fallback to `index.html` for nested paths.
 
 ## Optional Cloudflare telemetry
 

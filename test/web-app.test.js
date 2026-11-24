@@ -4,9 +4,33 @@ import test from "node:test";
 import { INPUT_URL_MAX_BYTES, QR_MAX_LINK_CHARACTERS, resolvePublicConfig } from "../src/web/config.js";
 import { createQrArtifacts, createQrModel, QrCodeError, renderQrPngBlob } from "../src/web/qr.js";
 import { resolvePayloadFragment } from "../src/web/redirect.js";
+import { readShortcutDestination } from "../src/web/shortcut.js";
 import { createCompressionResult, UrlInputError, validateDestination } from "../src/web/url-service.js";
 
 const localLocation = { origin: "http://localhost:5173", href: "http://localhost:5173/" };
+
+test("address bar shortcut preserves the serialized destination and its delimiters", () => {
+  for (const destination of [
+    "https://youtube.com/afnsodignsdo",
+    "http://example.com:8080/a//b/%2f?q=1+2&q=%26#original%20fragment",
+    "https://example.com/?#"
+  ]) {
+    for (const basePath of ["/", "/urlforge/"]) {
+      const location = new URL(`https://uf.do${basePath}${destination}`);
+      const input = readShortcutDestination(location, basePath);
+      assert.equal(input, destination);
+      const { shortUrl } = createCompressionResult(input, "https://uf.do/#");
+      assert.equal(resolvePayloadFragment(new URL(shortUrl).hash).destination, destination);
+    }
+  }
+});
+
+test("address bar shortcut leaves normal and redirect links to their original handlers", () => {
+  for (const path of ["/", "/#payload", "/#:payload", "/?url=https://example.com", "/privacy", "/ftp://example.com", "/https-example.com"]) {
+    assert.equal(readShortcutDestination(new URL(`https://uf.do${path}`)), null, path);
+  }
+  assert.equal(readShortcutDestination(new URL("https://uf.do/other/https://example.com"), "/urlforge/"), null);
+});
 
 test("web compression preserves HTTP, HTTPS, Unicode, duplicate query values, and fragments", () => {
   const config = resolvePublicConfig({}, localLocation);

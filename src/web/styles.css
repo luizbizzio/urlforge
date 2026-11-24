@@ -73,6 +73,15 @@ button:disabled { cursor: not-allowed; opacity: .52; }
 
 .brand strong { color: var(--accent); font-weight: 700; }
 .brand-mark { display: block; flex: none; width: 40px; height: 40px; border-radius: 8px; }
+.github-link {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+.github-link:hover { background: var(--tint); border-color: var(--accent); }
 select {
   min-height: 38px;
   border: 1px solid var(--rule);
@@ -213,11 +222,12 @@ footer a:hover { text-decoration: underline; }
   border-top: 1px solid var(--rule);
   padding-top: 26px;
 }
-.help h2 { grid-row: span 3; margin: 0 0 15px; font: 700 25px/1.15 var(--display); letter-spacing: -.045em; }
+.help h2 { grid-row: span 4; margin: 0 0 15px; font: 700 25px/1.15 var(--display); letter-spacing: -.045em; }
 .help details { border-bottom: 1px solid var(--rule); }
 .help summary { cursor: pointer; padding: 13px 0; font-weight: 700; }
 .help summary::marker { color: var(--accent); }
 .help details p { margin: 0 0 14px; color: var(--muted); line-height: 1.55; }
+.help code { overflow-wrap: anywhere; }
 
 .qr-card, .redirect-card, .privacy-card { padding: clamp(18px, 4vw, 32px); }
 .qr-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 13px 22px; align-items: center; margin-top: 12px; }

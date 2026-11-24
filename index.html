@@ -25,7 +25,7 @@
     <meta name="twitter:description" content="Forge shorter links directly in your browser. The link carries its own destination.">
     <meta name="twitter:image" content="https://urlforge.luizbizzio.com/forge-social.jpg">
     <meta name="twitter:image:alt" content="URLForge with forged steel links glowing orange">
-    <link rel="icon" type="image/png" sizes="64x64" href="./brand-forge.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/brand-forge.png">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -40,9 +40,12 @@
   <body>
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="./">
-          <img class="brand-mark" src="./brand-forge.png" width="40" height="40" alt="">
+        <a class="brand" href="%BASE_URL%">
+          <img class="brand-mark" src="/brand-forge.png" width="40" height="40" alt="">
           <span>URL<strong>Forge</strong></span>
+        </a>
+        <a class="github-link" href="https://github.com/luizbizzio/urlforge" aria-label="View URLForge on GitHub" title="GitHub">
+          <img src="/github.svg" width="22" height="22" alt="">
         </a>
       </header>
 
@@ -53,7 +56,7 @@
               <h1><span>URL compressor.</span> <span class="hero-accent">In your browser.</span></h1>
               <p>Turn a long URL into a link that carries its own destination. Share it directly or generate a QR code, with no account required.</p>
             </div>
-            <img class="hero-art" src="./forge-hero.webp" width="768" height="576" alt="" fetchpriority="high">
+            <img class="hero-art" src="/forge-hero.webp" width="768" height="576" alt="" fetchpriority="high">
           </div>
 
           <section class="forge-card" aria-labelledby="input-label">
@@ -123,6 +126,10 @@
           <section class="help" aria-labelledby="help-title">
             <h2 id="help-title">How URL compression works</h2>
             <details>
+              <summary>Can I compress from the address bar?</summary>
+              <p>Put <code>uf.do/</code> before a full URL. For example, enter <code>uf.do/https://example.com/page</code> to open the compressor with a link ready to copy.</p>
+            </details>
+            <details>
               <summary>Where is the destination stored?</summary>
               <p>The compressed address lives in the part of the link after the #. URLForge restores it in the browser and opens it automatically, unless you enable Ask before opening.</p>
             </details>
@@ -150,16 +157,15 @@
             </div>
             <div class="button-row redirect-actions">
               <a id="redirect-continue" class="button primary" rel="noreferrer">Continue to site</a>
-              <a class="button secondary" href="./">Cancel</a>
+              <a class="button secondary" href="%BASE_URL%">Cancel</a>
             </div>
           </div>
-          <a id="redirect-back" class="button secondary" href="./" hidden>Back to URLForge</a>
+          <a id="redirect-back" class="button secondary" href="%BASE_URL%" hidden>Back to URLForge</a>
         </section>
       </main>
 
       <footer>
-        <a href="./privacy.html">Privacy</a>
-        <a href="https://github.com/luizbizzio/urlforge">GitHub</a>
+        <a href="%BASE_URL%privacy.html">Privacy</a>
       </footer>
     </div>
     <script type="module" src="/src/web/app.js"></script>

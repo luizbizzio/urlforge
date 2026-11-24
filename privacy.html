@@ -10,21 +10,25 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
     <title>Privacy · URLForge</title>
     <link rel="canonical" href="https://urlforge.luizbizzio.com/privacy.html">
-    <link rel="icon" type="image/png" sizes="64x64" href="./brand-forge.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/brand-forge.png">
     <link rel="stylesheet" href="/src/web/styles.css">
   </head>
   <body>
     <div class="site-shell privacy-shell">
       <header class="site-header">
-        <a class="brand" href="./"><img class="brand-mark" src="./brand-forge.png" width="40" height="40" alt=""><span>URL<strong>Forge</strong></span></a>
+        <a class="brand" href="%BASE_URL%"><img class="brand-mark" src="/brand-forge.png" width="40" height="40" alt=""><span>URL<strong>Forge</strong></span></a>
+        <a class="github-link" href="https://github.com/luizbizzio/urlforge" aria-label="View URLForge on GitHub" title="GitHub">
+          <img src="/github.svg" width="22" height="22" alt="">
+        </a>
       </header>
       <main class="privacy-card">
         <h1>Privacy</h1>
         <p class="lead">URLForge is designed to work locally in your browser.</p>
-        <section><h2>URLs are not stored</h2><p>The original URL, payload, and compressed link are not sent to or stored by the telemetry service.</p></section>
+        <section><h2>Telemetry excludes URLs</h2><p>The original URL, payload, and compressed link are not sent to or stored by the telemetry service.</p></section>
+        <section><h2>Address bar shortcut</h2><p>When you put <code>uf.do/</code> before a URL, the destination up to its fragment is part of the request to our hosting provider. Paste sensitive links into the compressor form to keep them in your browser.</p></section>
         <section><h2>Minimal technical metrics</h2><p>When an installation enables optional telemetry, only technical counts and sizes are sent. They do not identify users.</p></section>
         <section><h2>Optional telemetry</h2><p>Self-hosted installations can leave it disabled. Telemetry failures never block compression, QR generation, decoding, or redirects.</p></section>
-        <a class="button secondary" href="./">Back</a>
+        <a class="button secondary" href="%BASE_URL%">Back</a>
       </main>
     </div>
   </body>

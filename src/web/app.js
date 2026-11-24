@@ -4,6 +4,7 @@ import { INPUT_URL_MAX_BYTES, QR_MAX_LINK_CHARACTERS, resolvePublicConfig } from
 import { readLinkFragment } from "./link-fragment.js";
 import { message } from "./messages.js";
 import { createQrArtifacts, QrCodeError, renderQrPngBlob } from "./qr.js";
+import { readShortcutDestination } from "./shortcut.js";
 import { createTelemetryEvent, sendTelemetry } from "./telemetry.js";
 
 const elements = Object.fromEntries([...document.querySelectorAll("[id]")].map(element => [element.id, element]));
@@ -214,6 +215,12 @@ elements["download-png"].addEventListener("click", async () => {
   catch { setStatus("qrFailure", "error"); }
 });
 
+const shortcutDestination = readShortcutDestination(window.location, import.meta.env.BASE_URL);
+if (shortcutDestination !== null) {
+  window.history.replaceState(window.history.state, "", import.meta.env.BASE_URL);
+  elements["url-input"].value = shortcutDestination;
+  elements["compress-form"].requestSubmit();
+}
 renderCounter();
 handleRedirect();
 window.addEventListener("hashchange", handleRedirect);
