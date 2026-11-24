@@ -3,13 +3,17 @@ import { normalizeUrlForComparison } from "./hamr-audit.js";
 import { compressMetaV7, decodeForgeBody, isExactPayload, META_DATA_ALPHABET, META_EXACT_PREFIX, META_LIMITS, MetaCodecError, parseMetaInput, tryDecompress as tryLegacy } from "./meta-codec.js";
 import { decodeSuffix, encodeSuffix } from "./suffix-codec.js";
 import { decodeIdentifierSuffix, encodeIdentifierSuffix } from "./identifier-suffix.js";
-import { decodeCompactFragment, encodeCompactFragment } from "./compact-fragment.js";
+import { decodeCompactFragment, encodeCompactFragment, encodeExpandedCompactFragment } from "./compact-fragment.js";
 import { isCompactFragment } from "./output-encoding.js";
 import { compress as compressHamr, decompress as decompressHamr } from "../vendor/ha.mr/docs/compress.js";
 
 const EXACT_PAYLOAD_PATTERN = /^([A-Za-z0-9_~-]+)(?:(\.{1,2})([A-Za-z0-9_~-]+))?$/;
 const MAX_ORIGIN_PAYLOAD_CHARACTERS = 512;
 const META_ALPHABET_ARRAY = [...META_DATA_ALPHABET];
+const COMPACT_ENCODERS = [
+  ["compactFragment", encodeCompactFragment],
+  ["expandedCompactFragment", encodeExpandedCompactFragment]
+];
 const publicError = (code, message) => new MetaCodecError(code, message);
 
 function readExactOrigin(body) {
@@ -128,15 +132,18 @@ export function compressBestUrl(input, mode = "auto") {
   const haMr = candidates.find(candidate => candidate.name === "ha.mr");
   const forge = candidates.filter(candidate => candidate.family === "forge");
   const raw = new Set([selected, haMr, forge.length ? forge.reduce(shortest) : null]);
-  for (const candidate of raw) {
-    if (!candidate) continue;
-    const limit = META_LIMITS.maxPayloadCharacters;
-    const compact = encodeCompactFragment(candidate.payload, candidate === haMr ? haMr.payload : undefined,
-      limit, Math.min(selected.payload.length - 1, limit));
-    if (compact) selected = { name: "compactFragment", family: candidate.family, representation: "compactFragment", payload: compact };
+  const limit = META_LIMITS.maxPayloadCharacters;
+  for (const [name, encode] of COMPACT_ENCODERS) {
+    let best = null;
+    for (const candidate of raw) {
+      if (!candidate) continue;
+      const compact = encode(candidate.payload, candidate === haMr ? haMr.payload : undefined,
+        limit, Math.min(selected.payload.length - 1, limit));
+      if (compact) selected = best = { name, family: candidate.family, representation: name, payload: compact };
+    }
+    if (best) candidates.push(best);
   }
-  if (selected.name === "compactFragment") candidates.push(selected);
-  if (selected.payload.length > META_LIMITS.maxPayloadCharacters) throw publicError("ENCODED_PAYLOAD_TOO_LARGE", "Compressed payload exceeds the character limit.");
+  if (selected.payload.length > limit) throw publicError("ENCODED_PAYLOAD_TOO_LARGE", "Compressed payload exceeds the character limit.");
   return {
     payload: selected.payload,
     trace: {

@@ -1,4 +1,4 @@
-// The colon is outside the codec payload alphabets.
+// Expanded payloads reserve the first position for the confirmation marker.
 export const CONFIRMATION_MARKER = ":";
 
 export function readLinkFragment(hash) {

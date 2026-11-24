@@ -4,8 +4,14 @@ export const BASE64URL_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs
 export const SAFE_FRAGMENT_ALPHABET = `${BASE64URL_ALPHABET}~`;
 
 export const COMPACT_FRAGMENT_MARKERS = "!$*+,/;=?@";
+export const EXPANDED_FRAGMENT_MARKERS = "&':";
+
 export function isCompactFragment(payload) {
-  return typeof payload === "string" && /[!$*+,/;=?@]/.test(payload);
+  return typeof payload === "string" && /[!$*+,/;=?@&':]/.test(payload);
+}
+
+export function isExpandedCompactFragment(payload) {
+  return /[&':]/.test(payload);
 }
 
 export const OUTPUT_ALPHABETS = Object.freeze({

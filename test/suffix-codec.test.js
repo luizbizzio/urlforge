@@ -47,7 +47,9 @@ test("app restores the serialized URL exactly, including edge-case suffixes", ()
 test("exact Forge fallback handles an origin that ha.mr cannot encode", () => {
   const input = "https://bad_host.example/a?x=%2f#";
   const result = compressBestUrl(input);
-  assert.equal(result.trace.selectedCandidate, "exactForge");
+  const fallback = result.trace.candidates.exactForge.payload;
+  assert.equal(tryDecompress(fallback).value, input);
+  assert.ok(result.payload.length < fallback.length);
   assert.equal(tryDecompress(result.payload).value, input);
 });
 

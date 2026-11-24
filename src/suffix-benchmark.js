@@ -88,7 +88,8 @@ function measure(row) {
   const restored = resolvePayloadFragment(short.hash);
   const decodeMs = performance.now() - open;
   if (!restored.ok || restored.destination !== input) throw new Error(`Current round trip failed in ${row.category}`);
-  const beforeCompact = Object.values(result.trace.candidates).filter(candidate => candidate.name !== "compactFragment");
+  const beforeExpanded = Object.values(result.trace.candidates).filter(candidate => candidate.name !== "expandedCompactFragment");
+  const beforeCompact = beforeExpanded.filter(candidate => candidate.name !== "compactFragment");
   const beforeUnicode = beforeCompact.filter(candidate => candidate.name !== "unicodeSuffix");
   const previousCandidates = beforeUnicode.filter(candidate => candidate.name !== "adaptivePath" && candidate.name !== "directorySuffix");
   const bestLength = candidates => base.length + Math.min(...candidates.map(candidate => candidate.payloadCharacters));
@@ -99,6 +100,7 @@ function measure(row) {
     beforePaths: bestLength(previousCandidates),
     beforeUnicode: bestLength(beforeUnicode),
     beforeCompact: bestLength(beforeCompact),
+    beforeExpanded: bestLength(beforeExpanded),
     legacy: legacyExact ? base.length + legacy.payload.length : null,
     hamr: reference(input, outputAlphabetASCII), hamrSafe65: reference(input, [...SAFE_FRAGMENT_ALPHABET]),
     selected: result.trace.selectedCandidate, encodeMs, decodeMs
@@ -119,6 +121,7 @@ function summarize(results) {
     vsBeforePathChanges: compare(results, row => row.beforePaths),
     vsBeforeUnicode: compare(results, row => row.beforeUnicode),
     vsBeforeCompact: compare(results, row => row.beforeCompact),
+    vsBeforeExpanded: compare(results, row => row.beforeExpanded),
     vsHamrNative: compare(results, row => row.hamr),
     vsHamrSafe65: compare(results, row => row.hamrSafe65),
     selected,
