@@ -20,6 +20,7 @@
 
 :root {
   color-scheme: dark;
+  scrollbar-gutter: stable both-edges;
   font-family: "DM Sans", sans-serif;
   --paper: #141210;
   --surface: #1e1a17;
@@ -47,6 +48,7 @@ button:disabled { cursor: not-allowed; opacity: .52; }
 .site-shell {
   width: min(1120px, calc(100% - 72px));
   min-height: 100vh;
+  min-height: 100svh;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -95,6 +97,23 @@ select {
 
 main { flex: 1; }
 .app-view { padding: 0 0 52px; }
+.entry-brand { display: none; }
+:root[data-entry] .site-header,
+:root[data-entry="redirect"] #app-view,
+:root[data-entry="shortcut"] :is(.hero, .help),
+:root[data-entry]:not([data-entry-ready]) :is(.entry-brand, #app-view) { display: none; }
+:root[data-entry] .site-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: clamp(24px, 6vh, 64px);
+}
+:root[data-entry][data-entry-ready] .entry-brand { display: inline-flex; margin-bottom: 20px; }
+:root[data-entry] :is(.app-view, .redirect-card) { width: min(100%, 560px); }
+:root[data-entry="shortcut"] .app-view { padding: 0; }
+:root[data-entry="shortcut"] .workspace-input[hidden] + .workspace-output { border-top: 0; }
+.shortcut-edit { min-height: 28px; }
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
@@ -236,7 +255,7 @@ footer a:hover { text-decoration: underline; }
 .qr-card p, .redirect-card p, .privacy-card p { color: var(--muted); line-height: 1.55; }
 #qr-preview { grid-column: 2; grid-row: 1 / span 2; width: 120px; max-width: 100%; border-radius: 8px; border: 1px solid var(--rule); }
 .qr-actions { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; font-size: 13px; }
-.redirect-card, .privacy-card { max-width: 640px; margin: 52px auto; }
+.privacy-card { max-width: 640px; margin: 52px auto; }
 .redirect-card { text-align: center; }
 #redirect-back { margin-top: 10px; }
 .redirect-destination {
@@ -265,8 +284,6 @@ footer a:hover { text-decoration: underline; }
 .privacy-card h2 { font-size: 18px; margin: 5px 0; }
 .privacy-card section p { margin: 5px 0 10px; }
 .privacy-card .lead { margin-bottom: 25px; }
-.spinner { width: 30px; height: 30px; margin: 0 auto 15px; border: 3px solid var(--rule); border-top-color: var(--accent); border-radius: 50%; animation: spin .9s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 740px) {
   .site-shell { width: calc(100% - 32px); }
@@ -280,13 +297,8 @@ footer a:hover { text-decoration: underline; }
 
 @media (max-width: 550px) {
   .site-header { min-height: 62px; }
-  .redirect-card { margin-block: 28px; }
   textarea { font-size: 16px; }
   .codec-tools { flex-basis: 100%; justify-content: space-between; }
   .qr-card { grid-template-columns: 1fr; }
   #qr-preview { grid-column: auto; grid-row: auto; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spinner { animation: none; }
 }

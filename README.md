@@ -80,7 +80,7 @@ Run `npm ci && npm run build`, then publish the entire `dist/` directory. This w
 
 The host must serve `index.html` at the configured short-link base. No redirect API is required because payloads are stored in the URL fragment. Links beginning with `#` followed by the payload redirect automatically. Enable **Ask before opening** to generate a link with `#:` before the payload. URLForge then shows the destination and waits for the visitor to continue.
 
-To compress from the address bar, open `https://uf.do/https://example.com/page`. The page reads the destination from the shortcut and compresses it locally. The pasted URL's path and query are visible to the hosting provider. Use the home page form for sensitive URLs. Self-hosted shortcuts require an HTML fallback to `index.html` for nested paths.
+To compress from the address bar, open `https://uf.do/https://example.com/page`. URLForge opens a dedicated `/compress` view with the link ready to copy. The pasted URL's path and query are visible to the hosting provider. Use the home page form for sensitive URLs. Self-hosted shortcuts require an HTML fallback to `index.html` for nested paths and `/compress`.
 
 ## Optional Cloudflare telemetry
 

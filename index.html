@@ -7,7 +7,15 @@
     <meta name="theme-color" content="#141210">
     <meta name="description" content="Compress long URLs into self-contained links on uf.do. URLForge is a free browser-based URL compressor with no account and built-in QR codes.">
     <meta name="referrer" content="no-referrer">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-eaJvCiqysttz4QL4u5QPaZZIzTupLRib8pbhtJKIk2c='; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <script data-base="%BASE_URL%">
+      {
+        const base = document.currentScript.dataset.base;
+        const path = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : "";
+        if (/^(?:https?:\/\/|compress\/?$)/i.test(path)) document.documentElement.dataset.entry = "shortcut";
+        else if (location.hash) document.documentElement.dataset.entry = "redirect";
+      }
+    </script>
     <title>URLForge — Free URL Compressor &amp; Link Shortener</title>
     <link rel="canonical" href="https://urlforge.luizbizzio.com/">
     <meta property="og:type" content="website">
@@ -49,7 +57,11 @@
         </a>
       </header>
 
-      <main>
+      <main class="site-main">
+        <a class="brand entry-brand" href="%BASE_URL%">
+          <img class="brand-mark" src="/brand-forge.png" width="40" height="40" alt="">
+          <span>URL<strong>Forge</strong></span>
+        </a>
         <section id="app-view" class="app-view">
           <div class="hero">
             <div class="hero-copy">
@@ -92,6 +104,7 @@
               <section id="result" class="workspace-output" aria-labelledby="result-title" hidden>
                 <div class="field-heading">
                   <h2 id="result-title">Compressed link</h2>
+                  <button class="text-button shortcut-edit" id="edit-shortcut-button" type="button" hidden>Edit original URL</button>
                 </div>
                 <textarea id="short-url" readonly rows="2" spellcheck="false" aria-labelledby="result-title"></textarea>
                 <dl class="metrics">
@@ -127,7 +140,7 @@
             <h2 id="help-title">How URL compression works</h2>
             <details>
               <summary>Can I compress from the address bar?</summary>
-              <p>Put <code>uf.do/</code> before a full URL. For example, enter <code>uf.do/https://example.com/page</code> to open the compressor with a link ready to copy.</p>
+              <p>Put <code>uf.do/</code> before a full URL. For example, enter <code>uf.do/https://example.com/page</code> to open a page with the compressed link ready to copy.</p>
             </details>
             <details>
               <summary>Where is the destination stored?</summary>
@@ -145,7 +158,6 @@
         </section>
 
         <section id="redirect-view" class="redirect-card" aria-labelledby="redirect-title" hidden>
-          <div id="redirect-spinner" class="spinner" aria-hidden="true"></div>
           <h1 id="redirect-title" tabindex="-1"></h1>
           <p id="redirect-description"></p>
           <div id="redirect-confirmation" hidden>
@@ -166,6 +178,7 @@
 
       <footer>
         <a href="%BASE_URL%privacy.html">Privacy</a>
+        <a href="https://github.com/luizbizzio/urlforge">GitHub</a>
       </footer>
     </div>
     <script type="module" src="/src/web/app.js"></script>

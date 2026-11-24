@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import test from "node:test";
+import { runInNewContext } from "node:vm";
 
 import { INPUT_URL_MAX_BYTES, QR_MAX_LINK_CHARACTERS, resolvePublicConfig } from "../src/web/config.js";
 import { createQrArtifacts, createQrModel, QrCodeError, renderQrPngBlob } from "../src/web/qr.js";
@@ -8,6 +11,24 @@ import { readShortcutDestination } from "../src/web/shortcut.js";
 import { createCompressionResult, UrlInputError, validateDestination } from "../src/web/url-service.js";
 
 const localLocation = { origin: "http://localhost:5173", href: "http://localhost:5173/" };
+
+test("the first-paint routing script is allowed by CSP and recognizes link and shortcut entries", () => {
+  const html = readFileSync(new URL("../index.html", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const script = html.match(/<script data-base="%BASE_URL%">([\s\S]*?)<\/script>/)[1];
+  const hash = createHash("sha256").update(script).digest("base64");
+  assert.ok(html.includes(`script-src 'self' 'sha256-${hash}'`));
+  for (const [path, entry] of [
+    ["/app/", undefined],
+    ["/app/#:payload", "redirect"],
+    ["/app/https://example.com/#target", "shortcut"],
+    ["/app/compress", "shortcut"]
+  ]) {
+    const dataset = {};
+    const document = { currentScript: { dataset: { base: "/app/" } }, documentElement: { dataset } };
+    runInNewContext(script, { document, location: new URL(`https://example.net${path}`) });
+    assert.equal(dataset.entry, entry, path);
+  }
+});
 
 test("address bar shortcut preserves the serialized destination and its delimiters", () => {
   for (const destination of [

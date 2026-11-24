@@ -10,9 +10,15 @@ import { createTelemetryEvent, sendTelemetry } from "./telemetry.js";
 const elements = Object.fromEntries([...document.querySelectorAll("[id]")].map(element => [element.id, element]));
 const encoder = new TextEncoder();
 const config = resolvePublicConfig(import.meta.env, window.location);
+const root = document.documentElement;
+const basePath = import.meta.env.BASE_URL;
+const shortcutPath = `${basePath}compress`;
+const incomingDestination = readShortcutDestination(window.location, basePath);
+const isShortcutPage = incomingDestination !== null || window.location.pathname.replace(/\/$/, "").toLowerCase() === shortcutPath.toLowerCase();
 let currentResult = null, currentQr = null, qrPreviewUrl = null;
 let compressionRequest = 0;
 let hasSubmitted = false;
+let isCompressing = false;
 
 const errorMessageKey = error => {
   const code = error?.code;
@@ -26,9 +32,11 @@ const errorMessageKey = error => {
 };
 
 function setStatus(key, type = "success") {
-  elements.status.textContent = message(key);
-  elements.status.className = `status ${type}`;
-  elements.status.hidden = false;
+  const text = message(key);
+  const className = `status ${type}`;
+  if (elements.status.textContent !== text) elements.status.textContent = text;
+  if (elements.status.className !== className) elements.status.className = className;
+  if (elements.status.hidden) elements.status.hidden = false;
 }
 
 function clearStatus() { elements.status.hidden = true; elements.status.textContent = ""; }
@@ -76,17 +84,18 @@ function downloadBlob(blob, filename) {
 
 async function handleRedirect() {
   const hash = window.location.hash;
-  const hasPayload = Boolean(hash && hash !== "#");
+  const hasPayload = Boolean(hash);
   elements["app-view"].hidden = hasPayload;
-  elements["redirect-view"].hidden = !hasPayload;
+  elements["redirect-view"].hidden = true;
   elements["redirect-confirmation"].hidden = true;
   elements["redirect-continue"].removeAttribute("href");
-  if (!hasPayload) return;
-  elements["redirect-title"].textContent = "Opening link…";
-  elements["redirect-description"].textContent = "The payload is being decoded locally.";
+  delete root.dataset.entryReady;
+  if (!hasPayload) {
+    delete root.dataset.entry;
+    return;
+  }
+  root.dataset.entry = "redirect";
   elements["redirect-back"].hidden = true;
-  const spinner = elements["redirect-spinner"];
-  spinner.hidden = false;
   const started = performance.now();
   const { payload, askBeforeOpening } = readLinkFragment(hash);
   let result;
@@ -102,13 +111,13 @@ async function handleRedirect() {
     destinationScheme = destination.protocol.slice(0, -1);
     try {
       if (askBeforeOpening) {
-        spinner.hidden = true;
         elements["redirect-title"].textContent = "Continue to this site?";
         elements["redirect-description"].textContent = "Check the destination before opening this link.";
         elements["redirect-host"].textContent = destination.host;
         elements["redirect-url"].textContent = result.value;
         elements["redirect-continue"].href = result.value;
         elements["redirect-confirmation"].hidden = false;
+        showRedirectCard();
         elements["redirect-title"].focus({ preventScroll: true });
       } else {
         window.location.replace(result.value);
@@ -123,7 +132,12 @@ async function handleRedirect() {
   elements["redirect-title"].textContent = "This link could not be opened";
   elements["redirect-description"].textContent = "The payload is invalid, corrupted, or exceeds the safe limits.";
   elements["redirect-back"].hidden = false;
-  spinner.hidden = true;
+  showRedirectCard();
+}
+
+function showRedirectCard() {
+  elements["redirect-view"].hidden = false;
+  root.dataset.entryReady = "";
 }
 
 elements["example-button"].addEventListener("click", () => {
@@ -132,10 +146,6 @@ elements["example-button"].addEventListener("click", () => {
   elements["compress-form"].requestSubmit();
 });
 function recompressWithOptions() {
-  compressionRequest++;
-  resetResult();
-  clearStatus();
-  releaseQr();
   if (hasSubmitted && elements["url-input"].value.trim()) elements["compress-form"].requestSubmit();
 }
 
@@ -143,6 +153,7 @@ elements.codec.addEventListener("change", recompressWithOptions);
 elements["ask-before-opening"].addEventListener("change", recompressWithOptions);
 elements["url-input"].addEventListener("input", () => {
   hasSubmitted = false;
+  isCompressing = false;
   compressionRequest++;
   resetResult();
   clearStatus();
@@ -150,8 +161,9 @@ elements["url-input"].addEventListener("input", () => {
   renderCounter();
 });
 elements["compress-form"].addEventListener("submit", async event => {
-  event.preventDefault(); clearStatus(); releaseQr();
+  event.preventDefault();
   hasSubmitted = true;
+  isCompressing = true;
   const request = ++compressionRequest;
   const input = elements["url-input"].value;
   const mode = elements.codec.value;
@@ -160,8 +172,15 @@ elements["compress-form"].addEventListener("submit", async event => {
   try {
     const { createCompressionResult } = await import("./url-service.js");
     if (request !== compressionRequest || input !== elements["url-input"].value) return;
-    currentResult = createCompressionResult(input, config.shortUrlBase, mode, { askBeforeOpening });
-    renderResult(); setStatus("compressionSuccess");
+    const result = createCompressionResult(input, config.shortUrlBase, mode, { askBeforeOpening });
+    const linkChanged = currentResult?.shortUrl !== result.shortUrl;
+    currentResult = result;
+    if (linkChanged) {
+      releaseQr();
+      renderResult();
+    }
+    if (isShortcutPage && elements["compress-form"].hidden) elements["edit-shortcut-button"].hidden = false;
+    setStatus("compressionSuccess");
     emit("compress_success", {
       originalUrlBytes: currentResult.inputBytes,
       compressedPayloadChars: currentResult.payloadCharacters,
@@ -175,15 +194,30 @@ elements["compress-form"].addEventListener("submit", async event => {
   } catch (error) {
     if (request !== compressionRequest || input !== elements["url-input"].value) return;
     resetResult();
+    releaseQr();
+    elements["compress-form"].hidden = false;
     const normalizedError = error?.name === "UrlInputError" || error instanceof MetaCodecError ? error : { code: "COMPRESSION_FAILED" };
     setStatus(errorMessageKey(normalizedError), "error");
     emit("compress_failure", { originalUrlBytes: renderCounter(), durationMs: performance.now() - started, errorCode: normalizedError.code });
+  } finally {
+    if (request === compressionRequest) {
+      isCompressing = false;
+      if (isShortcutPage) root.dataset.entryReady = "";
+    }
   }
+});
+
+elements["edit-shortcut-button"].addEventListener("click", () => {
+  elements["edit-shortcut-button"].hidden = true;
+  elements["compress-form"].hidden = false;
+  elements["url-input"].focus();
 });
 
 elements["clear-button"].addEventListener("click", () => {
   hasSubmitted = false;
+  isCompressing = false;
   compressionRequest++;
+  if (isShortcutPage) window.history.replaceState(null, "", shortcutPath);
   elements["url-input"].value = "";
   resetResult();
   clearStatus();
@@ -193,12 +227,23 @@ elements["clear-button"].addEventListener("click", () => {
 });
 
 elements["copy-button"].addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(currentResult.shortUrl); setStatus("copySuccess"); }
-  catch { elements["short-url"].select(); setStatus("copyFailure", "error"); }
+  if (isCompressing || !currentResult) return;
+  const result = currentResult;
+  try {
+    await navigator.clipboard.writeText(result.shortUrl);
+    if (currentResult === result && !isCompressing) setStatus("copySuccess");
+  } catch {
+    if (currentResult !== result || isCompressing) return;
+    elements["short-url"].select();
+    setStatus("copyFailure", "error");
+  }
 });
-elements["open-button"].addEventListener("click", () => window.open(currentResult.shortUrl, "_blank", "noopener,noreferrer"));
+elements["open-button"].addEventListener("click", () => {
+  if (!isCompressing && currentResult) window.open(currentResult.shortUrl, "_blank", "noopener,noreferrer");
+});
 
 elements["qr-button"].addEventListener("click", () => {
+  if (isCompressing || !currentResult) return;
   try {
     currentQr = createQrArtifacts(currentResult.shortUrl);
     if (qrPreviewUrl) URL.revokeObjectURL(qrPreviewUrl);
@@ -215,12 +260,20 @@ elements["download-png"].addEventListener("click", async () => {
   catch { setStatus("qrFailure", "error"); }
 });
 
-const shortcutDestination = readShortcutDestination(window.location, import.meta.env.BASE_URL);
-if (shortcutDestination !== null) {
-  window.history.replaceState(window.history.state, "", import.meta.env.BASE_URL);
-  elements["url-input"].value = shortcutDestination;
-  elements["compress-form"].requestSubmit();
+if (isShortcutPage) {
+  root.dataset.entry = "shortcut";
+  document.title = "Compress a link · URLForge";
+  if (incomingDestination !== null) window.history.replaceState({ urlForgeShortcut: incomingDestination }, "", shortcutPath);
+  const destination = window.history.state?.urlForgeShortcut;
+  if (typeof destination === "string") {
+    elements["url-input"].value = destination;
+    elements["compress-form"].hidden = true;
+    elements["compress-form"].requestSubmit();
+  } else {
+    root.dataset.entryReady = "";
+  }
+} else {
+  handleRedirect();
+  window.addEventListener("hashchange", handleRedirect);
 }
 renderCounter();
-handleRedirect();
-window.addEventListener("hashchange", handleRedirect);
