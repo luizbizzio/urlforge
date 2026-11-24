@@ -73,6 +73,20 @@ test("short-link base falls back locally and accepts an official configured HTTP
   assert.throws(() => resolvePublicConfig({ PUBLIC_SHORT_URL_BASE: "http://public.example/#" }, localLocation), /SHORT_URL_BASE_REQUIRES_HTTPS/);
 });
 
+test("the four official hosts generate uf.do links and self-hosted instances keep their own host", () => {
+  for (const host of ["uf.do", "www.uf.do", "urlforge.luizbizzio.com", "urlforge.pages.dev"]) {
+    const location = new URL(`https://${host}/`);
+    const { shortUrlBase } = resolvePublicConfig({}, location);
+    const original = "https://example.com/articles/how-we-built-a-language-model";
+    const { shortUrl } = createCompressionResult(original, shortUrlBase);
+    assert.equal(new URL(shortUrl).origin, "https://uf.do");
+    assert.equal(resolvePayloadFragment(new URL(shortUrl).hash).destination, original);
+  }
+  const location = new URL("https://urlforge.luizbizzio.com/");
+  assert.equal(resolvePublicConfig({ PUBLIC_SHORT_URL_BASE: "https://custom.example/#" }, location).shortUrlBase, "https://custom.example/#");
+  assert.equal(resolvePublicConfig({}, new URL("https://selfhost.example/")).shortUrlBase, "https://selfhost.example/#");
+});
+
 test("i18n defaults to English, remembers the chosen language, and keeps translation keys aligned", () => {
   assert.equal(detectLocale({ browserLanguages: ["pt-BR"] }), "en");
   assert.equal(detectLocale({ browserLanguages: ["fr-FR"] }), "en");

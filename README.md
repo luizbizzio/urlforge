@@ -65,7 +65,7 @@ PUBLIC_SHORT_URL_BASE=https://urlforge.pages.dev/#
 TELEMETRY_ENDPOINT=
 ```
 
-`PUBLIC_SHORT_URL_BASE` is optional. Without it, the app uses its current origin followed by `/#`. Set it explicitly for hosts mounted below a path, including GitHub Pages project sites. Production short-link bases must use HTTPS; HTTP is accepted only on loopback during local development.
+`PUBLIC_SHORT_URL_BASE` is optional. The official hosts `urlforge.luizbizzio.com`, `uf.do`, `www.uf.do`, and `urlforge.pages.dev` default to `https://uf.do/#`. Other hosts default to their current origin followed by `/#`. Set it explicitly for hosts mounted below a path, including GitHub Pages project sites. Production short-link bases must use HTTPS. Loopback hosts also accept HTTP for local development.
 
 `TELEMETRY_ENDPOINT` is optional. When empty, no telemetry request is made.
 
