@@ -3,25 +3,27 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="URL Forge">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#100e17">
+    <meta name="description" content="Compress and share links directly in your browser with URLForge.">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'">
-    <title>URL Forge</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23172a3a'/%3E%3Cpath d='M17 18h30v9H28v8h16v9H28v12H17z' fill='%235eead4'/%3E%3C/svg%3E">
+    <title>URLForge</title>
+    <link rel="icon" type="image/png" href="./brand.png">
     <link rel="stylesheet" href="/src/web/styles.css">
   </head>
   <body>
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="./" aria-label="URL Forge">
-          <span class="brand-mark" aria-hidden="true">F</span>
-          <span data-i18n="brand"></span>
+        <a class="brand" href="./">
+          <img class="brand-mark" src="./brand.png" width="32" height="32" alt="">
+          <span>URL<strong>Forge</strong></span>
         </a>
         <div class="language-control">
           <label for="language" data-i18n="languageLabel"></label>
           <select id="language">
-            <option value="pt-BR" data-i18n="languagePt"></option>
-            <option value="en" data-i18n="languageEn"></option>
+            <option value="en" data-i18n="languageEn">English</option>
+            <option value="pt-BR" data-i18n="languagePt">Português</option>
           </select>
         </div>
       </header>
@@ -29,52 +31,54 @@
       <main>
         <section id="app-view" class="app-view">
           <div class="hero">
-            <p class="eyebrow" data-i18n="heroEyebrow"></p>
-            <h1 data-i18n="heroTitle"></h1>
-            <p class="hero-copy" data-i18n="heroDescription"></p>
+            <h1 data-i18n="heroTitle">Compress a link.</h1>
+            <p data-i18n="heroDescription">Runs entirely in your browser.</p>
           </div>
 
           <section class="forge-card" aria-labelledby="input-label">
-            <form id="compress-form" novalidate>
-              <div class="field-heading">
-                <label id="input-label" for="url-input" data-i18n="inputLabel"></label>
-                <output id="byte-counter" for="url-input"></output>
-              </div>
-              <textarea id="url-input" rows="4" spellcheck="false" autocomplete="url" required data-i18n-placeholder="inputPlaceholder"></textarea>
-              <p class="field-hint" data-i18n="inputHint"></p>
-              <div class="button-row">
-                <button class="button primary" type="submit" data-i18n="compressButton"></button>
-                <button class="button secondary" id="clear-button" type="button" data-i18n="clearButton"></button>
-              </div>
-            </form>
+            <div class="workspace">
+              <form id="compress-form" class="workspace-input" novalidate>
+                <div class="field-heading">
+                  <label id="input-label" for="url-input" data-i18n="inputLabel">Original URL</label>
+                  <output id="byte-counter" for="url-input"></output>
+                </div>
+                <textarea id="url-input" rows="3" spellcheck="false" autocomplete="url" autocapitalize="off" inputmode="url" required data-i18n-placeholder="inputPlaceholder" placeholder="https://example.com/path?parameter=value"></textarea>
+                <div class="field-tools">
+                  <div class="button-row">
+                    <button class="button primary" type="submit" data-i18n="compressButton">Compress link</button>
+                    <button class="button secondary" id="clear-button" type="button" data-i18n="clearButton">Clear</button>
+                  </div>
+                  <div class="codec-tools">
+                    <label class="codec-control" for="codec">
+                      <span data-i18n="codecLabel">Codec</span>
+                      <select id="codec">
+                        <option value="auto" data-i18n="codecAuto" selected>Automatic</option>
+                        <option value="forge">URLForge</option>
+                        <option value="hamr">ha.mr</option>
+                      </select>
+                    </label>
+                    <button class="text-button" id="example-button" type="button" data-i18n="exampleButton">Try an example</button>
+                  </div>
+                </div>
+              </form>
+              <section id="result" class="workspace-output" aria-labelledby="result-title" hidden>
+                <div class="field-heading">
+                  <h2 id="result-title" data-i18n="shortUrlLabel">Compressed link</h2>
+                </div>
+                <textarea id="short-url" readonly rows="2" spellcheck="false" aria-labelledby="result-title"></textarea>
+                <dl class="metrics">
+                  <div><dt data-i18n="finalCharsLabel"></dt><dd id="final-chars"></dd></div>
+                  <div><dt data-i18n="savedCharsLabel"></dt><dd id="saved-chars"></dd></div>
+                </dl>
+                <div class="button-row result-actions">
+                  <button class="button primary" id="copy-button" type="button" data-i18n="copyButton"></button>
+                  <button class="button secondary" id="open-button" type="button" data-i18n="openButton"></button>
+                  <button class="button secondary" id="qr-button" type="button" data-i18n="qrButton"></button>
+                </div>
+                <p id="qr-limit-message" class="inline-message" hidden></p>
+              </section>
+            </div>
             <div id="status" class="status" role="status" aria-live="polite" hidden></div>
-            <div class="base-note"><span data-i18n="activeBaseLabel"></span><code id="active-base"></code></div>
-          </section>
-
-          <section id="result" class="result-card" aria-labelledby="result-title" hidden>
-            <div class="result-heading">
-              <div>
-                <p class="eyebrow" data-i18n="resultTitle"></p>
-                <h2 id="result-title" data-i18n="shortUrlLabel"></h2>
-              </div>
-              <span id="family-pill" class="family-pill"></span>
-            </div>
-            <div class="short-url-row">
-              <input id="short-url" readonly aria-labelledby="result-title">
-              <button class="button primary" id="copy-button" type="button" data-i18n="copyButton"></button>
-            </div>
-            <div class="button-row compact">
-              <button class="button secondary" id="open-button" type="button" data-i18n="openButton"></button>
-              <button class="button secondary" id="qr-button" type="button" data-i18n="qrButton"></button>
-            </div>
-            <dl class="metrics">
-              <div><dt data-i18n="originalBytesLabel"></dt><dd id="original-bytes"></dd></div>
-              <div><dt data-i18n="payloadCharsLabel"></dt><dd id="payload-chars"></dd></div>
-              <div><dt data-i18n="finalCharsLabel"></dt><dd id="final-chars"></dd></div>
-              <div><dt data-i18n="savedCharsLabel"></dt><dd id="saved-chars"></dd></div>
-              <div><dt data-i18n="selectedFamilyLabel"></dt><dd id="selected-family"></dd></div>
-            </dl>
-            <p id="qr-limit-message" class="inline-message" hidden></p>
           </section>
 
           <section id="qr-panel" class="qr-card" aria-labelledby="qr-title" hidden>
@@ -102,8 +106,7 @@
 
       <footer>
         <a href="./privacy.html" data-i18n="footerPrivacy"></a>
-        <span aria-hidden="true">·</span>
-        <span data-i18n="footerSource"></span>
+        <a href="https://github.com/luizbizzio/urlforge" data-i18n="footerSource"></a>
       </footer>
     </div>
     <script type="module" src="/src/web/app.js"></script>

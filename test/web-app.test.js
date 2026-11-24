@@ -28,6 +28,30 @@ test("web compression preserves HTTP, HTTPS, Unicode, duplicate query values, an
   }
 });
 
+test("codec modes preserve the complete URL and Automatic picks the smallest result", () => {
+  const base = "https://uf.do/#";
+  for (const destination of [
+    "https://example.com/articles/how-we-built-a-language-model",
+    "https://github.com/mikuta0407/win4wine"
+  ]) {
+    const forge = createCompressionResult(destination, base, "forge");
+    const hamr = createCompressionResult(destination, base, "hamr");
+    const auto = createCompressionResult(destination, base, "auto");
+    assert.equal(forge.selectedFamily, "forge");
+    assert.equal(hamr.selectedFamily, "hamr");
+    assert.equal(auto.payloadCharacters, Math.min(forge.payloadCharacters, hamr.payloadCharacters));
+    for (const result of [forge, hamr, auto]) {
+      assert.equal(resolvePayloadFragment(new URL(result.shortUrl).hash).destination, destination);
+    }
+  }
+  const signed = "https://example.com/a?x=%2f&x=&flag#";
+  assert.throws(() => createCompressionResult(signed, base, "hamr"), { code: "HAMR_UNSUPPORTED" });
+  for (const mode of ["forge", "auto"]) {
+    const result = createCompressionResult(signed, base, mode);
+    assert.equal(resolvePayloadFragment(new URL(result.shortUrl).hash).destination, signed);
+  }
+});
+
 test("URL validation rejects invalid and non-HTTP(S) destinations", () => {
   assert.throws(() => validateDestination("not a URL"), error => error instanceof UrlInputError && error.code === "INVALID_URL");
   assert.throws(() => validateDestination("javascript:alert(1)"), error => error instanceof UrlInputError && error.code === "INVALID_SCHEME");
@@ -49,9 +73,10 @@ test("short-link base falls back locally and accepts an official configured HTTP
   assert.throws(() => resolvePublicConfig({ PUBLIC_SHORT_URL_BASE: "http://public.example/#" }, localLocation), /SHORT_URL_BASE_REQUIRES_HTTPS/);
 });
 
-test("i18n detects Portuguese and English and keeps translation keys aligned", () => {
-  assert.equal(detectLocale({ browserLanguages: ["pt-BR"] }), "pt-BR");
+test("i18n defaults to English, remembers the chosen language, and keeps translation keys aligned", () => {
+  assert.equal(detectLocale({ browserLanguages: ["pt-BR"] }), "en");
   assert.equal(detectLocale({ browserLanguages: ["fr-FR"] }), "en");
+  assert.equal(detectLocale({ storedLocale: "pt-BR" }), "pt-BR");
   assert.equal(detectLocale({ storedLocale: "en", browserLanguages: ["pt-BR"] }), "en");
   assert.equal(translate("pt-BR", "copyButton"), "Copiar");
   assert.equal(translate("en", "copyButton"), "Copy");

@@ -4,14 +4,8 @@ export const SUPPORTED_LOCALES = Object.freeze(Object.keys(translations));
 export const DEFAULT_LOCALE = "en";
 export const LOCALE_STORAGE_KEY = "url-forge-locale";
 
-export function normalizeLocale(value) {
-  const locale = String(value || "").toLowerCase();
-  return locale === "pt" || locale.startsWith("pt-") ? "pt-BR" : "en";
-}
-
-export function detectLocale({ storedLocale = null, browserLanguages = [] } = {}) {
-  if (SUPPORTED_LOCALES.includes(storedLocale)) return storedLocale;
-  return normalizeLocale(browserLanguages.find(Boolean));
+export function detectLocale({ storedLocale = null } = {}) {
+  return SUPPORTED_LOCALES.includes(storedLocale) ? storedLocale : DEFAULT_LOCALE;
 }
 
 export function translate(locale, key, values = {}) {

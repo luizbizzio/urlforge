@@ -5,6 +5,12 @@ import { decompress as decompressHamr } from "../vendor/ha.mr/docs/compress.js";
 
 export const META_FORMAT_VERSION = 7;
 export const META_FORGE_PREFIX = ".";
+export const META_EXACT_PREFIX = "..";
+
+// Legacy payloads have either no dot or a single leading dot.
+export function isExactPayload(payload) {
+  return typeof payload === "string" && (payload.startsWith(META_EXACT_PREFIX) || payload.indexOf(".") > 0);
+}
 export const META_DATA_ALPHABET = SAFE_FRAGMENT_ALPHABET;
 export const META_LIMITS = Object.freeze({
   maxPayloadCharacters: 8192,
@@ -61,17 +67,18 @@ function validateDecodedUrl(value, family) {
   catch { throw publicError(family === "forge" ? "INVALID_FORGE_PAYLOAD" : "INVALID_HAMR_PAYLOAD", "The decoded URL could not be normalized safely."); }
 }
 
-function normalizedInput(input) {
+export function parseMetaInput(input) {
   if (typeof input !== "string") throw publicError("INVALID_INPUT", "URL must be a string.");
   let parsed;
   try { parsed = new URL(input.includes("://") ? input : `https://${input}`); }
   catch { throw publicError("INVALID_URL", "Input is not a valid URL."); }
   if (parsed.protocol !== "http:" && parsed.protocol !== "https:") throw publicError("INVALID_URL", "Only HTTP(S) URLs are supported.");
   if (parsed.username || parsed.password) throw publicError("UNSUPPORTED_URL", "URLs containing credentials are not supported.");
-  const normalized = normalizeUrlForComparison(parsed.href);
-  if (textEncoder.encode(normalized).length > META_LIMITS.maxDecompressedUrlBytes) throw publicError("INPUT_URL_TOO_LARGE", `Input URL exceeds ${META_LIMITS.maxDecompressedUrlBytes} UTF-8 bytes.`);
-  return normalized;
+  if (textEncoder.encode(parsed.href).length > META_LIMITS.maxDecompressedUrlBytes) throw publicError("INPUT_URL_TOO_LARGE", `Input URL exceeds ${META_LIMITS.maxDecompressedUrlBytes} UTF-8 bytes.`);
+  return parsed;
 }
+
+const normalizedInput = input => normalizeUrlForComparison(parseMetaInput(input).href);
 
 function measuredCandidate({ name, family, body, identifier = "", codecBits = null, codecBitsNote = null, eligible = true, selectable = true, discardReason = null, normalization = null, representation = null }) {
   const payload = eligible ? `${identifier}${body}` : null;
@@ -103,20 +110,15 @@ export function chooseMetaCandidate(candidates) {
   return forge.payloadCharacters <= hamr.payloadCharacters ? forge : hamr;
 }
 
-export function compressMetaV7(input) {
+export function compressMetaV7(input, { includeReference = true } = {}) {
   const normalizedUrl = normalizedInput(input);
   const combined = compressCombinedDetailed(normalizedUrl, { outputAlphabet: "safe65", contextArithmetic: false });
-  const current = compressDetailed(normalizedUrl, { huffman: true, lz: true, arithmetic: true, globalRawStream: true, outputAlphabet: "safe65" });
   const hamrAudit = auditHamr(normalizedUrl, META_ALPHABET_ARRAY);
 
   const candidates = {
     combinedRetained: measuredCandidate({
       name: "combinedRetained", family: "forge", body: combined.payload, identifier: META_FORGE_PREFIX,
       codecBits: combined.bitLength, representation: combined.combinedCandidate
-    }),
-    currentV6Planner: measuredCandidate({
-      name: "currentV6Planner", family: "forge", body: current.payload, identifier: META_FORGE_PREFIX,
-      codecBits: current.bitLength, selectable: false, representation: current.plan.selectedRepresentation
     }),
     haMr: measuredCandidate({
       name: "ha.mr", family: "ha.mr", body: hamrAudit.valid ? hamrAudit.payload : "", codecBits: null,
@@ -130,6 +132,13 @@ export function compressMetaV7(input) {
       } : null
     })
   };
+  if (includeReference) {
+    const current = compressDetailed(normalizedUrl, { huffman: true, lz: true, arithmetic: true, globalRawStream: true, outputAlphabet: "safe65" });
+    candidates.currentV6Planner = measuredCandidate({
+      name: "currentV6Planner", family: "forge", body: current.payload, identifier: META_FORGE_PREFIX,
+      codecBits: current.bitLength, selectable: false, representation: current.plan.selectedRepresentation
+    });
+  }
   for (const candidate of Object.values(candidates)) if (candidate.eligible && !candidate.urlCompatibility.safeForSelection) {
     candidate.eligible = false;
     candidate.discardReason = { reason: "unsafe URL fragment encoding", detail: candidate.urlCompatibility };
@@ -153,7 +162,7 @@ export function compressMetaV7(input) {
       selectedFamily: selected.family,
       tieRule: "Forge wins an equal final character count; currentV6Planner is reference-only.",
       candidates,
-      rawPayloads: { forge: candidates.combinedRetained.rawPayload, currentV6Planner: candidates.currentV6Planner.rawPayload, haMr: candidates.haMr.rawPayload },
+      rawPayloads: { forge: candidates.combinedRetained.rawPayload, currentV6Planner: candidates.currentV6Planner?.rawPayload ?? null, haMr: candidates.haMr.rawPayload },
       finalMetaPayload: selected.payload,
       comparison: { byFinalCharacters: true, byExactAsciiWireBits: true, requiresSafeWhatwgFragmentCompatibility: true },
       finalPayloadCharacters: selected.payloadCharacters,
@@ -163,25 +172,30 @@ export function compressMetaV7(input) {
   };
 }
 
+export function decodeForgeBody(body) {
+  return decompressForge(body, {
+    outputAlphabet: "safe65",
+    limits: {
+      maxOutputBytes: META_LIMITS.maxDecompressedUrlBytes,
+      maxTokens: META_LIMITS.maxDecodeTokens,
+      maxBackReferences: META_LIMITS.maxBackReferences,
+      maxBackReferenceLength: META_LIMITS.maxBackReferenceLength
+    }
+  });
+}
+
 export function decompressMetaV7(payload) {
   const { family, body } = validatePayload(payload);
   if (family === "forge") {
     try {
-      const decoded = decompressForge(body, {
-        outputAlphabet: "safe65",
-        limits: {
-          maxOutputBytes: META_LIMITS.maxDecompressedUrlBytes,
-          maxTokens: META_LIMITS.maxDecodeTokens,
-          maxBackReferences: META_LIMITS.maxBackReferences,
-          maxBackReferenceLength: META_LIMITS.maxBackReferenceLength
-        }
-      });
+      const decoded = decodeForgeBody(body);
       return validateDecodedUrl(decoded, family);
     } catch (error) { throw sanitizeDecodeError(error, family); }
   }
   try { return validateDecodedUrl(decompressHamr(body, META_ALPHABET_ARRAY), family); }
   catch (error) { throw sanitizeDecodeError(error, family); }
 }
+
 
 export function compress(url) {
   try { return compressMetaV7(url).payload; }

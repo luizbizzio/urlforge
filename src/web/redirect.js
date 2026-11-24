@@ -1,4 +1,4 @@
-import { tryDecompress } from "../meta-codec.js";
+import { tryDecompress } from "../url-codec.js";
 
 export function resolvePayloadFragment(hash) {
   const payload = typeof hash === "string" && hash.startsWith("#") ? hash.slice(1) : hash;

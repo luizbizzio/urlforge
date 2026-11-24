@@ -3,6 +3,11 @@ export const BASE64URL_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs
 // escaping, fragment delimiters, shell metacharacters, or Markdown delimiters.
 export const SAFE_FRAGMENT_ALPHABET = `${BASE64URL_ALPHABET}~`;
 
+export const COMPACT_FRAGMENT_MARKERS = "!$*+,/;=?@";
+export function isCompactFragment(payload) {
+  return typeof payload === "string" && /[!$*+,/;=?@]/.test(payload);
+}
+
 export const OUTPUT_ALPHABETS = Object.freeze({
   base64url: Object.freeze({ name: "base64url", alphabet: BASE64URL_ALPHABET, radix: 64, compatibility: true }),
   safe65: Object.freeze({ name: "safe65", alphabet: SAFE_FRAGMENT_ALPHABET, radix: 65, compatibility: false })
@@ -40,46 +45,83 @@ function decodeBase64Url(value) {
   return Uint8Array.from(output);
 }
 
+const BYTE_BLOCK_SIZE = 6;
+const BYTE_BLOCK_BITS = 48n;
+const BYTE_BLOCK_MASK = (1n << BYTE_BLOCK_BITS) - 1n;
+const RADIX_BLOCK_SIZE = 8;
+
+// Small blocks stay within the exact integer range of Number, leaving the wide operations to BigInt.
 function bytesToInteger(bytes) {
   let value = 0n;
-  for (const byte of bytes) value = (value << 8n) | BigInt(byte);
+  for (let offset = 0; offset < bytes.length; offset += BYTE_BLOCK_SIZE) {
+    const length = Math.min(BYTE_BLOCK_SIZE, bytes.length - offset);
+    let block = 0;
+    for (let i = 0; i < length; i++) block = block * 256 + bytes[offset + i];
+    const shift = length === BYTE_BLOCK_SIZE ? BYTE_BLOCK_BITS : BigInt(length * 8);
+    value = (value << shift) | BigInt(block);
+  }
   return value;
 }
 
 function integerToBytes(value) {
   if (value < 0n) throw new Error("Invalid radix payload");
   const output = [];
-  do { output.push(Number(value & 255n)); value >>= 8n; } while (value);
+  do {
+    let block = Number(value & BYTE_BLOCK_MASK);
+    value >>= BYTE_BLOCK_BITS;
+    for (let i = 0; i < BYTE_BLOCK_SIZE && (value || block || i === 0); i++) {
+      output.push(block % 256);
+      block = Math.floor(block / 256);
+    }
+  } while (value);
   output.reverse();
   return Uint8Array.from(output);
 }
 
-function encodeRadix(bytes, alphabet) {
-  let value = bytesToInteger(bytes), output = "";
-  const radix = BigInt(alphabet.length);
-  do { output = alphabet[Number(value % radix)] + output; value /= radix; } while (value);
+export function encodeRadixInteger(value, alphabet = SAFE_FRAGMENT_ALPHABET) {
+  if (value < 0n) throw new Error("Invalid radix integer");
+  let output = "";
+  const radix = alphabet.length;
+  const blockRadix = BigInt(radix) ** BigInt(RADIX_BLOCK_SIZE);
+  do {
+    let block = Number(value % blockRadix);
+    value /= blockRadix;
+    for (let i = 0; i < RADIX_BLOCK_SIZE && (value || block || i === 0); i++) {
+      output = alphabet[block % radix] + output;
+      block = Math.floor(block / radix);
+    }
+  } while (value);
   return output;
 }
 
-function decodeRadix(payload, alphabet) {
+export function decodeRadixInteger(payload, alphabet = SAFE_FRAGMENT_ALPHABET) {
   if (!payload) throw new Error("Empty payload");
-  const radix = BigInt(alphabet.length); let value = 0n;
-  for (const character of payload) {
-    const digit = alphabet.indexOf(character);
-    if (digit < 0) throw new Error("Invalid output-alphabet character");
-    value = value * radix + BigInt(digit);
+  const radix = alphabet.length;
+  const wideRadix = BigInt(radix);
+  const blockRadix = wideRadix ** BigInt(RADIX_BLOCK_SIZE);
+  let value = 0n;
+  for (let offset = 0; offset < payload.length; offset += RADIX_BLOCK_SIZE) {
+    const length = Math.min(RADIX_BLOCK_SIZE, payload.length - offset);
+    let block = 0;
+    for (let i = 0; i < length; i++) {
+      const digit = alphabet.indexOf(payload[offset + i]);
+      if (digit < 0) throw new Error("Invalid output-alphabet character");
+      block = block * radix + digit;
+    }
+    const multiplier = length === RADIX_BLOCK_SIZE ? blockRadix : wideRadix ** BigInt(length);
+    value = value * multiplier + BigInt(block);
   }
-  return integerToBytes(value);
+  return value;
 }
 
 export function encodeOutput(bytes, name = "base64url") {
   const { alphabet } = resolveAlphabet(name);
-  return name === "base64url" ? encodeBase64Url(bytes) : encodeRadix(bytes, alphabet);
+  return name === "base64url" ? encodeBase64Url(bytes) : encodeRadixInteger(bytesToInteger(bytes), alphabet);
 }
 
 export function decodeOutput(payload, name = "base64url") {
   const { alphabet } = resolveAlphabet(name);
-  return name === "base64url" ? decodeBase64Url(payload) : decodeRadix(payload, alphabet);
+  return name === "base64url" ? decodeBase64Url(payload) : integerToBytes(decodeRadixInteger(payload, alphabet));
 }
 
 export function auditOutputAlphabet(name, prefix = "http://uf.mr#") {

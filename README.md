@@ -1,6 +1,6 @@
-# URL Forge
+# URLForge
 
-URL Forge is a reversible, client-side URL compressor. The web app uses the existing meta-v7 codec and works as a static site: compression, decompression, redirects, validation, i18n, copy, and QR generation all run in the browser.
+URLForge is a reversible, client-side URL compressor. The static app selects the shortest available encoding that restores the browser-serialized URL. Compression, decompression, redirects, validation, i18n, copy, and QR generation all run in the browser. Links created with meta-v7 are still readable.
 
 Telemetry is optional and isolated in `functions/`. The static app does not need Cloudflare, a database, or an API.
 
@@ -22,6 +22,39 @@ npm run preview
 ```
 
 The production output is written to `dist/`.
+
+## Suffix compression
+
+URLForge includes the [ha.mr codec by p2r3](https://github.com/p2r3/ha.mr) alongside its own encoders. The [MIT license](vendor/ha.mr/LICENSE) is included in the source and in the static build.
+
+The suffix model predicts characters using up to three preceding characters. It covers path, query, and fragment while reusing the ha.mr encoding for the origin. The selector compares its payload against exact meta-v7 candidates and uses a lossless Forge fallback for forms that meta-v7 normalizes, including empty query and fragment markers and lowercase percent escapes.
+
+For URLs with a query, a second model learns from up to eight preceding characters within the current URL. It tracks separate counts for the path, parameter names, values and fragment. Repeated names and values can then cost fewer bits. The selector includes the format marker when comparing lengths. A single dot between the encoded origin and suffix identifies the frozen model, and a double dot in that position identifies the adaptive model.
+
+An additional candidate separates identifiers from the surrounding text. It packs decimal and hexadecimal runs, UUIDs and consecutive percent-escaped bytes, and can carry mixed-case URL-safe IDs verbatim. The first field after the origin encodes the surrounding text, and each subsequent dot-separated field restores one identifier. The format preserves leading zeroes and escape case. Run `benchmark:suffix` and inspect `vsBeforeIdentifierSuffix` for the change in final link size.
+
+The selector also tries the adaptive model on paths and fragments of at least 24 characters. When a first directory is present, the single-dot format can encode it with the origin and use the frozen model for the remaining suffix. Compare final URL sizes with the preceding selector in `vsBeforePathChanges`.
+
+For UTF-8 percent escapes, the Unicode candidate stores the shared high bits of a run of code points once. It retains literal underscores and hyphens, encoded spaces and the original case of the escapes. The benchmark reports its effect on final link length in `vsBeforeUnicode`.
+
+The compact fragment format uses 76 ASCII symbols and ends in a letter or number. It carries either the shortest existing fragment or the ha.mr v0 representation without its fixed version bit. A reserved punctuation character identifies the compact format. The selector emits it only when it saves at least one character. See `vsBeforeCompact` in the suffix benchmark.
+
+Run the benchmark against the native ASCII ha.mr encoder, ha.mr with the shared safe alphabet, and the previous Forge selector.
+
+```sh
+npm run benchmark:suffix
+npm run benchmark:suffix -- --base https://urlforge.pages.dev/# --ada ./ada-urls.txt
+```
+
+The defaults use 440 generated inputs and [98 links from the public Hacker News API](test/fixtures/hacker-news-2026-11-23.txt). The optional `--ada` input uses the [pinned Ada URL corpus](https://raw.githubusercontent.com/ada-url/url-dataset/ef7065196980ab7956bacc60b4bda663939f659c/out.txt) and adds 400 test URLs. Domain groups used by the test sets are held out from training. The report counts complete URLs with an identical base, rejects reference results that change the serialized destination, and reports size, wins, ties, losses, and encode/decode p95 in Node.
+
+The counts in `src/suffix-model-v1.js` are part of the wire format. To reproduce them, run the following command with the pinned corpus and compare the output with the checked-in file. A different model requires a new wire format so existing links retain their meaning.
+
+```sh
+node src/train-suffix-model.js ./ada-urls.txt ./test/fixtures/hacker-news-2026-11-23.txt ./model-check.js
+```
+
+With `--ada`, the benchmark also measures queries from held-out domain groups absent from the first two public samples. It takes up to four URLs per group in corpus order, up to 500 in total. The pinned corpus yields 141 queries across 92 groups. The `vsBeforeAdaptiveQuery` field reports the size change against the shortest exact candidate available before the adaptive model.
 
 ## Public configuration
 

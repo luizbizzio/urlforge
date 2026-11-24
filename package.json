@@ -24,6 +24,7 @@
     "benchmark:final:context": "node src/final-output-benchmark.js --context-experiment --normal",
     "benchmark:final:sample": "node src/final-output-benchmark.js --sample --normal --reset --stop-after=2 && node src/final-output-benchmark.js --sample --normal",
     "benchmark:meta:sample": "node src/meta-benchmark.js",
+    "benchmark:suffix": "node src/suffix-benchmark.js",
     "test": "node --test",
     "test:web": "node --test test/web-app.test.js test/telemetry.test.js"
   },

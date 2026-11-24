@@ -21,6 +21,11 @@ const DICTIONARY = [
   "token=", "session=", "category=", "profile", "status="
 ];
 const DEFAULT_FEATURES = Object.freeze({ numbers: true, uuids: true, hex: true, timestamps: true, directBinaryValues: false });
+const dictionaryByInitial = new Map();
+for (const [index, token] of DICTIONARY.entries()) {
+  if (!dictionaryByInitial.has(token[0])) dictionaryByInitial.set(token[0], []);
+  dictionaryByInitial.get(token[0]).push({ token, index, saving: textEncoder.encode(token).length * 8 - 8 });
+}
 
 // Static model trained on URL punctuation and common English URL components.
 // Every byte has a non-zero fallback frequency, so arbitrary UTF-8 stays reversible.
@@ -75,37 +80,78 @@ function buildContextModels(training) {
 }
 const CONTEXT_MODELS = Object.freeze(Object.fromEntries(Object.entries(CONTEXT_TRAINING).map(([name, training]) => [name, buildContextModels(training)])));
 
-const AC_MAX = 0xffffffffn, AC_HALF = 0x80000000n, AC_QUARTER = 0x40000000n, AC_THREE_QUARTERS = 0xc0000000n;
-function encodeArithmeticWithResolver(bytes, resolveModel) {
-  let low = 0n, high = AC_MAX, pending = 0; const bits = [];
+// The 32-bit interval and model totals up to 16384 keep the products exact in Number.
+const AC_MAX = 0xffffffff, AC_HALF = 0x80000000, AC_QUARTER = 0x40000000, AC_THREE_QUARTERS = 0xc0000000;
+// After renormalization the interval is at least AC_QUARTER wide. Rounding can
+// add at most one interval unit per symbol, so p + 2 / AC_QUARTER is a safe
+// upper bound on its retained fraction. The final two bits pay for the possible
+// quarter-width final interval. Round the resulting bit lower bound down.
+const COST_UNITS_PER_BIT = 256;
+const staticBitLowerBounds = STATISTICAL.frequencies.map(frequency =>
+  Math.floor(-Math.log2(frequency / STATISTICAL.total + 2 / AC_QUARTER) * COST_UNITS_PER_BIT));
+export function encodeArithmeticWithResolver(bytes, resolveModel) {
+  let low = 0, high = AC_MAX, pending = 0; const bits = [];
   const emit = bit => { bits.push(bit); while (pending--) bits.push(bit ^ 1); pending = 0; };
   let previous = 256;
   for (const symbol of bytes) {
-    const model = resolveModel(previous), range = high - low + 1n, start = BigInt(model.starts[symbol]), frequency = BigInt(model.frequencies[symbol]);
-    high = low + range * (start + frequency) / BigInt(model.total) - 1n; low += range * start / BigInt(model.total);
+    const model = resolveModel(previous), range = high - low + 1, start = model.starts[symbol], frequency = model.frequencies[symbol];
+    high = low + Math.floor(range * (start + frequency) / model.total) - 1;
+    low += Math.floor(range * start / model.total);
     for (;;) {
       if (high < AC_HALF) emit(0); else if (low >= AC_HALF) { emit(1); low -= AC_HALF; high -= AC_HALF; }
       else if (low >= AC_QUARTER && high < AC_THREE_QUARTERS) { pending++; low -= AC_QUARTER; high -= AC_QUARTER; } else break;
-      low <<= 1n; high = (high << 1n) + 1n;
+      low *= 2;
+      high = high * 2 + 1;
     }
     previous = symbol;
   }
   pending++; emit(low < AC_QUARTER ? 0 : 1); return bits;
 }
-function decodeArithmeticWithResolver(bits, length, resolveModel) {
-  let low = 0n, high = AC_MAX, code = 0n, index = 0; const next = () => index < bits.length ? BigInt(bits[index++]) : 0n;
-  for (let i = 0; i < 32; i++) code = (code << 1n) | next();
+export function decodeArithmeticWithResolver(bits, length, resolveModel, stopSymbol = null) {
+  let low = 0, high = AC_MAX, code = 0, index = 0; const next = () => bits[index++] ?? 0;
+  let checked = 0, pending = 0;
+  // Terminated suffix streams must use the encoder's exact finalization. Check emitted
+  // bits as the interval advances so the adaptive model only has to run once.
+  const checkEmission = bit => {
+    if (bits[checked++] !== bit) throw new Error("Invalid arithmetic bitstream");
+    while (pending > 0) {
+      if (bits[checked++] !== (bit ^ 1)) throw new Error("Invalid arithmetic bitstream");
+      pending--;
+    }
+  };
+  for (let i = 0; i < 32; i++) code = code * 2 + next();
   const output = new Uint8Array(length); let previous = 256;
   for (let position = 0; position < length; position++) {
-    const model = resolveModel(previous), range = high - low + 1n, scaled = Number(((code - low + 1n) * BigInt(model.total) - 1n) / range), symbol = model.lookup[scaled]; output[position] = symbol;
-    const start = BigInt(model.starts[symbol]), frequency = BigInt(model.frequencies[symbol]); high = low + range * (start + frequency) / BigInt(model.total) - 1n; low += range * start / BigInt(model.total);
+    const model = resolveModel(previous), range = high - low + 1;
+    const scaled = Math.floor(((code - low + 1) * model.total - 1) / range);
+    const symbol = model.lookup ? model.lookup[scaled] : model.symbolAt(scaled);
+    output[position] = symbol;
+    const start = model.starts[symbol], frequency = model.frequencies[symbol];
+    high = low + Math.floor(range * (start + frequency) / model.total) - 1;
+    low += Math.floor(range * start / model.total);
     for (;;) {
-      if (high < AC_HALF) { /* no offset */ } else if (low >= AC_HALF) { code -= AC_HALF; low -= AC_HALF; high -= AC_HALF; }
-      else if (low >= AC_QUARTER && high < AC_THREE_QUARTERS) { code -= AC_QUARTER; low -= AC_QUARTER; high -= AC_QUARTER; } else break;
-      low <<= 1n; high = (high << 1n) + 1n; code = (code << 1n) | next();
+      if (high < AC_HALF) {
+        if (stopSymbol !== null) checkEmission(0);
+      } else if (low >= AC_HALF) {
+        if (stopSymbol !== null) checkEmission(1);
+        code -= AC_HALF; low -= AC_HALF; high -= AC_HALF;
+      } else if (low >= AC_QUARTER && high < AC_THREE_QUARTERS) {
+        if (stopSymbol !== null) pending++;
+        code -= AC_QUARTER; low -= AC_QUARTER; high -= AC_QUARTER;
+      } else break;
+      low *= 2;
+      high = high * 2 + 1;
+      code = code * 2 + next();
+    }
+    if (symbol === stopSymbol) {
+      pending++;
+      checkEmission(low < AC_QUARTER ? 0 : 1);
+      if (checked !== bits.length) throw new Error("Trailing arithmetic bits");
+      return output.subarray(0, position);
     }
     previous = symbol;
   }
+  if (stopSymbol !== null) throw new Error("Arithmetic stream limit exceeded");
   return output;
 }
 function encodeArithmetic(bytes) { return encodeArithmeticWithResolver(bytes, () => STATISTICAL); }
@@ -124,15 +170,30 @@ const HOST_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789-";
 class BitWriter {
   constructor() { this.bytes = []; this.current = 0; this.used = 0; this.bitLength = 0; this.featureCounts = {}; }
   write(value, count) {
+    if (typeof value === "number" && count <= 8) {
+      const joined = (this.current << count) | (value & ((1 << count) - 1));
+      this.bitLength += count;
+      this.used += count;
+      if (this.used >= 8) {
+        this.used -= 8;
+        this.bytes.push(joined >>> this.used);
+      }
+      this.current = joined & ((1 << this.used) - 1);
+      return;
+    }
     const n = BigInt(value);
     for (let i = count - 1; i >= 0; i--) {
       this.current = (this.current << 1) | Number((n >> BigInt(i)) & 1n); this.used++; this.bitLength++;
       if (this.used === 8) { this.bytes.push(this.current); this.current = 0; this.used = 0; }
     }
   }
-  append(other) { const length = other.bitLength, bytes = other.finish(); for (let i = 0; i < length; i++) this.write((bytes[i >> 3] >> (7 - (i & 7))) & 1, 1); for (const [name, count] of Object.entries(other.featureCounts)) this.featureCounts[name] = (this.featureCounts[name] || 0) + count; }
+  append(other) {
+    for (const byte of other.bytes) this.write(byte, 8);
+    if (other.used) this.write(other.current, other.used);
+    for (const [name, count] of Object.entries(other.featureCounts)) this.featureCounts[name] = (this.featureCounts[name] || 0) + count;
+  }
   mark(name) { this.featureCounts[name] = (this.featureCounts[name] || 0) + 1; }
-  finish() { if (this.used) this.bytes.push(this.current << (8 - this.used)); return Uint8Array.from(this.bytes); }
+  finish() { return Uint8Array.from(this.used ? [...this.bytes, this.current << (8 - this.used)] : this.bytes); }
 }
 
 class BitReader {
@@ -143,7 +204,15 @@ class BitReader {
     for (let i = 0; i < count; i++, this.index++) value = (value << 1n) | BigInt((this.bytes[this.index >> 3] >> (7 - (this.index & 7))) & 1);
     return value;
   }
-  readNumber(count) { return Number(this.read(count)); }
+  readNumber(count) {
+    if (count > 8) return Number(this.read(count));
+    if (this.index + count > this.bytes.length * 8) throw new Error("Unexpected end of payload");
+    const offset = this.index >> 3;
+    const window = (this.bytes[offset] << 8) | (this.bytes[offset + 1] ?? 0);
+    const shift = 16 - (this.index & 7) - count;
+    this.index += count;
+    return (window >>> shift) & ((1 << count) - 1);
+  }
 }
 
 function writeVarUint(writer, value) {
@@ -173,9 +242,9 @@ function readFormatHeader(reader) {
 function matchAt(value, index, features) {
   let best = null;
   const consider = candidate => { if (!best || candidate.saving > best.saving || (candidate.saving === best.saving && candidate.length > best.length)) best = candidate; };
-  for (let i = 0; i < DICTIONARY.length; i++) {
-    const token = DICTIONARY[i];
-    if (value.startsWith(token, index)) consider({ type: "dictionary", index: i, length: token.length, saving: textEncoder.encode(token).length * 8 - 8 });
+  const entries = dictionaryByInitial.get(value[index]);
+  if (entries) for (const entry of entries) {
+    if (value.startsWith(entry.token, index)) consider({ type: "dictionary", index: entry.index, length: entry.token.length, saving: entry.saving });
   }
   const tail = value.slice(index);
   if (features.directBinaryValues) {
@@ -217,18 +286,38 @@ function tokenBitCost(match) {
   if (match.type === "directBase64") return 10 + varUintBitCost(match.text.length - 1) + match.text.length * 6;
   return Infinity;
 }
-function varUintBitCost(value) { return (BigInt(value) + 1n).toString(2).length * 2 - 1; }
+function varUintBitCost(value) {
+  if (typeof value === "number" && value < 0xffffffff) return (32 - Math.clz32(value + 1)) * 2 - 1;
+  return (BigInt(value) + 1n).toString(2).length * 2 - 1;
+}
 
-function buildLzMatchTable(history, bytes) {
-  const combined = Uint8Array.from([...history, ...bytes]), historyLength = history.length, positions = new Map(), table = Array.from({ length: bytes.length }, () => []);
+const LZ_ENCODER_WINDOW = 16384;
+const LZ_ENCODER_MAX_MATCH = 1024;
+
+function buildLzMatchTable(history, bytes, positionLimit = bytes.length) {
+  const historyLength = history.length;
+  const combined = new Uint8Array(historyLength + bytes.length);
+  combined.set(history);
+  combined.set(bytes, historyLength);
+  const positions = new Map(), table = new Array(positionLimit);
   const keyAt = index => index + 2 < combined.length ? (combined[index] << 16) | (combined[index + 1] << 8) | combined[index + 2] : -1;
-  const add = index => { const key = keyAt(index); if (key < 0) return; const list = positions.get(key) || []; list.push(index); positions.set(key, list); };
-  for (let index = 0; index < historyLength; index++) add(index);
-  for (let position = 0; position < bytes.length; position++) {
+  const singleKey = positionLimit === 1 ? keyAt(historyLength) : null;
+  const add = index => {
+    const key = keyAt(index);
+    if (key < 0 || (singleKey !== null && key !== singleKey)) return;
+    const list = positions.get(key) || [];
+    list.push(index);
+    positions.set(key, list);
+  };
+  for (let index = Math.max(0, historyLength - LZ_ENCODER_WINDOW); index < historyLength; index++) add(index);
+  for (let position = 0; position < positionLimit; position++) {
     const target = historyLength + position, key = keyAt(target), prior = key < 0 ? [] : positions.get(key) || [];
-    const eligible = prior.filter(source => target - source <= 16384), sampled = eligible.length <= 10 ? eligible : [...eligible.slice(-6), eligible[0], eligible[Math.floor(eligible.length / 4)], eligible[Math.floor(eligible.length / 2)], eligible[Math.floor(eligible.length * 3 / 4)]];
+    const eligible = prior.length && target - prior[0] > LZ_ENCODER_WINDOW
+      ? prior.filter(source => target - source <= LZ_ENCODER_WINDOW)
+      : prior;
+    const sampled = eligible.length <= 10 ? eligible : [...eligible.slice(-6), eligible[0], eligible[Math.floor(eligible.length / 4)], eligible[Math.floor(eligible.length / 2)], eligible[Math.floor(eligible.length * 3 / 4)]];
     const matches = [];
-    for (const source of new Set(sampled)) { let length = 0; while (length < 1024 && position + length < bytes.length && combined[source + length] === combined[target + length]) length++; const distance = target - source; if (length >= 3) matches.push({ distance, length, metadata: varUintBitCost(distance - 1) }); }
+    for (const source of new Set(sampled)) { let length = 0; while (length < LZ_ENCODER_MAX_MATCH && position + length < bytes.length && combined[source + length] === combined[target + length]) length++; const distance = target - source; if (length >= 3) matches.push({ distance, length, metadata: varUintBitCost(distance - 1) }); }
     matches.sort((a, b) => b.length - a.length || a.metadata - b.metadata || a.distance - b.distance);
     table[position] = matches.filter((match, index) => !matches.slice(0, index).some(other => other.length >= match.length && other.metadata <= match.metadata)); add(target);
   }
@@ -276,6 +365,11 @@ function specialBodyWriter(url, structural) {
 
 function writeLiteral(writer, text, methods, history, segmentType = "path") {
   const bytes = textEncoder.encode(text), length = bytes.length;
+  let prefixCosts;
+  if (methods.arithmetic) {
+    prefixCosts = new Float64Array(length + 1);
+    for (let i = 0; i < length; i++) prefixCosts[i + 1] = prefixCosts[i] + staticBitLowerBounds[bytes[i]];
+  }
   const lzTable = methods.lz ? buildLzMatchTable(history, bytes) : null;
   const dp = Array(length + 1).fill(Infinity), choices = Array(length); dp[length] = 0;
   for (let position = length - 1; position >= 0; position--) {
@@ -292,8 +386,19 @@ function writeLiteral(writer, text, methods, history, segmentType = "path") {
     }
     const statisticalSizes = position % 4 === 0 ? [...new Set([32, 128, 512, ...(position === 0 ? [length] : [])])].filter(size => size <= length - position) : [];
     for (const size of statisticalSizes) {
-      const chunk = bytes.slice(position, position + size);
-      if (methods.arithmetic) { const bits = encodeArithmetic(chunk), cost = 8 + varUintBitCost(size) + varUintBitCost(bits.length) + bits.length + dp[position + size]; if (cost < dp[position]) { dp[position] = cost; choices[position] = { type: "arithmetic", length: size, bits }; } }
+      const chunk = bytes.subarray(position, position + size);
+      if (methods.arithmetic) {
+        const fixedCost = 8 + varUintBitCost(size) + dp[position + size];
+        const lower = Math.floor((prefixCosts[position + size] - prefixCosts[position]) / COST_UNITS_PER_BIT);
+        if (fixedCost + lower + varUintBitCost(lower) < dp[position]) {
+          const bits = encodeArithmetic(chunk);
+          const cost = fixedCost + bits.length + varUintBitCost(bits.length);
+          if (cost < dp[position]) {
+            dp[position] = cost;
+            choices[position] = { type: "arithmetic", length: size, bits };
+          }
+        }
+      }
       if (methods.contextArithmetic) for (const order of [0, 1]) {
         const bits = encodeContextArithmetic(chunk, segmentType, order), cost = 11 + varUintBitCost(size) + varUintBitCost(bits.length) + bits.length + dp[position + size];
         if (cost < dp[position]) { dp[position] = cost; choices[position] = { type: "contextArithmetic", length: size, bits, segmentType, order }; }
@@ -326,9 +431,14 @@ function encodeSegment(writer, value, features, methods, segmentType = "path", s
     if (match) {
       flush();
       const matchBytes = textEncoder.encode(value.slice(index, index + match.length));
-      const lz = methods.lz ? buildLzMatchTable(history, textEncoder.encode(value.slice(index)))[0][0] : null;
-      const lzCost = lz && matchBytes.length >= 3 && lz.length >= matchBytes.length ? 5 + varUintBitCost(lz.distance - 1) + varUintBitCost(matchBytes.length - 3) : Infinity;
-      if (lzCost < tokenBitCost(match)) { writer.write(0b11101, 5); writeVarUint(writer, lz.distance - 1); writeVarUint(writer, matchBytes.length - 3); }
+      const tokenCost = tokenBitCost(match);
+      const lzLengthCost = matchBytes.length >= 3 && matchBytes.length <= LZ_ENCODER_MAX_MATCH ? varUintBitCost(matchBytes.length - 3) : Infinity;
+      // The prefix costs five bits and even the shortest distance needs one more bit.
+      const canBeatToken = methods.lz && history.length && 6 + lzLengthCost < tokenCost;
+      const lz = canBeatToken ? buildLzMatchTable(history, textEncoder.encode(value.slice(index)), 1)[0][0] : null;
+      if (lz && lz.length >= matchBytes.length && 5 + lz.metadata + lzLengthCost < tokenCost) {
+        writer.write(0b11101, 5); writeVarUint(writer, lz.distance - 1); writeVarUint(writer, matchBytes.length - 3);
+      }
       else writeToken(writer, match);
       history.push(...matchBytes); index += match.length;
     }
@@ -340,13 +450,14 @@ function encodeSegment(writer, value, features, methods, segmentType = "path", s
   flush();
 }
 
-function encodeNormalBody(url, features, methods, structural) {
+function encodeNormalBody(url, features, methods, structural, literalQuery = null) {
   const writer = new BitWriter(), rawHost = new BitWriter();
   encodeSegment(rawHost, url.host, features, methods, "hostname");
   const compactHost = structural.hostname ? structuredHostWriter(url) : null;
   writer.append(compactHost && compactHost.bitLength < rawHost.bitLength ? compactHost : rawHost);
   encodeSegment(writer, url.pathname, features, methods, "path");
-  encodeSegment(writer, url.search, features, methods, "query");
+  if (literalQuery) writer.append(literalQuery);
+  else encodeSegment(writer, url.search, features, methods, "query");
   encodeSegment(writer, url.hash, features, methods, "fragment");
   return writer;
 }
@@ -363,18 +474,44 @@ function encodeGlobalRawBody(url, features, methods) {
   return writer;
 }
 
-function encodeQueryOneBlockBody(url, features, methods, structural) {
-  const writer = new BitWriter(), rawHost = new BitWriter(); encodeSegment(rawHost, url.host, features, methods, "hostname");
-  const compactHost = structural.hostname ? structuredHostWriter(url) : null; writer.append(compactHost && compactHost.bitLength < rawHost.bitLength ? compactHost : rawHost);
-  encodeSegment(writer, url.pathname, features, methods, "path"); if (url.search) writeLiteral(writer, url.search, methods, [], "query"); encodeSegment(writer, url.hash, features, methods, "fragment"); return writer;
+function mayHaveDirectBinaryToken(url) {
+  const body = url.host + url.pathname + url.search + url.hash;
+  for (const [run] of body.matchAll(/[A-Za-z0-9_-]{8,}/g)) {
+    if (/[a-f]/i.test(run) && /[\da-f]{8}/i.test(run)) return true;
+    if (run.length >= 12 && /[A-Z]/.test(run) && /[\d_-]/.test(run)) return true;
+  }
+  return false;
 }
 
-function bodyCandidates(url, features, methods, structural, options) {
-  const normal = encodeNormalBody(url, features, methods, structural), special = specialBodyWriter(url, structural);
-  const local = special && special.bitLength < normal.bitLength ? special : normal;
-  const alternatives = [{ writer: local, name: "localSegmented" }], global = options.globalRawStream ? encodeGlobalRawBody(url, features, methods) : null;
+function bodyCandidates(url, features, methods, structural, options, sharedWriters) {
+  const writers = sharedWriters ?? new Map();
+  const direct = features.directBinaryValues && mayHaveDirectBinaryToken(url);
+  const cached = (name, build, usesDirect = direct) => {
+    const key = `${usesDirect}:${methods.contextArithmetic}:${name}`;
+    if (!writers.has(key)) writers.set(key, build());
+    return writers.get(key);
+  };
+  const normal = () => cached("normal", () => encodeNormalBody(url, features, methods, structural));
+  const local = cached("localSegmented", () => {
+    const body = normal(), special = specialBodyWriter(url, structural);
+    return special && special.bitLength < body.bitLength ? special : body;
+  });
+  const alternatives = [{ writer: local, name: "localSegmented" }];
+  const global = options.globalRawStream ? cached("globalRawStream", () => encodeGlobalRawBody(url, features, methods)) : null;
   if (global) alternatives.push({ writer: global, name: "globalRawStream" });
-  if (options.queryOneBlock) alternatives.push({ writer: encodeQueryOneBlockBody(url, features, methods, structural), name: "queryAsOneBlock" });
+  if (options.queryOneBlock) {
+    const writer = cached("queryAsOneBlock", () => {
+      if (!url.search) return normal();
+      // The literal planner uses the query bytes and arithmetic settings only.
+      const query = cached("literalQuery", () => {
+        const block = new BitWriter();
+        writeLiteral(block, url.search, methods, [], "query");
+        return block;
+      }, false);
+      return encodeNormalBody(url, features, methods, structural, query);
+    });
+    alternatives.push({ writer, name: "queryAsOneBlock" });
+  }
   const choice = alternatives.reduce((best, candidate) => candidate.writer.bitLength < best.writer.bitLength ? candidate : best);
   return { local, global, candidateList: alternatives, selected: choice.writer, selectedRepresentation: choice.name, alternatives: Object.fromEntries(alternatives.map(item => [item.name, item.writer.bitLength])) };
 }
@@ -482,7 +619,7 @@ function readBody(reader, version, limits = {}) {
   }
 }
 
-export function compressDetailed(input, options = {}) {
+function planCompression(input, options, sharedWriters) {
   const url = new URL(input.includes("://") ? input : `https://${input}`);
   if (url.username || url.password) throw new Error("Credentials are not supported");
   if (url.protocol !== "http:" && url.protocol !== "https:") throw new Error("Only HTTP(S) URLs are supported");
@@ -490,11 +627,11 @@ export function compressDetailed(input, options = {}) {
   const methods = { huffman: options.huffman ?? true, lz: options.lz ?? true, arithmetic: options.arithmetic ?? true, contextArithmetic: options.contextArithmetic === true };
   const structural = options.structural === false ? { hostname: false, short: false, youtube: false, maps: false } : { hostname: true, short: true, youtube: true, maps: true, ...(options.structural || {}) };
   const candidateOptions = { globalRawStream: options.globalRawStream === true, queryOneBlock: options.queryOneBlock === true };
-  const candidates = bodyCandidates(url, features, methods, structural, candidateOptions);
+  const candidates = bodyCandidates(url, features, methods, structural, candidateOptions, sharedWriters);
   let baselineBodyBits = Math.min(candidates.local.bitLength, candidates.global?.bitLength ?? Infinity);
   if (features.directBinaryValues) {
     const baselineFeatures = { ...features, directBinaryValues: false };
-    const baseline = bodyCandidates(url, baselineFeatures, methods, structural, { globalRawStream: candidateOptions.globalRawStream, queryOneBlock: false });
+    const baseline = bodyCandidates(url, baselineFeatures, methods, structural, { globalRawStream: candidateOptions.globalRawStream, queryOneBlock: false }, sharedWriters);
     candidates.alternatives.directBinaryBaseline = baseline.selected.bitLength;
     candidates.candidateList.push(...baseline.candidateList.map(candidate => ({ ...candidate, name: `${candidate.name}WithoutDirectBinary` })));
     if (baseline.selected.bitLength <= candidates.selected.bitLength) { candidates.selected = baseline.selected; candidates.selectedRepresentation = baseline.selectedRepresentation; }
@@ -507,10 +644,16 @@ export function compressDetailed(input, options = {}) {
   const requestedAlphabet = options.outputAlphabet ?? "base64url";
   const alphabetNames = requestedAlphabet === "best" ? Object.keys(OUTPUT_ALPHABETS) : [requestedAlphabet];
   const finalized = [];
-  for (const candidate of candidates.candidateList) for (const outputAlphabet of alphabetNames) {
+  const seenWriters = new Set();
+  for (const candidate of candidates.candidateList) {
+    if (seenWriters.has(candidate.writer)) continue;
+    seenWriters.add(candidate.writer);
     const complete = new BitWriter(); writeFormatHeader(complete, version, url.protocol === "https:"); complete.append(candidate.writer); complete.write(0b11111, 5);
-    const bytes = complete.finish(), payload = encodeOutput(bytes, outputAlphabet);
-    finalized.push({ ...candidate, complete, bytes, payload, outputAlphabet });
+    const bytes = complete.finish();
+    for (const outputAlphabet of alphabetNames) {
+      const payload = encodeOutput(bytes, outputAlphabet);
+      finalized.push({ ...candidate, complete, bytes, payload, outputAlphabet });
+    }
   }
   const selected = finalized.reduce((best, candidate) => candidate.payload.length < best.payload.length || candidate.payload.length === best.payload.length && candidate.complete.bitLength < best.complete.bitLength ? candidate : best);
   candidates.selected = selected.writer; candidates.selectedRepresentation = selected.name.replace(/WithoutDirectBinary$/, "");
@@ -519,6 +662,7 @@ export function compressDetailed(input, options = {}) {
   if (candidates.selectedRepresentation !== "localSegmented" && candidates.selectedRepresentation !== "globalRawStream") selectedFeatures[candidates.selectedRepresentation] = (selectedFeatures[candidates.selectedRepresentation] || 0) + 1;
   return { payload, outputAlphabet: selected.outputAlphabet, bitLength: selected.complete.bitLength, plan: { version, outputAlphabet: selected.outputAlphabet, payloadCharacters: payload.length, bitLength: selected.complete.bitLength, selectedRepresentation: candidates.selectedRepresentation, selectedFeatures, alternativeBodyBits: candidates.alternatives, fixedFramingBits: version > 7 ? 12 : 9, localSegmentedBodyBits: candidates.local.bitLength, globalRawStreamBodyBits: candidates.global?.bitLength ?? null, baselineBodyBits, selectedBodyBits: candidates.selected.bitLength, savedBodyBits: candidates.local.bitLength - candidates.selected.bitLength, savedVsBaselineBits: baselineBodyBits - candidates.selected.bitLength } };
 }
+export function compressDetailed(input, options = {}) { return planCompression(input, options); }
 export function compress(input, options = {}) { return compressDetailed(input, options).payload; }
 export function compressCombinedDetailed(input, options = {}) {
   const outputAlphabet = options.outputAlphabet ?? "best";
@@ -530,7 +674,8 @@ export function compressCombinedDetailed(input, options = {}) {
     ["v7DirectBinary", { ...shared, globalRawStream: true, queryOneBlock: true, directBinaryValues: true }]
   ];
   if (options.contextArithmetic === true) variants.push(["v8ContextArithmetic", { ...shared, globalRawStream: true, queryOneBlock: true, directBinaryValues: true, contextArithmetic: true }]);
-  const measured = variants.map(([name, variantOptions]) => ({ name, detail: compressDetailed(input, variantOptions) })).filter(({ name, detail }) => name !== "v8ContextArithmetic" || (detail.plan.selectedFeatures.contextArithmeticOrder0 || 0) + (detail.plan.selectedFeatures.contextArithmeticOrder1 || 0) > 0);
+  const sharedWriters = new Map();
+  const measured = variants.map(([name, variantOptions]) => ({ name, detail: planCompression(input, variantOptions, sharedWriters) })).filter(({ name, detail }) => name !== "v8ContextArithmetic" || (detail.plan.selectedFeatures.contextArithmeticOrder0 || 0) + (detail.plan.selectedFeatures.contextArithmeticOrder1 || 0) > 0);
   const selected = measured.reduce((best, candidate) => candidate.detail.payload.length < best.detail.payload.length || candidate.detail.payload.length === best.detail.payload.length && candidate.detail.bitLength < best.detail.bitLength ? candidate : best);
   return {
     ...selected.detail,
@@ -539,6 +684,16 @@ export function compressCombinedDetailed(input, options = {}) {
   };
 }
 export function compressCombined(input, options = {}) { return compressCombinedDetailed(input, options).payload; }
+
+export function compressExactBody(url) {
+  const writer = new BitWriter();
+  writeFormatHeader(writer, 7, url.protocol === "https:");
+  const body = url.href.slice(url.protocol.length + 2);
+  const features = { ...DEFAULT_FEATURES, timestamps: false, directBinaryValues: true };
+  encodeSegment(writer, body, features, { huffman: true, lz: true, arithmetic: true });
+  writer.write(0b11111, 5);
+  return encodeOutput(writer.finish(), "safe65");
+}
 export function decompress(payload, options = {}) {
   const reader = new BitReader(decodeOutput(payload, options.outputAlphabet ?? "base64url")), header = readFormatHeader(reader);
   return `${header.secure ? "https" : "http"}://${readBody(reader, header.version, options.limits)}`;

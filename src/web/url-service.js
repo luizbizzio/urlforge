@@ -1,4 +1,4 @@
-import { compressMetaV7 } from "../meta-codec.js";
+import { compressBestUrl } from "../url-codec.js";
 import { INPUT_URL_MAX_BYTES } from "./config.js";
 
 const encoder = new TextEncoder();
@@ -19,9 +19,9 @@ export function validateDestination(input, maxBytes = INPUT_URL_MAX_BYTES) {
   return { url: parsed, normalizedUrl: parsed.href, inputBytes, destinationScheme: parsed.protocol.slice(0, -1) };
 }
 
-export function createCompressionResult(input, shortUrlBase) {
+export function createCompressionResult(input, shortUrlBase, mode = "auto") {
   const validated = validateDestination(input);
-  const encoded = compressMetaV7(validated.normalizedUrl);
+  const encoded = compressBestUrl(validated.normalizedUrl, mode);
   const shortUrl = `${shortUrlBase}${encoded.payload}`;
   const originalCharacters = validated.normalizedUrl.length;
   const savedCharacters = originalCharacters - shortUrl.length;
