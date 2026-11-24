@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://urlforge.luizbizzio.com/sitemap.xml
+Sitemap: https://uf.do/sitemap.xml
