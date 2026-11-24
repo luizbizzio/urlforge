@@ -15,10 +15,15 @@ const basePath = import.meta.env.BASE_URL;
 const shortcutPath = `${basePath}compress`;
 const incomingDestination = readShortcutDestination(window.location, basePath);
 const isShortcutPage = incomingDestination !== null || window.location.pathname.replace(/\/$/, "").toLowerCase() === shortcutPath.toLowerCase();
+const confirmationOption = elements["ask-before-opening"];
+const confirmationPreferenceKey = "urlforge-ask-before-opening";
 let currentResult = null, currentQr = null, qrPreviewUrl = null;
 let compressionRequest = 0;
 let hasSubmitted = false;
 let isCompressing = false;
+
+try { confirmationOption.checked = window.localStorage.getItem(confirmationPreferenceKey) === "true"; }
+catch { /* The option still works when storage is unavailable. */ }
 
 const errorMessageKey = error => {
   const code = error?.code;
@@ -150,7 +155,11 @@ function recompressWithOptions() {
 }
 
 elements.codec.addEventListener("change", recompressWithOptions);
-elements["ask-before-opening"].addEventListener("change", recompressWithOptions);
+confirmationOption.addEventListener("change", () => {
+  try { window.localStorage.setItem(confirmationPreferenceKey, String(confirmationOption.checked)); }
+  catch { /* Storage is optional for compression. */ }
+  recompressWithOptions();
+});
 elements["url-input"].addEventListener("input", () => {
   hasSubmitted = false;
   isCompressing = false;
@@ -167,7 +176,7 @@ elements["compress-form"].addEventListener("submit", async event => {
   const request = ++compressionRequest;
   const input = elements["url-input"].value;
   const mode = elements.codec.value;
-  const askBeforeOpening = elements["ask-before-opening"].checked;
+  const askBeforeOpening = confirmationOption.checked;
   const started = performance.now();
   try {
     const { createCompressionResult } = await import("./url-service.js");
@@ -263,6 +272,8 @@ elements["download-png"].addEventListener("click", async () => {
 if (isShortcutPage) {
   root.dataset.entry = "shortcut";
   document.title = "Compress a link · URLForge";
+  elements["shortcut-options"].append(elements["confirmation-option"]);
+  elements["shortcut-options"].hidden = false;
   if (incomingDestination !== null) window.history.replaceState({ urlForgeShortcut: incomingDestination }, "", shortcutPath);
   const destination = window.history.state?.urlForgeShortcut;
   if (typeof destination === "string") {

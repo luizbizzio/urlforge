@@ -100,7 +100,7 @@ main { flex: 1; }
 .entry-brand { display: none; }
 :root[data-entry] .site-header,
 :root[data-entry="redirect"] #app-view,
-:root[data-entry="shortcut"] :is(.hero, .help),
+:root[data-entry="shortcut"] :is(.hero, .help, #example-button),
 :root[data-entry]:not([data-entry-ready]) :is(.entry-brand, #app-view) { display: none; }
 :root[data-entry] .site-main {
   display: flex;
@@ -112,6 +112,7 @@ main { flex: 1; }
 :root[data-entry][data-entry-ready] .entry-brand { display: inline-flex; margin-bottom: 20px; }
 :root[data-entry] :is(.app-view, .redirect-card) { width: min(100%, 560px); }
 :root[data-entry="shortcut"] .app-view { padding: 0; }
+:root[data-entry="shortcut"] :is(.workspace-input, .workspace-output) { padding-bottom: 10px; }
 :root[data-entry="shortcut"] .workspace-input[hidden] + .workspace-output { border-top: 0; }
 .shortcut-edit { min-height: 28px; }
 .hero {
@@ -145,8 +146,8 @@ main { flex: 1; }
   border-radius: 18px;
 }
 
-.forge-card { box-shadow: 0 16px 40px rgb(0 0 0 / .23); overflow: hidden; }
-.workspace-input, .workspace-output { padding: clamp(18px, 3.5vw, 30px); }
+.forge-card { --workspace-padding: clamp(18px, 3.5vw, 30px); box-shadow: 0 16px 40px rgb(0 0 0 / .23); overflow: hidden; }
+.workspace-input, .workspace-output { padding: var(--workspace-padding); }
 .workspace-output { border-top: 1px solid var(--rule); }
 .field-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; }
 .field-heading label, .field-heading h2 { margin: 0; font-size: 16px; letter-spacing: -.02em; font-weight: 750; }
@@ -185,6 +186,8 @@ textarea::placeholder { color: #a89585; }
   cursor: pointer;
 }
 .confirmation-option input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+.shortcut-options { padding: 0 var(--workspace-padding) 14px; }
+.shortcut-options .confirmation-option { margin: 0; }
 .text-button {
   min-height: 38px;
   padding: 0;

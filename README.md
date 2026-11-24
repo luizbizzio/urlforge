@@ -113,6 +113,6 @@ For local Cloudflare testing, apply migrations with `--local` and use `npx wrang
 
 ## Privacy and portability
 
-Only the language preference is stored in `localStorage`. Link history is not stored. If telemetry is disabled, offline, blocked, or misconfigured, the compressor and redirect flow continue normally.
+The **Ask before opening** preference is saved in browser storage for the current domain. The address-bar shortcut uses session history to restore its current input on reload. If telemetry is disabled, offline, blocked, or misconfigured, the compressor and redirect flow continue normally.
 
 The vendored ha.mr code remains unmodified and retains its own license in `vendor/ha.mr/LICENSE`.
