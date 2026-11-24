@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://urlforge.luizbizzio.com/sitemap.xml

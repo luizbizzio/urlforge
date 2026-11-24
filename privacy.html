@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#100e17">
+    <meta name="theme-color" content="#141210">
+    <meta name="description" content="Learn how URLForge compresses URLs in your browser and which technical metrics can be collected when telemetry is enabled.">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
     <title>Privacy · URLForge</title>
-    <link rel="icon" type="image/png" href="./brand.png">
+    <link rel="canonical" href="https://urlforge.luizbizzio.com/privacy.html">
+    <link rel="icon" type="image/png" sizes="64x64" href="./brand-forge.png">
     <link rel="stylesheet" href="/src/web/styles.css">
   </head>
   <body>
     <div class="site-shell privacy-shell">
       <header class="site-header">
-        <a class="brand" href="./"><img class="brand-mark" src="./brand.png" width="32" height="32" alt=""><span>URL<strong>Forge</strong></span></a>
+        <a class="brand" href="./"><img class="brand-mark" src="./brand-forge.png" width="40" height="40" alt=""><span>URL<strong>Forge</strong></span></a>
         <div class="language-control"><label for="language" data-i18n="languageLabel">Language</label><select id="language"><option value="en" data-i18n="languageEn">English</option><option value="pt-BR" data-i18n="languagePt">Português</option></select></div>
       </header>
       <main class="privacy-card">
-        <h1 data-i18n="privacyTitle"></h1>
-        <p class="lead" data-i18n="privacyIntro"></p>
-        <section><h2 data-i18n="privacyNoStorageTitle"></h2><p data-i18n="privacyNoStorageBody"></p></section>
-        <section><h2 data-i18n="privacyMetricsTitle"></h2><p data-i18n="privacyMetricsBody"></p></section>
-        <section><h2 data-i18n="privacyOptionalTitle"></h2><p data-i18n="privacyOptionalBody"></p></section>
-        <a class="button secondary" href="./" data-i18n="privacyBack"></a>
+        <h1 data-i18n="privacyTitle">Privacy</h1>
+        <p class="lead" data-i18n="privacyIntro">URLForge is designed to work locally in your browser.</p>
+        <section><h2 data-i18n="privacyNoStorageTitle">URLs are not stored</h2><p data-i18n="privacyNoStorageBody">The original URL, payload, and compressed link are not sent to or stored by the telemetry service.</p></section>
+        <section><h2 data-i18n="privacyMetricsTitle">Minimal technical metrics</h2><p data-i18n="privacyMetricsBody">When an installation enables optional telemetry, only technical counts and sizes are sent. They do not identify users.</p></section>
+        <section><h2 data-i18n="privacyOptionalTitle">Optional telemetry</h2><p data-i18n="privacyOptionalBody">Self-hosted installations can leave it disabled. Telemetry failures never block compression, QR generation, decoding, or redirects.</p></section>
+        <a class="button secondary" href="./" data-i18n="privacyBack">Back</a>
       </main>
     </div>
     <script type="module" src="/src/web/privacy.js"></script>

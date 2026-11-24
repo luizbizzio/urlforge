@@ -4,19 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#100e17">
-    <meta name="description" content="Compress and share links directly in your browser with URLForge.">
+    <meta name="theme-color" content="#141210">
+    <meta name="description" content="Compress long URLs into self-contained links on uf.do. URLForge is a free browser-based URL compressor with no account and built-in QR codes.">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'">
-    <title>URLForge</title>
-    <link rel="icon" type="image/png" href="./brand.png">
+    <title>URLForge — Free URL Compressor &amp; Link Shortener</title>
+    <link rel="canonical" href="https://urlforge.luizbizzio.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="URLForge">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://urlforge.luizbizzio.com/">
+    <meta property="og:title" content="URLForge — Free URL Compressor">
+    <meta property="og:description" content="Forge shorter links directly in your browser. The link carries its own destination.">
+    <meta property="og:image" content="https://urlforge.luizbizzio.com/forge-social.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="URLForge with forged steel links glowing orange">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="URLForge — Free URL Compressor">
+    <meta name="twitter:description" content="Forge shorter links directly in your browser. The link carries its own destination.">
+    <meta name="twitter:image" content="https://urlforge.luizbizzio.com/forge-social.jpg">
+    <meta name="twitter:image:alt" content="URLForge with forged steel links glowing orange">
+    <link rel="icon" type="image/png" sizes="64x64" href="./brand-forge.png">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "URLForge",
+        "alternateName": "URL Forge",
+        "url": "https://urlforge.luizbizzio.com/"
+      }
+    </script>
     <link rel="stylesheet" href="/src/web/styles.css">
   </head>
   <body>
     <div class="site-shell">
       <header class="site-header">
         <a class="brand" href="./">
-          <img class="brand-mark" src="./brand.png" width="32" height="32" alt="">
+          <img class="brand-mark" src="./brand-forge.png" width="40" height="40" alt="">
           <span>URL<strong>Forge</strong></span>
         </a>
         <div class="language-control">
@@ -31,8 +56,11 @@
       <main>
         <section id="app-view" class="app-view">
           <div class="hero">
-            <h1 data-i18n="heroTitle">Compress a link.</h1>
-            <p data-i18n="heroDescription">Runs entirely in your browser.</p>
+            <div class="hero-copy">
+              <h1><span data-i18n="heroTitle">URL compressor.</span> <span class="hero-accent" data-i18n="heroAccent">In your browser.</span></h1>
+              <p data-i18n="heroDescription">Turn a long URL into a link that carries its own destination. Share it directly or generate a QR code, with no account required.</p>
+            </div>
+            <img class="hero-art" src="./forge-hero.webp" width="768" height="576" alt="" fetchpriority="high">
           </div>
 
           <section class="forge-card" aria-labelledby="input-label">
@@ -94,6 +122,22 @@
               <button class="button secondary" id="download-png" type="button" data-i18n="qrDownloadPng"></button>
             </div>
           </section>
+
+          <section class="help" aria-labelledby="help-title">
+            <h2 id="help-title" data-i18n="helpTitle">How URL compression works</h2>
+            <details>
+              <summary data-i18n="helpStorageTitle">Where is the destination stored?</summary>
+              <p data-i18n="helpStorageBody">The compressed address lives in the part of the link after the #. When someone opens the link, URLForge restores the address in their browser and sends them to the original destination.</p>
+            </details>
+            <details>
+              <summary data-i18n="helpLengthTitle">Why is my link sometimes longer?</summary>
+              <p data-i18n="helpLengthBody">Repeated words and parameters tend to compress well. Very short URLs or random IDs have less room for savings. The result compares both addresses, including the short domain.</p>
+            </details>
+            <details>
+              <summary data-i18n="helpCodecTitle">Which codec should I choose?</summary>
+              <p data-i18n="helpCodecBody">Leave it on Automatic to get the shortest version that preserves your URL exactly. Choose URLForge or ha.mr to try a specific codec.</p>
+            </details>
+          </section>
         </section>
 
         <section id="redirect-view" class="redirect-card" hidden>
@@ -105,8 +149,8 @@
       </main>
 
       <footer>
-        <a href="./privacy.html" data-i18n="footerPrivacy"></a>
-        <a href="https://github.com/luizbizzio/urlforge" data-i18n="footerSource"></a>
+        <a href="./privacy.html" data-i18n="footerPrivacy">Privacy</a>
+        <a href="https://github.com/luizbizzio/urlforge" data-i18n="footerSource">GitHub</a>
       </footer>
     </div>
     <script type="module" src="/src/web/app.js"></script>
