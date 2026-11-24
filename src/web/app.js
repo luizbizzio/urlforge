@@ -1,20 +1,19 @@
 import { isExactPayload, MetaCodecError, tryDecompress as tryLegacy } from "../meta-codec.js";
 import { isCompactFragment } from "../output-encoding.js";
 import { INPUT_URL_MAX_BYTES, QR_MAX_LINK_CHARACTERS, resolvePublicConfig } from "./config.js";
-import { applyTranslations, detectLocale, LOCALE_STORAGE_KEY, translate } from "./i18n.js";
+import { readLinkFragment } from "./link-fragment.js";
+import { message } from "./messages.js";
 import { createQrArtifacts, QrCodeError, renderQrPngBlob } from "./qr.js";
 import { createTelemetryEvent, sendTelemetry } from "./telemetry.js";
 
 const elements = Object.fromEntries([...document.querySelectorAll("[id]")].map(element => [element.id, element]));
 const encoder = new TextEncoder();
 const config = resolvePublicConfig(import.meta.env, window.location);
-let storedLocale = null;
-try { storedLocale = localStorage.getItem(LOCALE_STORAGE_KEY); } catch { /* Language storage is optional. */ }
-let locale = detectLocale({ storedLocale });
-let currentResult = null, currentQr = null, qrPreviewUrl = null, statusState = null;
+let currentResult = null, currentQr = null, qrPreviewUrl = null;
 let compressionRequest = 0;
+let hasSubmitted = false;
 
-const errorTranslation = error => {
+const errorMessageKey = error => {
   const code = error?.code;
   if (code === "INVALID_URL") return "errorInvalidUrl";
   if (code === "INVALID_SCHEME") return "errorScheme";
@@ -25,18 +24,17 @@ const errorTranslation = error => {
   return "errorGeneric";
 };
 
-function setStatus(key, type = "success", values = {}) {
-  statusState = { key, type, values };
-  elements.status.textContent = translate(locale, key, values);
+function setStatus(key, type = "success") {
+  elements.status.textContent = message(key);
   elements.status.className = `status ${type}`;
   elements.status.hidden = false;
 }
 
-function clearStatus() { statusState = null; elements.status.hidden = true; elements.status.textContent = ""; }
+function clearStatus() { elements.status.hidden = true; elements.status.textContent = ""; }
 
 function renderCounter() {
   const used = encoder.encode(elements["url-input"].value).length;
-  elements["byte-counter"].textContent = translate(locale, "byteCounter", { used, limit: INPUT_URL_MAX_BYTES });
+  elements["byte-counter"].textContent = message("byteCounter", { used, limit: INPUT_URL_MAX_BYTES });
   elements["byte-counter"].classList.toggle("over-limit", used > INPUT_URL_MAX_BYTES);
   return used;
 }
@@ -44,13 +42,13 @@ function renderCounter() {
 function renderResult() {
   if (!currentResult) return;
   elements["short-url"].value = currentResult.shortUrl;
-  elements["final-chars"].textContent = translate(locale, "charsUnit", { count: currentResult.finalShortUrlCharacters });
+  elements["final-chars"].textContent = message("charsUnit", { count: currentResult.finalShortUrlCharacters });
   const savingKey = currentResult.savedCharacters >= 0 ? "savingsValue" : "noSavingsValue";
-  elements["saved-chars"].textContent = translate(locale, savingKey, { count: Math.abs(currentResult.savedCharacters), percent: Math.abs(currentResult.savingsPercent).toFixed(1) });
+  elements["saved-chars"].textContent = message(savingKey, { count: Math.abs(currentResult.savedCharacters), percent: Math.abs(currentResult.savingsPercent).toFixed(1) });
   const qrTooLong = currentResult.finalShortUrlCharacters > QR_MAX_LINK_CHARACTERS;
   elements["qr-button"].disabled = qrTooLong;
   elements["qr-limit-message"].hidden = !qrTooLong;
-  elements["qr-limit-message"].textContent = qrTooLong ? translate(locale, "qrTooLong") : "";
+  elements["qr-limit-message"].textContent = qrTooLong ? message("qrTooLong") : "";
   elements.result.hidden = false;
 }
 
@@ -59,16 +57,8 @@ function resetResult() {
   elements.result.hidden = true;
 }
 
-function renderLanguage() {
-  applyTranslations(document, locale);
-  elements.language.value = locale;
-  renderCounter();
-  renderResult();
-  if (statusState) setStatus(statusState.key, statusState.type, statusState.values);
-}
-
 function emit(eventType, fields) {
-  sendTelemetry(createTelemetryEvent(eventType, { ...fields, locale }), { endpoint: config.telemetryEndpoint });
+  sendTelemetry(createTelemetryEvent(eventType, { ...fields, locale: "en" }), { endpoint: config.telemetryEndpoint });
 }
 
 function releaseQr() {
@@ -88,61 +78,70 @@ async function handleRedirect() {
   const hasPayload = Boolean(hash && hash !== "#");
   elements["app-view"].hidden = hasPayload;
   elements["redirect-view"].hidden = !hasPayload;
+  elements["redirect-confirmation"].hidden = true;
+  elements["redirect-continue"].removeAttribute("href");
   if (!hasPayload) return;
-  elements["redirect-title"].textContent = translate(locale, "resolvingTitle");
-  elements["redirect-description"].textContent = translate(locale, "resolvingDescription");
+  elements["redirect-title"].textContent = "Opening link…";
+  elements["redirect-description"].textContent = "The payload is being decoded locally.";
   elements["redirect-back"].hidden = true;
-  const spinner = document.querySelector(".spinner");
+  const spinner = elements["redirect-spinner"];
   spinner.hidden = false;
   const started = performance.now();
-  const payload = hash.slice(1);
+  const { payload, askBeforeOpening } = readLinkFragment(hash);
   let result;
   try {
     const decode = isExactPayload(payload) || isCompactFragment(payload) ? (await import("../url-codec.js")).tryDecompress : tryLegacy;
     result = decode(payload);
   } catch { result = { ok: false, error: { code: "INVALID_FORGE_PAYLOAD" } }; }
   if (window.location.hash !== hash) return;
+  let destinationScheme;
+  let errorCode = result.error?.code;
   if (result.ok) {
-    const destinationScheme = new URL(result.value).protocol.slice(0, -1);
+    const destination = new URL(result.value);
+    destinationScheme = destination.protocol.slice(0, -1);
     try {
-      window.location.replace(result.value);
+      if (askBeforeOpening) {
+        spinner.hidden = true;
+        elements["redirect-title"].textContent = "Continue to this site?";
+        elements["redirect-description"].textContent = "Check the destination before opening this link.";
+        elements["redirect-host"].textContent = destination.host;
+        elements["redirect-url"].textContent = result.value;
+        elements["redirect-continue"].href = result.value;
+        elements["redirect-confirmation"].hidden = false;
+        elements["redirect-title"].focus({ preventScroll: true });
+      } else {
+        window.location.replace(result.value);
+      }
       emit("resolve_success", { destinationScheme, durationMs: performance.now() - started });
+      return;
     } catch {
-      emit("resolve_failure", { destinationScheme, durationMs: performance.now() - started, errorCode: "REDIRECT_ATTEMPT_FAILED" });
-      elements["redirect-title"].textContent = translate(locale, "redirectErrorTitle");
-      elements["redirect-description"].textContent = translate(locale, "redirectErrorDescription");
-      elements["redirect-back"].hidden = false;
-      spinner.hidden = true;
+      errorCode = "REDIRECT_ATTEMPT_FAILED";
     }
-  } else {
-    emit("resolve_failure", { durationMs: performance.now() - started, errorCode: result.error.code });
-    elements["redirect-title"].textContent = translate(locale, "redirectErrorTitle");
-    elements["redirect-description"].textContent = translate(locale, "redirectErrorDescription");
-    elements["redirect-back"].hidden = false;
-    spinner.hidden = true;
   }
+  emit("resolve_failure", { destinationScheme, durationMs: performance.now() - started, errorCode });
+  elements["redirect-title"].textContent = "This link could not be opened";
+  elements["redirect-description"].textContent = "The payload is invalid, corrupted, or exceeds the safe limits.";
+  elements["redirect-back"].hidden = false;
+  spinner.hidden = true;
 }
-
-elements.language.addEventListener("change", () => {
-  locale = elements.language.value;
-  try { localStorage.setItem(LOCALE_STORAGE_KEY, locale); } catch { /* Language storage is optional. */ }
-  renderLanguage();
-});
 
 elements["example-button"].addEventListener("click", () => {
   elements["url-input"].value = "https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains";
   renderCounter();
   elements["compress-form"].requestSubmit();
 });
-elements.codec.addEventListener("change", () => {
-  const hadAttempt = currentResult !== null || statusState !== null;
+function recompressWithOptions() {
   compressionRequest++;
   resetResult();
   clearStatus();
   releaseQr();
-  if (hadAttempt && elements["url-input"].value.trim()) elements["compress-form"].requestSubmit();
-});
+  if (hasSubmitted && elements["url-input"].value.trim()) elements["compress-form"].requestSubmit();
+}
+
+elements.codec.addEventListener("change", recompressWithOptions);
+elements["ask-before-opening"].addEventListener("change", recompressWithOptions);
 elements["url-input"].addEventListener("input", () => {
+  hasSubmitted = false;
   compressionRequest++;
   resetResult();
   clearStatus();
@@ -151,14 +150,16 @@ elements["url-input"].addEventListener("input", () => {
 });
 elements["compress-form"].addEventListener("submit", async event => {
   event.preventDefault(); clearStatus(); releaseQr();
+  hasSubmitted = true;
   const request = ++compressionRequest;
   const input = elements["url-input"].value;
   const mode = elements.codec.value;
+  const askBeforeOpening = elements["ask-before-opening"].checked;
   const started = performance.now();
   try {
     const { createCompressionResult } = await import("./url-service.js");
     if (request !== compressionRequest || input !== elements["url-input"].value) return;
-    currentResult = createCompressionResult(input, config.shortUrlBase, mode);
+    currentResult = createCompressionResult(input, config.shortUrlBase, mode, { askBeforeOpening });
     renderResult(); setStatus("compressionSuccess");
     emit("compress_success", {
       originalUrlBytes: currentResult.inputBytes,
@@ -174,12 +175,13 @@ elements["compress-form"].addEventListener("submit", async event => {
     if (request !== compressionRequest || input !== elements["url-input"].value) return;
     resetResult();
     const normalizedError = error?.name === "UrlInputError" || error instanceof MetaCodecError ? error : { code: "COMPRESSION_FAILED" };
-    setStatus(errorTranslation(normalizedError), "error");
+    setStatus(errorMessageKey(normalizedError), "error");
     emit("compress_failure", { originalUrlBytes: renderCounter(), durationMs: performance.now() - started, errorCode: normalizedError.code });
   }
 });
 
 elements["clear-button"].addEventListener("click", () => {
+  hasSubmitted = false;
   compressionRequest++;
   elements["url-input"].value = "";
   resetResult();
@@ -212,6 +214,6 @@ elements["download-png"].addEventListener("click", async () => {
   catch { setStatus("qrFailure", "error"); }
 });
 
-renderLanguage();
+renderCounter();
 handleRedirect();
 window.addEventListener("hashchange", handleRedirect);

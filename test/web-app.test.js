@@ -2,10 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { INPUT_URL_MAX_BYTES, QR_MAX_LINK_CHARACTERS, resolvePublicConfig } from "../src/web/config.js";
-import { detectLocale, translate } from "../src/web/i18n.js";
 import { createQrArtifacts, createQrModel, QrCodeError, renderQrPngBlob } from "../src/web/qr.js";
 import { resolvePayloadFragment } from "../src/web/redirect.js";
-import { translations } from "../src/web/translations.js";
 import { createCompressionResult, UrlInputError, validateDestination } from "../src/web/url-service.js";
 
 const localLocation = { origin: "http://localhost:5173", href: "http://localhost:5173/" };
@@ -87,18 +85,27 @@ test("the four official hosts generate uf.do links and self-hosted instances kee
   assert.equal(resolvePublicConfig({}, new URL("https://selfhost.example/")).shortUrlBase, "https://selfhost.example/#");
 });
 
-test("i18n defaults to English, remembers the chosen language, and keeps translation keys aligned", () => {
-  assert.equal(detectLocale({ browserLanguages: ["pt-BR"] }), "en");
-  assert.equal(detectLocale({ browserLanguages: ["fr-FR"] }), "en");
-  assert.equal(detectLocale({ storedLocale: "pt-BR" }), "pt-BR");
-  assert.equal(detectLocale({ storedLocale: "en", browserLanguages: ["pt-BR"] }), "en");
-  assert.equal(translate("pt-BR", "copyButton"), "Copiar");
-  assert.equal(translate("en", "copyButton"), "Copy");
-  assert.deepEqual(Object.keys(translations["pt-BR"]).sort(), Object.keys(translations.en).sort());
+test("optional confirmation wraps each codec payload without changing the destination", () => {
+  const base = "https://uf.do/#";
+  const destination = "https://example.com/articles/how-we-built-a-language-model?x=1#original%20fragment";
+  for (const mode of ["forge", "hamr", "auto"]) {
+    const direct = createCompressionResult(destination, base, mode);
+    const confirmed = createCompressionResult(destination, base, mode, { askBeforeOpening: true });
+    assert.equal(direct.shortUrl, `${base}${direct.payload}`, mode);
+    assert.equal(confirmed.shortUrl, `${base}:${direct.payload}`, mode);
+    assert.equal(confirmed.payloadCharacters, direct.payloadCharacters);
+    assert.equal(confirmed.finalShortUrlCharacters, direct.finalShortUrlCharacters + 1);
+    for (const [result, askBeforeOpening] of [[direct, false], [confirmed, true]]) {
+      const fragment = new URL(result.shortUrl).hash;
+      assert.deepEqual(resolvePayloadFragment(fragment), { ok: true, destination, destinationScheme: "https", askBeforeOpening });
+    }
+  }
+  assert.equal(resolvePayloadFragment("#:").ok, false);
+  assert.equal(resolvePayloadFragment("#::").ok, false);
 });
 
 test("QR SVG and PNG are generated locally from the exact short URL", async () => {
-  const shortUrl = "https://uf.example/#.AbCd0123_-~";
+  const shortUrl = "https://uf.example/#:.AbCd0123_-~";
   const artifacts = createQrArtifacts(shortUrl);
   assert.equal(artifacts.content, shortUrl);
   assert.equal(artifacts.model.content, shortUrl);

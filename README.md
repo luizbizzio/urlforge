@@ -78,7 +78,7 @@ Run `npm ci && npm run build`, then publish the entire `dist/` directory. This w
 - Vercel: framework preset `Vite`, build command `npm run build`, output directory `dist`.
 - GitHub Pages: publish `dist/` and set `PUBLIC_SHORT_URL_BASE` to the deployed project URL ending in `/#` when using a repository subpath.
 
-The host must serve `index.html` at the configured short-link base. No redirect API is required because payloads are stored in the URL fragment.
+The host must serve `index.html` at the configured short-link base. No redirect API is required because payloads are stored in the URL fragment. Links beginning with `#` followed by the payload redirect automatically. Enable **Ask before opening** to generate a link with `#:` before the payload. URLForge then shows the destination and waits for the visitor to continue.
 
 ## Optional Cloudflare telemetry
 
