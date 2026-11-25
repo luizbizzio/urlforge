@@ -556,6 +556,8 @@ The [current suffix benchmark](src/suffix-benchmark.js) measures the full link l
 
 The evaluation uses generated development, holdout and unseen inputs, a [public Hacker News sample](test/fixtures/hacker-news-2026-11-23.txt) and optional data from the [Ada URL dataset](https://github.com/ada-url/url-dataset). The [historical reports](reports/) contain earlier research results, not a fresh benchmark for the current selector.
 
+Benchmarks that write files save new reports and checkpoints in `reports/generated/`.
+
 The interesting result is not that every URL gets shorter. It is that a browser can recover a complete address from a compact representation using nothing more than the information carried by the link and the decoder's shared rules.
 
 ## Credits and license

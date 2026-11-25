@@ -41,6 +41,9 @@ const datasets = {
   unseen: runDataset("unseen", buildUnseenDataset(40))
 };
 const report = { generatedAt: new Date().toISOString(), prefix: PREFIX, candidates, payloadOverhead: { fixedFormatBits: 9, fixedFormatDescription: "3-bit version, 1-bit protocol, 5-bit terminator", literalHeaderBits: 6, huffmanHeaderBits: 10, lzHeaderBits: 5, statisticalHeaderBits: 8, completeLinkPrefixCharacters: PREFIX.length, note: "Every planner cost includes variable-length lengths and encoded block data." }, sourceSize: { codecBytes: statSync(new URL("./codec.js", import.meta.url)).size, benchmarkBytes: statSync(new URL("./advanced-benchmark.js", import.meta.url)).size }, datasets };
-mkdirSync("reports", { recursive: true }); writeFileSync("reports/advanced-compression-report.json", JSON.stringify(report, null, 2));
+const reportPath = "reports/generated/advanced-compression-report.json";
+mkdirSync("reports/generated", { recursive: true });
+writeFileSync(reportPath, JSON.stringify(report, null, 2));
 for (const dataset of Object.values(datasets)) { console.log(`\n${dataset.name}: ${dataset.count} URLs, ha.mr invalid ${dataset.hamrInvalid}`); console.table(Object.fromEntries(Object.entries(dataset.candidates).map(([name, value]) => [name, { average: value.payload.average.toFixed(2), median: value.payload.median.toFixed(2), p90: value.payload.p90.toFixed(2), p95: value.payload.p95.toFixed(2), max: value.payload.maximum, wins: value.versusHamr.wins, losses: value.versusHamr.losses, ties: value.versusHamr.ties, encodeMs: value.compressionMs.average.toFixed(3), decodeMs: value.decompressionMs.average.toFixed(3), roundTrips: `${value.roundTrips}/${dataset.count}` }]))); }
-console.log("\nOverhead", report.payloadOverhead, "source", report.sourceSize); console.log("Report: reports/advanced-compression-report.json");
+console.log("\nOverhead", report.payloadOverhead, "source", report.sourceSize);
+console.log(`Report: ${reportPath}`);

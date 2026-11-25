@@ -19,10 +19,11 @@ const stopArgument = process.argv.find(value => value.startsWith("--stop-after="
 const stopAfter = stopArgument ? Number(stopArgument.split("=")[1]) : Infinity;
 const reportBase = structureAblationBenchmark ? "generic-structure-ablation" : globalStreamBenchmark ? "global-raw-stream-benchmark" : "local-benchmark";
 const suffix = sample ? "-sample" : "";
+const reportDirectory = "reports/generated";
 const paths = {
-  checkpoint: `reports/${reportBase}${suffix}-checkpoint.json`,
-  json: `reports/${reportBase}${suffix}-report.json`,
-  csv: `reports/${reportBase}${suffix}-report.csv`
+  checkpoint: `${reportDirectory}/${reportBase}${suffix}-checkpoint.json`,
+  json: `${reportDirectory}/${reportBase}${suffix}-report.json`,
+  csv: `${reportDirectory}/${reportBase}${suffix}-report.csv`
 };
 
 const standardCandidates = Object.freeze({
@@ -129,7 +130,7 @@ const signatureInput = targetedBenchmark
   ? { schema: 2, benchmark: structureAblationBenchmark ? "genericStructureAblation" : "globalRawStream", sample, candidates: executableCandidates, aliases, datasets: datasetSignatures }
   : { schema: 1, sample, candidates: executableCandidates, aliases, datasets: datasetSignatures };
 const signature = createHash("sha256").update(JSON.stringify(signatureInput)).digest("hex");
-mkdirSync("reports", { recursive: true });
+mkdirSync(reportDirectory, { recursive: true });
 if (reset) for (const path of Object.values(paths)) rmSync(path, { force: true });
 
 let checkpoint;

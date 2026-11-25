@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A reversible, client-side URL compressor and static web app.",
   "private": true,
-  "license": "MIT",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

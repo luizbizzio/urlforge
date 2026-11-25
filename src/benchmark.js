@@ -61,9 +61,11 @@ const hamrSummary = summarize(hamrPayloads), report = {
   alphabet: SHARED_ALPHABET.join(""), originalLength: summarize(rows.map(row => row.originalLength)), variants: summaries, featureResults,
   hamr: { payload: hamrSummary, completeLink: { average: hamrSummary.average + hamrPrefix.length, median: hamrSummary.median + hamrPrefix.length, p90: hamrSummary.p90 + hamrPrefix.length, min: hamrSummary.min + hamrPrefix.length, max: hamrSummary.max + hamrPrefix.length }, exactRoundTrips: exactHamr, normalizationDifferences: normalizedHamr, invalidRoundTrips: invalidHamr, failureReasons }, rows
 };
-mkdirSync("reports", { recursive: true }); writeFileSync("reports/benchmark-report.json", JSON.stringify(report, null, 2));
+const reportPath = "reports/generated/benchmark-report.json";
+mkdirSync("reports/generated", { recursive: true });
+writeFileSync(reportPath, JSON.stringify(report, null, 2));
 console.log(`Dataset: ${dataset.length}; shared Base64URL alphabet; prefixes ${forgePrefix} / ${hamrPrefix} (${forgePrefix.length} each)`);
 console.table(Object.fromEntries(Object.entries(summaries).map(([name, value]) => [name, { average: value.payload.average.toFixed(2), median: value.payload.median.toFixed(2), p90: value.payload.p90.toFixed(2), fullLink: value.completeLink.average.toFixed(2), roundTrips: `${value.roundTrips}/${dataset.length}`, wins: value.versusHamr.payload.wins, losses: value.versusHamr.payload.losses, ties: value.versusHamr.payload.ties }])));
 console.log("Accounting invariant:", Object.fromEntries(Object.entries(summaries).map(([name, value]) => [name, JSON.stringify(value.versusHamr.payload) === JSON.stringify(value.versusHamr.completeLink)])));
 console.log("Feature decisions:"); console.table(Object.fromEntries(Object.entries(featureResults).map(([name, value]) => [name, { averageDelta: value.averageDelta.toFixed(3), medianDelta: value.medianDelta.toFixed(3), p90Delta: value.p90Delta.toFixed(3), keep: value.keep }])));
-console.log("Report: reports/benchmark-report.json");
+console.log(`Report: ${reportPath}`);

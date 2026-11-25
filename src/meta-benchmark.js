@@ -53,13 +53,17 @@ const report = {
   roundTripSuccess: `${roundTrips}/${rows.length}`, timing: { compressionAverageMs: compressionMs / rows.length, decompressionAverageMs: decompressionMs / rows.length },
   sourceSize: { metaCodecBytes: statSync(new URL("./meta-codec.js", import.meta.url)).size }, traces
 };
-mkdirSync("reports", { recursive: true });
-writeFileSync("reports/meta-v7-sample-report.json", JSON.stringify(report, null, 2));
+const reportDirectory = "reports/generated";
+const jsonPath = `${reportDirectory}/meta-v7-sample-report.json`;
+const csvPath = `${reportDirectory}/meta-v7-sample-report.csv`;
+mkdirSync(reportDirectory, { recursive: true });
+writeFileSync(jsonPath, JSON.stringify(report, null, 2));
 const header = ["index", "category", "selected", "forge_chars", "current_v6_chars", "hamr_chars", "hamr_eligible", "discard_reason", "final_chars", "final_wire_bits", "round_trip"];
 const csv = [header.join(","), ...traces.map(trace => {
   const values = [trace.index, trace.category, trace.selectedCandidate, trace.candidates.combinedRetained.payloadCharacters, trace.candidates.currentV6Planner.payloadCharacters, trace.candidates.haMr.payloadCharacters, trace.candidates.haMr.eligible, trace.candidates.haMr.discardReason?.reason || trace.candidates.haMr.normalization?.differenceReason || "", trace.finalPayloadCharacters, trace.finalWireBits, trace.roundTripEquivalent];
   return values.map(value => { const text = String(value ?? ""); return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text; }).join(",");
 })].join("\n");
-writeFileSync("reports/meta-v7-sample-report.csv", `${csv}\n`);
+writeFileSync(csvPath, `${csv}\n`);
 console.log(`Completed meta-v7 sample: wins=${comparison.wins} ties=${comparison.ties} losses=${comparison.losses} excluded=${comparison.excludedUnsupportedHamr}.`);
-console.log("JSON: reports/meta-v7-sample-report.json"); console.log("CSV: reports/meta-v7-sample-report.csv");
+console.log(`JSON: ${jsonPath}`);
+console.log(`CSV: ${csvPath}`);

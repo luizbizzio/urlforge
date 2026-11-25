@@ -42,11 +42,14 @@ const results = {
   stress: validateDataset("stress", stress.valid, stress.malformed)
 };
 const report = { generatedAt: new Date().toISOString(), alphabet: ALPHABET.join(""), prefixes: { forge: FORGE_PREFIX, hamr: HAMR_PREFIX, equalLength: FORGE_PREFIX.length === HAMR_PREFIX.length }, sourceSize: { codecBytes: statSync(new URL("./codec.js", import.meta.url)).size, validationDatasetBytes: statSync(new URL("./validation-datasets.js", import.meta.url)).size, validationBenchmarkBytes: statSync(new URL("./validate-benchmark.js", import.meta.url)).size }, datasets: results };
-mkdirSync("reports", { recursive: true }); writeFileSync("reports/external-validation-report.json", JSON.stringify(report, null, 2));
+const reportPath = "reports/generated/external-validation-report.json";
+mkdirSync("reports/generated", { recursive: true });
+writeFileSync(reportPath, JSON.stringify(report, null, 2));
 for (const result of Object.values(results)) {
   console.log(`\n${result.name}: ${result.count} valid URLs`);
   console.table({ payload: result.payload, completeLink: result.completeLink, compressionMs: result.timing.compressionMs, decompressionMs: result.timing.decompressionMs });
   console.log("vs ha.mr", result.versusHamr.payload, "ha.mr", result.hamrPayload, "round-trip", `${result.roundTrips}/${result.count}`, "fallback", result.fallbackAudit, "structural average delta", result.structuralAverageDelta.toFixed(3), "malformed", result.malformed);
   console.table(Object.fromEntries(Object.entries(result.categories).map(([category, value]) => [category, { average: value.payload.average.toFixed(2), median: value.payload.median.toFixed(2), p90: value.payload.p90.toFixed(2), p95: value.payload.p95.toFixed(2), max: value.payload.maximum, hamrP90: value.hamrPayload?.p90.toFixed(2) ?? "n/a", wins: value.versusHamr.wins, losses: value.versusHamr.losses, ties: value.versusHamr.ties, structuralDelta: value.structuralAverageDelta.toFixed(2) }])));
 }
-console.log("\nSource size", report.sourceSize); console.log("Report: reports/external-validation-report.json");
+console.log("\nSource size", report.sourceSize);
+console.log(`Report: ${reportPath}`);

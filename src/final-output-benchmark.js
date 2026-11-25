@@ -16,7 +16,12 @@ const stopAfter = stopArgument ? Number(stopArgument.split("=")[1]) : Infinity;
 const suffix = sample ? "-sample" : "";
 const checkpointBase = contextExperiment ? "context-arithmetic-experiment" : "final-output-benchmark";
 const reportBase = contextExperiment ? "context-arithmetic-experiment" : stressOnly ? "final-output-stress" : "final-output-benchmark";
-const paths = { checkpoint: `reports/${checkpointBase}${suffix}-checkpoint.json`, json: `reports/${reportBase}${suffix}-report.json`, csv: `reports/${reportBase}${suffix}-report.csv` };
+const reportDirectory = "reports/generated";
+const paths = {
+  checkpoint: `${reportDirectory}/${checkpointBase}${suffix}-checkpoint.json`,
+  json: `${reportDirectory}/${reportBase}${suffix}-report.json`,
+  csv: `${reportDirectory}/${reportBase}${suffix}-report.csv`
+};
 
 const productionCandidates = Object.freeze({
   currentV6Planner: (url, alphabet) => compressDetailed(url, { huffman: true, lz: true, arithmetic: true, globalRawStream: true, outputAlphabet: alphabet }),
@@ -55,7 +60,7 @@ function stressProgress(dataset, candidate, index, total, elapsedMs) {
 const allDatasets = buildAllDatasets(), activeDatasetNames = stressOnly ? ["stress"] : ["development", "holdout", "unseen"];
 const datasetFingerprints = Object.fromEntries(Object.entries(allDatasets).map(([name, rows]) => [name, hash(rows)]));
 const configurationSignature = hash({ schema: 2, sample, datasets: datasetFingerprints, productionCandidates: Object.keys(productionCandidates) });
-mkdirSync("reports", { recursive: true });
+mkdirSync(reportDirectory, { recursive: true });
 if (reset) for (const path of Object.values(paths)) rmSync(path, { force: true });
 let checkpoint = existsSync(paths.checkpoint) ? JSON.parse(readFileSync(paths.checkpoint, "utf8")) : { schemaVersion: 2, configurationSignature, complete: false, completedModes: {}, datasets: {} };
 if (!contextExperiment && !checkpoint.configurationSignature) {
