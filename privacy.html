@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#141210">
-    <meta name="description" content="Learn how URLForge compresses URLs in your browser and which technical metrics can be collected when telemetry is enabled.">
+    <meta name="description" content="Learn how URLForge processes links and saves preferences in your browser.">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
     <title>Privacy · URLForge</title>
@@ -24,10 +24,9 @@
       <main class="privacy-card">
         <h1>Privacy</h1>
         <p class="lead">URLForge is designed to work locally in your browser.</p>
-        <section><h2>Telemetry excludes URLs</h2><p>The original URL, payload, and compressed link are not sent to or stored by the telemetry service.</p></section>
+        <section><h2>Links and QR codes</h2><p>The compressor form creates short links and QR codes in your browser. The destination is encoded in the part of the short link after the <code>#</code> and decoded by the browser when someone opens it.</p></section>
         <section><h2>Address bar shortcut</h2><p>When you put <code>uf.do/</code> before a URL, the destination up to its fragment is part of the request to our hosting provider. Paste sensitive links into the compressor form to keep them in your browser.</p></section>
-        <section><h2>Minimal technical metrics</h2><p>When an installation enables optional telemetry, only technical counts and sizes are sent. They do not identify users.</p></section>
-        <section><h2>Optional telemetry</h2><p>Self-hosted installations can leave it disabled. Telemetry failures never block compression, QR generation, decoding, or redirects.</p></section>
+        <section><h2>Browser preferences</h2><p>Your <strong>Ask before opening</strong> setting is saved in your browser. The address bar shortcut keeps the current input in the tab's session history so you can reload the result.</p></section>
         <a class="button secondary" href="%BASE_URL%">Back</a>
       </main>
     </div>

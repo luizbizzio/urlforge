@@ -2,7 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  envPrefix: ["VITE_", "PUBLIC_", "TELEMETRY_"],
+  envPrefix: ["VITE_", "PUBLIC_"],
   build: {
     target: "es2022",
     rollupOptions: {

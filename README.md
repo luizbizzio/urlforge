@@ -159,7 +159,7 @@ Each bar is proportional to the character count, with rounded block lengths. The
 
 ### What about privacy?
 
-Compression, decompression and QR generation run locally. Optional telemetry can report technical metrics such as lengths, timings, success counts, codec choices and errors; the event schema does not contain original URLs, payloads or compressed links. The address bar shortcut is an exception to local-only input handling, as explained above.
+Compression, decompression and QR generation run locally. The address bar shortcut includes the original address up to its fragment in the request to the hosting provider.
 
 Compression is **not encryption**. Anyone who has a compressed link can recover its destination. The site accepts complete HTTP and HTTPS addresses, rejects embedded usernames and passwords, and limits input to 8,192 UTF-8 bytes. See the [privacy page](https://uf.do/privacy).
 
@@ -550,7 +550,7 @@ Source: [`url-codec.js`](src/url-codec.js), [`meta-codec.js`](src/meta-codec.js)
 
 Compression is only useful if we can reverse it. The most important test is not how small the output gets, but whether the decoder reconstructs the correct address.
 
-URLForge includes round-trip and property tests, malformed-payload tests, legacy compatibility checks and web integration tests. They cover percent escapes, Unicode, repeated query parameters, QR generation, preview mode and telemetry validation.
+URLForge includes round-trip and property tests, malformed-payload tests, legacy compatibility checks and web integration tests. They cover percent escapes, Unicode, repeated query parameters, QR generation and preview mode.
 
 The [current suffix benchmark](src/suffix-benchmark.js) measures the full link length using the same base for competing codecs. It records wins, ties, losses, character savings and 95th-percentile encoding and decoding times in Node.js. A reference that cannot restore the serialized destination exactly is excluded from the exact comparison.
 

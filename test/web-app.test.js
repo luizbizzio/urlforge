@@ -111,7 +111,7 @@ test("input validation accepts exactly 8192 UTF-8 bytes and rejects the next byt
 });
 
 test("short-link base falls back locally and accepts an official configured HTTPS base", () => {
-  assert.deepEqual(resolvePublicConfig({}, localLocation), { shortUrlBase: "http://localhost:5173/#", telemetryEndpoint: null, shortUrlBaseSource: "local" });
+  assert.deepEqual(resolvePublicConfig({}, localLocation), { shortUrlBase: "http://localhost:5173/#", shortUrlBaseSource: "local" });
   assert.equal(resolvePublicConfig({ PUBLIC_SHORT_URL_BASE: "https://urlforge.pages.dev/#" }, localLocation).shortUrlBase, "https://urlforge.pages.dev/#");
   assert.throws(() => resolvePublicConfig({ PUBLIC_SHORT_URL_BASE: "http://public.example/#" }, localLocation), /SHORT_URL_BASE_REQUIRES_HTTPS/);
 });

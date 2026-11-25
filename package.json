@@ -26,7 +26,7 @@
     "benchmark:meta:sample": "node src/meta-benchmark.js",
     "benchmark:suffix": "node src/suffix-benchmark.js",
     "test": "node --test",
-    "test:web": "node --test test/web-app.test.js test/telemetry.test.js"
+    "test:web": "node --test test/web-app.test.js"
   },
   "engines": {
     "node": ">=20.19"
